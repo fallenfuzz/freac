@@ -83,7 +83,7 @@ cd ../..
 
 # Build fre:ac
 git clone https://github.com/enzo1982/freac.git enzo1982/freac
-cd enzo1982/boca
+cd enzo1982/freac
 
 CONFIG="release"
 
