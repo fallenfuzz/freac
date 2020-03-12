@@ -137,7 +137,7 @@ script:
   - |
     # Build AppImage
     if [ "$AppImageBuild" = True ]; then
-      ./packaging/appimage/build-appimage
+      ./packaging/travis/build-appimage
     fi
   - |
     # Build libcdio
