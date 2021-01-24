@@ -392,8 +392,8 @@
     </section>
 
     <section name="Errors">
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Ez dago sarbiderik sarrera agirira: %1&#10;&#10;Agiria: %1&#10;Agiritegiak: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Ezin da irteera agiria sortu: %1&#10;&#10;Agiria: %1&#10;Agiritegiak: %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Ez dago sarbiderik sarrera agirira: %1&#10;&#10;Agiria: %1&#10;Agiritegiak: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Ezin da irteera agiria sortu: %1&#10;&#10;Agiria: %1&#10;Agiritegiak: %2</entry>
       <entry id="7110" string="File not found">Agiria ez da aurkitu</entry>
       <entry id="7111" string="Unknown file type">Agiri mota ezezaguna</entry>
       <entry id="7113" string="Unsupported audio format">Audio heuskarri sostengu gabea</entry>
@@ -433,7 +433,6 @@
       <entry id="9015" string="Start ripping automatically">Hasi erauzten berezgaitasunez</entry>
       <entry id="9016" string="Eject disk after ripping">Atera diska erauzi ondoren</entry>
       <entry id="9017" string="CD options">CD aukerak</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Blokeatu CD erretilua erauztean</entry>
     </section>
 
     <section name="Encoders">
@@ -472,9 +471,9 @@
 	  <entry id="32100" string="Presets">Aurrezarpenak</entry>
 	  <entry id="32101" string="Use preset">Erabili aurrezarpena</entry>
 	  <entry id="32102" string="Custom settings">Norbere ezarpenak</entry>
-	  <entry id="32103" string="Medium, Fast">Ertaina, Azkarra</entry>
-	  <entry id="32104" string="Standard, Fast">Estandarra, Azkarra</entry>
-	  <entry id="32105" string="Extreme, Fast">Hertzekoa, Azkarra</entry>
+	  <entry id="32103" string="Medium">Ertaina</entry>
+	  <entry id="32104" string="Standard">Estandarra</entry>
+	  <entry id="32105" string="Extreme">Hertzekoa</entry>
 	  <entry id="32106" string="Bitrate">Bitneurria</entry>
 	  <entry id="32107" string="Quality">Ontasuna</entry>
 	  <entry id="32108" string="Set bitrate">Ezarri bitneurria</entry>
@@ -542,6 +541,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping">Erabili Zarata Tenporal Moldap.</entry>
 	  <entry id="33208" string="Maximum bandwidth">Gehienezko bandazabalera</entry>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)">Gehienezko AAC maiztasun bandazabalera (Hz)</entry>
+	  <entry id="33210" string="worse">okerragoa</entry>
+	  <entry id="33211" string="better">hobea</entry>
 	</section>
 
 	<section name="Format">

@@ -1,11 +1,18 @@
 #!/bin/bash
 
-RELEASE=1.1.1
-#RELEASE=1.1.1-`date +"%Y%m%d"`
+#RELEASE=1.1.3
+RELEASE=1.1.3-`date +"%Y%m%d"`
 
-VERSION="v1.1.1"
+VERSION="v1.1.3"
 
-UNAME=macosx
+UNAME=macos
+
+if [[ "$1" == "translation" ]]; then
+  TRANSLATION=1
+  VERSION="$VERSION Translation Kit"
+
+  shift
+fi
 
 if [[ -n $1 ]]; then
   CERTNAME="Developer ID Application: $1"
@@ -30,7 +37,7 @@ if [[ -n $CERTNAME ]]; then
   # Sign application
   echo Signing application...
   find freac.app -name *.dylib | xargs -I $ codesign --sign "$CERTNAME" --timestamp $
-  codesign --sign "$CERTNAME" --timestamp -o runtime ./freac.app/Contents/Resources/codecs/cmdline/avconv
+  codesign --sign "$CERTNAME" --timestamp -o runtime ./freac.app/Contents/Resources/codecs/cmdline/ffmpeg
   codesign --sign "$CERTNAME" --timestamp -o runtime ./freac.app/Contents/Resources/codecs/cmdline/mpcdec
   codesign --sign "$CERTNAME" --timestamp -o runtime ./freac.app/Contents/Resources/codecs/cmdline/mpcenc
   codesign --sign "$CERTNAME" --timestamp -o runtime ./freac.app/Contents/Resources/codecs/cmdline/wavpack
@@ -80,14 +87,24 @@ fi
 mkdir -p dmg
 
 mv Copying dmg
-mv Readme dmg
-mv Readme.de dmg
 cp .VolumeIcon.icns dmg
 
 chmod 644 dmg/Copying
-chmod 644 dmg/Readme
-chmod 644 dmg/Readme.de
 chmod 644 dmg/.VolumeIcon.icns
+
+if [[ -n $TRANSLATION ]]; then
+  rm Readme
+  rm Readme.de
+
+  cp -R freac.app/Contents/Resources/lang dmg/lang
+  ln -s freac.app/Contents/Resources/translator.app dmg/Translator.app
+else
+  mv Readme dmg
+  mv Readme.de dmg
+
+  chmod 644 dmg/Readme
+  chmod 644 dmg/Readme.de
+fi
 
 cp -R freac.app dmg
 rm -f freac-$RELEASE-$UNAME.dmg
@@ -107,7 +124,10 @@ hdiutil detach vol
 
 # Convert and finish .dmg
 hdiutil convert -format UDBZ -o freac-$RELEASE-$UNAME.dmg freac-$RELEASE-$UNAME.dmg.sparseimage
-hdiutil internet-enable -yes freac-$RELEASE-$UNAME.dmg
+
+if [[ -n $TRANSLATION ]]; then
+  mv freac-$RELEASE-$UNAME.dmg freac-${RELEASE%%-*}-translation-kit-$UNAME.dmg
+fi
 
 rm -f freac-$RELEASE-$UNAME.dmg.sparseimage
 rm -fr dmg vol

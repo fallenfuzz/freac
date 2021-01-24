@@ -398,6 +398,7 @@
       <entry id="5023" string="Verifiers">Parametri di controllu</entry>
       <entry id="5024" string="Taggers">Creatori d’etichetta</entry>
       <entry id="5025" string="Processing">Trattamentu</entry>
+      <entry id="5026" string="Additional arguments">Argumenti addiziunale</entry>
 
       <section name="Encoders">
 	<entry id="5100" string="Configure encoder">Cunfigurà u cudificatore</entry>
@@ -609,15 +610,15 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1">Sbagliu : %1</entry>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Ùn si pò micca creà u cumpunente di discudificazione : %1&#10;&#10;Schedariu : %1&#10;Chjassu : %2</entry>
-      <entry id="7102" string="Could not create encoder component: %1">Ùn si pò micca creà u cumpunente di cudificazione : %1</entry>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Ùn si pò definisce u discudificatore per u schedariu d’urigine : %1&#10;&#10;Schedariu : %1&#10;Chjassu : %2&#10;&#10;Sbagliu : %3</entry>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Ùn si pò definisce u cudificatore per u schedariu di destinazione : %1&#10;&#10;Schedariu : %1&#10;Chjassu : %2&#10;&#10;Sbagliu : %3</entry>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Ùn si pò definisce u prucessore DSP : %1&#10;&#10;Sbagliu : %2</entry>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Ùn si pò accede à u schedariu d’urigine : %1&#10;&#10;Schedariu : %1&#10;Chjassu : %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Ùn si pò creà u schedariu di destinazione : %1&#10;&#10;Schedariu : %1&#10;Chjassu : %2</entry>
-      <entry id="7108" string="Failed to verify input file: %1">Fiascu di a verificazione di u schedariu d’urigine : %1</entry>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Ùn si pò micca creà u cumpunente di discudificazione : %1&#10;&#10;Schedariu : %1&#10;Chjassu : %2</entry>
+      <entry id="7101" string="Could not create encoder component: %1">Ùn si pò micca creà u cumpunente di cudificazione : %1</entry>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Ùn si pò definisce u discudificatore per u schedariu d’urigine : %1&#10;&#10;Schedariu : %1&#10;Chjassu : %2&#10;&#10;Sbagliu : %3</entry>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Ùn si pò definisce u cudificatore per u schedariu di destinazione : %1&#10;&#10;Schedariu : %1&#10;Chjassu : %2&#10;&#10;Sbagliu : %3</entry>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Ùn si pò definisce u prucessore DSP : %1&#10;&#10;Sbagliu : %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Ùn si pò accede à u schedariu d’urigine : %1&#10;&#10;Schedariu : %1&#10;Chjassu : %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Ùn si pò creà u schedariu di destinazione : %1&#10;&#10;Schedariu : %1&#10;Chjassu : %2</entry>
+      <entry id="7107" string="Failed to verify input file: %1">Fiascu di a verificazione di u schedariu d’urigine : %1</entry>
+      <entry id="7108" string="Failed to verify input track: %1">Fiascu di a verificazione di a traccia d’entrata : %1</entry>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3">Sfarenza di somma di cuntrollu à a verificazione di u schedariu di destinazione : %1&#10;&#10;Somma cudificata : %2&#10;Somma verificata : %3</entry>
       <entry id="7110" string="File not found">U schedariu ùn esiste micca</entry>
       <entry id="7111" string="Unknown file type">Tipu di schedariu scunnisciutu</entry>
@@ -633,6 +634,7 @@
       <entry id="7121" string="Access to CD-ROM drives was denied by Windows.&#10;&#10;Please contact your system administrator in order&#10;to be granted the right to access the CD-ROM drive.">Windows hà ricusatu l’accessu à i lettori CD-ROM.&#10;Ci vole à cuntattà l’amministratore di u vostru sistema&#10;per dumandallu u dirittu d’accessu à u lettore CD-ROM.</entry>
       <entry id="7122" string="No configuration dialog available for:&#10;&#10;%1">Alcunu dialogu di cunfigurazione dispunibule per :&#10;&#10;%1</entry>
       <entry id="7123" string="The selected folder does not exist anymore!">U cartulare selezziunatu ùn esiste più !</entry>
+      <entry id="7124" string="Access denied">Accessu ricusatu</entry>
     </section>
 
     <section name="Dialogs">
@@ -679,12 +681,11 @@
       <entry id="9015" string="Start ripping automatically">Principià à estrae autumaticamente</entry>
       <entry id="9016" string="Eject disk after ripping">Espulsione di u CD dopu l’estrazzione</entry>
       <entry id="9017" string="CD options">Ozzioni di u CD</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Immubulizà u lettore CD durante l’estrazzione</entry>
-      <entry id="9019" string="Use read offset">Impiegà u spiazzamentu di lettura</entry>
-      <entry id="9020" string="samples">campioni</entry>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist">Leghje u codice ISRC à l’aghjuntu di e traccie à a lista di travagliu</entry>
-      <entry id="9022" string="Spin up before ripping">Mette in ballu u CD nanzu l’estrazzione</entry>
-      <entry id="9023" string="%1 seconds">%1 seconde</entry>
+      <entry id="9018" string="Use read offset">Impiegà u spiazzamentu di lettura</entry>
+      <entry id="9019" string="samples">campioni</entry>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist">Leghje u codice ISRC à l’aghjuntu di e traccie à a lista di travagliu</entry>
+      <entry id="9021" string="Spin up before ripping">Mette in ballu u CD nanzu l’estrazzione</entry>
+      <entry id="9022" string="%1 seconds">%1 seconde</entry>
     </section>
 
     <section name="Components">
@@ -773,9 +774,9 @@
 	  <entry id="32100" string="Presets">Parametri predefiniti</entry>
 	  <entry id="32101" string="Use preset">Impiegà parametru predefinitu</entry>
 	  <entry id="32102" string="Custom settings">Preferenze persunalizate</entry>
-	  <entry id="32103" string="Medium, Fast">Medianu, Rapidu</entry>
-	  <entry id="32104" string="Standard, Fast">Classicu, Rapidu</entry>
-	  <entry id="32105" string="Extreme, Fast">Estremu, Rapidu</entry>
+	  <entry id="32103" string="Medium">Medianu</entry>
+	  <entry id="32104" string="Standard">Classicu</entry>
+	  <entry id="32105" string="Extreme">Estremu</entry>
 	  <entry id="32106" string="Bitrate">Bitrate</entry>
 	  <entry id="32107" string="Quality">Qualità</entry>
 	  <entry id="32108" string="Set bitrate">Definisce u bitrate</entry>
@@ -1265,7 +1266,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!">St’indirizzu ùn hè micca accettata o micca una pagina di video.</entry>
 	  <entry id="102202" string="Error downloading video!">Sbagliu durante u scaricamentu di a video !</entry>
 	  <entry id="102203" string="You are already downloading this video!">Site dighjà in treccia di scaricà sta video !</entry>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!">Qualchì discudificatore video richiestu ùn si trova micca.&#10;I schedarii video ùn ponu micca esse aghjunti à a lista di&#10;travagliu per una cunversione audio. Ci cole à installà&#10;avconv o FFmpeg per currege stu penseru !</entry>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!">Qualchì discudificatore video richiestu ùn si trova micca.&#10;I schedarii video ùn ponu micca esse aghjunti à a lista di&#10;travagliu per una cunversione audio. Ci cole à installà&#10;FFmpeg o avconv per currege stu penseru !</entry>
 	</section>
       </section>
 

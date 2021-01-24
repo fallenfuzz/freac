@@ -1,0 +1,23 @@
+{
+  "name": "libmac",
+  "no-autogen": true,
+  "rm-configure": true,
+  "make-install-args": [
+    "prefix=/app"
+  ],
+  "cleanup": [
+    "/include/MAC"
+  ],
+  "sources": [
+    {
+        "type": "archive",
+        "url": "https://freac.org/patches/MAC_SDK_568.zip",
+        "sha256": "25cecf3ee962647be4401595e1f71449b1e28e8a1ad488e553200c5ced4eb126",
+        "strip-components": 0
+    },
+    {
+        "type": "patch",
+        "path": "mac-sdk-5.68-gcc.patch"
+    }
+  ]
+}

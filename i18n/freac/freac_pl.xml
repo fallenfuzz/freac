@@ -398,6 +398,7 @@
       <entry id="5023" string="Verifiers">Weryfikatory</entry>
       <entry id="5024" string="Taggers">Edytory znaczników</entry>
       <entry id="5025" string="Processing">Przetwarzanie</entry>
+      <entry id="5026" string="Additional arguments">Parametry dodatkowe</entry>
 
       <section name="Encoders">
 	<entry id="5100" string="Configure encoder">Ustawienia konwersji</entry>
@@ -609,15 +610,15 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1">Błąd: %1</entry>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Nie można utworzyć komponentu dekodera: %1&#10;&#10;Plik: %1&#10;Katalog: %2</entry>
-      <entry id="7102" string="Could not create encoder component: %1">Nie można utworzyć komponentu konwertera: %1</entry>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nie można ustawić dekodera dla pliku źródłowego: %1&#10;&#10;Plik: %1&#10;Katalog: %2</entry>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nie można ustawić konwertera dla pliku wyjściowego: %1&#10;&#10;Plik: %1&#10;Katalog: %2</entry>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Nie można ustawić procesora DSP: %1&#10;&#10;Błąd: %2</entry>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Brak dostępu do pliku źródłowego: %1&#10;&#10;Plik: %1&#10;Katalog: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Nie można utworzyć pliku wyjściowego: %1&#10;&#10;Plik: %1&#10;Katalog: %2</entry>
-      <entry id="7108" string="Failed to verify input file: %1">Nie udało się zweryfikować pliku źródłowego: %1</entry>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Nie można utworzyć komponentu dekodera: %1&#10;&#10;Plik: %1&#10;Katalog: %2</entry>
+      <entry id="7101" string="Could not create encoder component: %1">Nie można utworzyć komponentu konwertera: %1</entry>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nie można ustawić dekodera dla pliku źródłowego: %1&#10;&#10;Plik: %1&#10;Katalog: %2</entry>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nie można ustawić konwertera dla pliku wyjściowego: %1&#10;&#10;Plik: %1&#10;Katalog: %2</entry>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Nie można ustawić procesora DSP: %1&#10;&#10;Błąd: %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Brak dostępu do pliku źródłowego: %1&#10;&#10;Plik: %1&#10;Katalog: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Nie można utworzyć pliku wyjściowego: %1&#10;&#10;Plik: %1&#10;Katalog: %2</entry>
+      <entry id="7107" string="Failed to verify input file: %1">Nie udało się zweryfikować pliku źródłowego: %1</entry>
+      <entry id="7108" string="Failed to verify input track: %1">Nie udało się zweryfikować utworu źródłowego: %1</entry>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3">Rozbieżność sumy kontrolnej podczas weryfikacji pliku wyjściowego: %1&#10;&#10;Suma kontrolna kodowania: %2&#10;Suma kontrolna weryfikacji: %3</entry>
       <entry id="7110" string="File not found">Nie znaleziono pliku</entry>
       <entry id="7111" string="Unknown file type">Nieznany typ pliku</entry>
@@ -633,6 +634,7 @@
       <entry id="7121" string="Access to CD-ROM drives was denied by Windows.&#10;&#10;Please contact your system administrator in order&#10;to be granted the right to access the CD-ROM drive.">System Windows odmawia dostępu do stacji CD-ROM.&#10;&#10;Skontaktuj się z administratorem systemu&#10;celem uzyskania dostępu do stacji CD-ROM.</entry>
       <entry id="7122" string="No configuration dialog available for:&#10;&#10;%1">Okno dialogowe konfiguracji niedostępne dla:&#10;&#10;%1</entry>
       <entry id="7123" string="The selected folder does not exist anymore!">Wybrany folder już nie istnieje!</entry>
+      <entry id="7124" string="Access denied">Odmowa dostępu</entry>
     </section>
 
     <section name="Dialogs">
@@ -679,12 +681,11 @@
       <entry id="9015" string="Start ripping automatically">Automatyczny start zgrywania</entry>
       <entry id="9016" string="Eject disk after ripping">Wysuń CD po zgraniu</entry>
       <entry id="9017" string="CD options">Opcje CD</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Blokuj CD podczas zgrywania</entry>
-      <entry id="9019" string="Use read offset">Użyj offsetu odczytu</entry>
-      <entry id="9020" string="samples">próbek</entry>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist">Odczytaj ISRC podczas dodawania utworów do listy</entry>
-      <entry id="9022" string="Spin up before ripping">Rozpędź płytę przed zgrywaniem</entry>
-      <entry id="9023" string="%1 seconds">Sekundy: %1</entry>
+      <entry id="9018" string="Use read offset">Użyj offsetu odczytu</entry>
+      <entry id="9019" string="samples">próbek</entry>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist">Odczytaj ISRC podczas dodawania utworów do listy</entry>
+      <entry id="9021" string="Spin up before ripping">Rozpędź płytę przed zgrywaniem</entry>
+      <entry id="9022" string="%1 seconds">Sekundy: %1</entry>
     </section>
 
     <section name="Components">
@@ -704,6 +705,7 @@
 	<entry id="12002" string="Sample Rate Converter">Konwerter częstotliwości próbkowania</entry>
 	<entry id="12003" string="RNNoise Noise Reduction">Redukcja szumów RNNoise</entry>
 	<entry id="12004" string="Rubber Band Tempo/Pitch Changer">Rubber Band - zmiana tempa/tonacji</entry>
+	<entry id="12005" string="HDCD Decoder">Dekoder HDCD"</entry>
       </section>
 
       <section name="Extensions">
@@ -773,9 +775,9 @@
 	  <entry id="32100" string="Presets">Zdefiniowane ustawienia</entry>
 	  <entry id="32101" string="Use preset">Zastosuj</entry>
 	  <entry id="32102" string="Custom settings">ustawienia użytkownika</entry>
-	  <entry id="32103" string="Medium, Fast">średni, szybki</entry>
-	  <entry id="32104" string="Standard, Fast">standardowy, szybki</entry>
-	  <entry id="32105" string="Extreme, Fast">ekstremalny, szybki</entry>
+	  <entry id="32103" string="Medium">średni</entry>
+	  <entry id="32104" string="Standard">standardowy</entry>
+	  <entry id="32105" string="Extreme">ekstremalny</entry>
 	  <entry id="32106" string="Bitrate">Przepływność bitów</entry>
 	  <entry id="32107" string="Quality">Jakość</entry>
 	  <entry id="32108" string="Set bitrate">przepływność</entry>
@@ -848,6 +850,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping">Wykorzystaj kształtowanie</entry>
 	  <entry id="33208" string="Maximum bandwidth">Pasmo maksymalne</entry>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)">Maksymalne pasmo częstotliwości AAC (Hz)</entry>
+	  <entry id="33210" string="worse">gorsza</entry>
+	  <entry id="33211" string="better">lepsza</entry>
 	</section>
 
 	<section name="Format">
@@ -1265,7 +1269,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!">Ten adres URL nie jest obsługiwany albo nie prowadzi do strony z wideo!</entry>
 	  <entry id="102202" string="Error downloading video!">Błąd pobierania filmu!</entry>
 	  <entry id="102203" string="You are already downloading this video!">Pobierasz już ten film!</entry>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!">Niektóre wymagane dekodery wideo nie zostały znalezione.&#10;Pliki wideo nie mogą być dodane do listy zadań w celu konwersji&#10;do plików audio.&#10;&#10;Zainstaluj avconv albo FFmpeg, by to naprawić!</entry>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!">Niektóre wymagane dekodery wideo nie zostały znalezione.&#10;Pliki wideo nie mogą być dodane do listy zadań w celu konwersji&#10;do plików audio.&#10;&#10;Zainstaluj FFmpeg albo avconv, by to naprawić!</entry>
 	</section>
       </section>
 
@@ -1306,6 +1310,8 @@
 	  <entry id="103209" string="ISRC">ISRC</entry>
 	  <entry id="103210" string="Tempo">Tempo</entry>
 	  <entry id="103211" string="BPM">BPM</entry>
+	  <entry id="103212" string="Catalog number">Numer katalogowy</entry>
+	  <entry id="103213" string="Barcode">Kod paskowy</entry>
 	</section>
 
 	<section name="Other">

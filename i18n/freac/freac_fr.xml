@@ -605,16 +605,15 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1">Erreur : %1</entry>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Impossible de créer le composant de décodeur : %1&#10;&#10;Fichier : %1&#10;Chemin : %2</entry>
-      <entry id="7102" string="Could not create encoder component: %1">Impossible de créer le composant de d'encodeur : %1</entry>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Impossible de mettre en place le décodeur pour le fichier source : %1&#10;&#10;Fichier : %1&#10;Chemin : %2&#10;&#10;Erreur : %3</entry>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Impossible de mettre en place l'encodeur pour le fichier résultant : %1&#10;&#10;Fichier : %1&#10;Chemin : %2&#10;&#10;Erreur : %3</entry>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Impossible de mettre en place le processeur DSP : %1&#10;&#10;Erreur : %2</entry>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Impossible d'accéder au fichier d'entrée : %1&#10;&#10;Fichier : %1&#10;Répertoire : %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Impossible d'accéder au fichier de sortie : %1&#10;&#10;Fichier : %1&#10;Répertoire : %2</entry>
-      <entry id="7108" string="Failed to verify input file: %1">Échec de la vérification du fichier source : %1</entry>
-      <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3">Non-concordance de la somme de contrôle&#10;lors de la vérification du fichier de sortie : % 1&#10;&#10;Encoder somme de controle : %2&#10;Vérifier somme de controle : %3</entry>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Impossible de créer le composant de décodeur : %1&#10;&#10;Fichier : %1&#10;Chemin : %2</entry>
+      <entry id="7101" string="Could not create encoder component: %1">Impossible de créer le composant de d'encodeur : %1</entry>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Impossible de mettre en place le décodeur pour le fichier source : %1&#10;&#10;Fichier : %1&#10;Chemin : %2&#10;&#10;Erreur : %3</entry>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Impossible de mettre en place l'encodeur pour le fichier résultant : %1&#10;&#10;Fichier : %1&#10;Chemin : %2&#10;&#10;Erreur : %3</entry>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Impossible de mettre en place le processeur DSP : %1&#10;&#10;Erreur : %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Impossible d'accéder au fichier d'entrée : %1&#10;&#10;Fichier : %1&#10;Répertoire : %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Impossible d'accéder au fichier de sortie : %1&#10;&#10;Fichier : %1&#10;Répertoire : %2</entry>
+      <entry id="7107" string="Failed to verify input file: %1">Échec de la vérification du fichier source : %1</entry>
+      <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3">Non-concordance de la somme de contrôle&#10;lors de la vérification du fichier de sortie : %1&#10;&#10;Encoder somme de controle : %2&#10;Vérifier somme de controle : %3</entry>
       <entry id="7110" string="File not found">Fichier non trouvé</entry>
       <entry id="7111" string="Unknown file type">Type de fichier inconnu</entry>
       <entry id="7112" string="Invalid file format">Format de fichier invalide</entry>
@@ -675,12 +674,11 @@
       <entry id="9015" string="Start ripping automatically">Lancer extraction automatiquement</entry>
       <entry id="9016" string="Eject disk after ripping">Ejecter le CD après extraction</entry>
       <entry id="9017" string="CD options">Options du CD</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Verrouiller le CD à l'extraction</entry>
-      <entry id="9019" string="Use read offset">Utiliser le décalage de lecture</entry>
-      <entry id="9020" string="samples">échantillons</entry>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist">Lire le code ISRC lors de l’ajout à la liste</entry>
-      <entry id="9022" string="Spin up before ripping">Lancer le CD avant l'extraction</entry>
-      <entry id="9023" string="%1 seconds">%1 secondes</entry>
+      <entry id="9018" string="Use read offset">Utiliser le décalage de lecture</entry>
+      <entry id="9019" string="samples">échantillons</entry>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist">Lire le code ISRC lors de l’ajout à la liste</entry>
+      <entry id="9021" string="Spin up before ripping">Lancer le CD avant l'extraction</entry>
+      <entry id="9022" string="%1 seconds">%1 secondes</entry>
     </section>
 
     <section name="Components">
@@ -769,9 +767,9 @@
 	  <entry id="32100" string="Presets">Paramètres prédéfinis</entry>
 	  <entry id="32101" string="Use preset">Utiliser paramètre prédéfini</entry>
 	  <entry id="32102" string="Custom settings">Paramètres personnalisés</entry>
-	  <entry id="32103" string="Medium, Fast">Moyen, rapide</entry>
-	  <entry id="32104" string="Standard, Fast">Standard, rapide</entry>
-	  <entry id="32105" string="Extreme, Fast">Extrême, rapide</entry>
+	  <entry id="32103" string="Medium">Moyen</entry>
+	  <entry id="32104" string="Standard">Standard</entry>
+	  <entry id="32105" string="Extreme">Extrême</entry>
 	  <entry id="32106" string="Bitrate">Qualité d'encodage</entry>
 	  <entry id="32107" string="Quality">Qualité</entry>
 	  <entry id="32108" string="Set bitrate">Débit binaire</entry>
@@ -844,6 +842,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping">Utiliser Temporal Noise Shaping</entry>
 	  <entry id="33208" string="Maximum bandwidth">Bande passante maximale</entry>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)">Bande de fréquence AAC maximale à utiliser (Hz)</entry>
+	  <entry id="33210" string="worse">moins bonne</entry>
+	  <entry id="33211" string="better">meilleure</entry>
 	</section>
 
 	<section name="Format">
@@ -1261,7 +1261,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!">Cette URL n'est pas prise en charge ou n'est pas une URL de page vidéo !</entry>
 	  <entry id="102202" string="Error downloading video!">Erreur de téléchargement de la vidéo !</entry>
 	  <entry id="102203" string="You are already downloading this video!">Vous êtes déja en train de télécharger la vidéo !</entry>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!">Certains encodeurs vidéo requis n'ont pu être trouvés. Les&#10;fichiers vidéo n'ont pu être ajoutés à la conversion vers des&#10;fichiers audio.</entry>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!">Certains encodeurs vidéo requis n'ont pu être trouvés. Les&#10;fichiers vidéo n'ont pu être ajoutés à la conversion vers des&#10;fichiers audio.</entry>
 	</section>
       </section>
 

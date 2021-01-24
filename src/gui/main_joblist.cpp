@@ -20,7 +20,7 @@
 #include <jobs/job.h>
 #include <jobs/engine/convert.h>
 
-#include <gui/player.h>
+#include <gui/playback.h>
 #include <gui/edit_folder.h>
 
 #include <dialogs/config/configcomponent.h>
@@ -35,8 +35,6 @@ using namespace BoCA::AS;
 freac::LayerJoblist::LayerJoblist() : Layer("Joblist")
 {
 	BoCA::Config	*config = BoCA::Config::Get();
-
-	drawSurface		= NIL;
 
 	dontUpdateInfo		= False;
 
@@ -144,7 +142,7 @@ freac::LayerJoblist::LayerJoblist() : Layer("Joblist")
 		pos.x = 242;
 		pos.y = 0;
 
-		player	= new LayerPlayer(joblist);
+		player	= new PlaybackWidget(freacGUI::Get()->GetPlayer(), joblist);
 		player->SetPosition(pos);
 		player->SetOrientation(OR_UPPERRIGHT);
 	}
@@ -354,7 +352,7 @@ freac::LayerJoblist::LayerJoblist() : Layer("Joblist")
 	edb_filename->SetOrientation(OR_LOWERLEFT);
 	edb_filename->Deactivate();
 
-	btn_skip = new Button(ImageLoader::Load(String(Config::Get()->resourcesPath).Append("icons/other/skip.png")), Point(0, 103), Size(27, 27));
+	btn_skip = new Button(Bitmap(), Point(0, 103), Size(27, 27));
 	btn_skip->SetOrientation(OR_LOWERLEFT);
 	btn_skip->SetFlags(BF_NOFRAME);
 	btn_skip->onAction.Connect(&onRequestSkipTrack);
@@ -562,9 +560,7 @@ freac::LayerJoblist::LayerJoblist() : Layer("Joblist")
 	JobConvert::onFinishEncoding.Connect(&LayerJoblist::OnEncoderFinishEncoding, this);
 
 	JobConvert::onEncodeTrack.Connect(&LayerJoblist::OnEncoderEncodeTrack, this);
-
-	JobConvert::onTrackProgress.Connect(&LayerJoblist::OnEncoderTrackProgress, this);
-	JobConvert::onTotalProgress.Connect(&LayerJoblist::OnEncoderTotalProgress, this);
+	JobConvert::onReportProgress.Connect(&LayerJoblist::OnEncoderReportProgress, this);
 
 	/* Connect other slots.
 	 */
@@ -592,9 +588,7 @@ freac::LayerJoblist::~LayerJoblist()
 	JobConvert::onFinishEncoding.Disconnect(&LayerJoblist::OnEncoderFinishEncoding, this);
 
 	JobConvert::onEncodeTrack.Disconnect(&LayerJoblist::OnEncoderEncodeTrack, this);
-
-	JobConvert::onTrackProgress.Disconnect(&LayerJoblist::OnEncoderTrackProgress, this);
-	JobConvert::onTotalProgress.Disconnect(&LayerJoblist::OnEncoderTotalProgress, this);
+	JobConvert::onReportProgress.Disconnect(&LayerJoblist::OnEncoderReportProgress, this);
 
 	/* Clear tracks.
 	 */
@@ -920,6 +914,11 @@ Void freac::LayerJoblist::OnChangeLanguageSettings()
 
 	btn_browse->SetWidth(Math::Max(80, btn_browse->GetUnscaledTextWidth() + 13));
 
+	Bitmap	 skipIcon = ImageLoader::Load(String(Config::Get()->resourcesPath).Append("icons/other/skip.png"));
+
+	if (i18n->IsActiveLanguageRightToLeft()) Utilities::MirrorBitmap(skipIcon);
+
+	btn_skip->SetBitmap(skipIcon);
 	btn_skip->SetX(btn_skip->GetWidth() + 7);
 	btn_browse->SetX(btn_browse->GetWidth() + 7);
 
@@ -962,8 +961,8 @@ Void freac::LayerJoblist::FillMenus()
 
 	if (Registry::Get().GetNumberOfComponentsOfType(COMPONENT_TYPE_OUTPUT) > 0)
 	{
-		menu_trackmenu->AddEntry(i18n->TranslateString("Play"))->onAction.Connect(&LayerPlayer::PlaySelectedItem, player);
-		menu_trackmenu->AddEntry(i18n->TranslateString("Stop"))->onAction.Connect(&LayerPlayer::StopPlayback, player);
+		menu_trackmenu->AddEntry(i18n->TranslateString("Play"))->onAction.Connect(&PlaybackWidget::PlaySelectedItem, player);
+		menu_trackmenu->AddEntry(i18n->TranslateString("Stop"))->onAction.Connect(&PlaybackWidget::StopPlayback, player);
 		menu_trackmenu->AddEntry();
 	}
 
@@ -986,6 +985,8 @@ Void freac::LayerJoblist::FillMenus()
 	menu_charsets->RemoveAllEntries();
 	menu_charsets_all->RemoveAllEntries();
 
+	menu_charsets->AddEntry("UTF-8", &clicked_charset, CHARSET_UTF_8)->onAction.Connect(&LayerJoblist::InterpretStringAs, this);
+	menu_charsets->AddEntry();
 	menu_charsets->AddEntry("ISO-8859-1", &clicked_charset, CHARSET_ISO_8859_1)->onAction.Connect(&LayerJoblist::InterpretStringAs, this);
 	menu_charsets->AddEntry("ISO-8859-2", &clicked_charset, CHARSET_ISO_8859_2)->onAction.Connect(&LayerJoblist::InterpretStringAs, this);
 	menu_charsets->AddEntry("ISO-8859-5", &clicked_charset, CHARSET_ISO_8859_5)->onAction.Connect(&LayerJoblist::InterpretStringAs, this);
@@ -999,6 +1000,8 @@ Void freac::LayerJoblist::FillMenus()
 	menu_charsets->AddEntry();
 	menu_charsets->AddEntry(i18n->AddEllipsis(i18n->TranslateString("Other")), &clicked_charset, CHARSET_OTHER)->onAction.Connect(&LayerJoblist::InterpretStringAs, this);
 
+	menu_charsets_all->AddEntry("UTF-8", &clicked_charset, CHARSET_UTF_8)->onAction.Connect(&LayerJoblist::InterpretStringAsAll, this);
+	menu_charsets_all->AddEntry();
 	menu_charsets_all->AddEntry("ISO-8859-1", &clicked_charset, CHARSET_ISO_8859_1)->onAction.Connect(&LayerJoblist::InterpretStringAsAll, this);
 	menu_charsets_all->AddEntry("ISO-8859-2", &clicked_charset, CHARSET_ISO_8859_2)->onAction.Connect(&LayerJoblist::InterpretStringAsAll, this);
 	menu_charsets_all->AddEntry("ISO-8859-5", &clicked_charset, CHARSET_ISO_8859_5)->onAction.Connect(&LayerJoblist::InterpretStringAsAll, this);
@@ -1057,6 +1060,8 @@ Void freac::LayerJoblist::UpdateEncoderText()
 	BoCA::Config	*config = BoCA::Config::Get();
 	Registry	&boca = Registry::Get();
 	Component	*component = boca.CreateComponentByID(config->GetStringValue(Config::CategorySettingsID, Config::SettingsEncoderID, Config::SettingsEncoderDefault));
+
+	if (component == NIL) component = boca.CreateComponentByID(Config::SettingsEncoderDefault);
 
 	if (component != NIL)
 	{
@@ -1349,7 +1354,7 @@ Void freac::LayerJoblist::OnShortcutMoveDown()
 
 Void freac::LayerJoblist::OnShortcutMoveTop()
 {
-	if (!IsVisible() || joblist->GetSelectedEntryNumber() == -1) return;
+	if (!IsVisible() || GetActiveEditBox() != NIL || joblist->GetSelectedEntryNumber() == -1) return;
 
 	if (joblist->GetSelectedEntryNumber() > 0)
 	{
@@ -1367,7 +1372,7 @@ Void freac::LayerJoblist::OnShortcutMoveTop()
 
 Void freac::LayerJoblist::OnShortcutMoveBottom()
 {
-	if (!IsVisible() || joblist->GetSelectedEntryNumber() == -1) return;
+	if (!IsVisible() || GetActiveEditBox() != NIL || joblist->GetSelectedEntryNumber() == -1) return;
 
 	if (joblist->GetSelectedEntryNumber() < joblist->Length() - 1)
 	{
@@ -1564,22 +1569,20 @@ Void freac::LayerJoblist::OnEncoderEncodeTrack(const Track &track, const String 
 	surface->EndPaint();
 }
 
-Void freac::LayerJoblist::OnEncoderTrackProgress(Int progressValue, Int secondsLeft)
+Void freac::LayerJoblist::OnEncoderReportProgress(Int trackProgressValue, Int trackSecondsLeft, Int totalProgressValue, Int totalSecondsLeft)
 {
-	/* Start painting here, end it in OnEncoderTotalProgress.
-	 */
-	drawSurface = GetDrawSurface();
+	Surface	*surface = GetDrawSurface();
 
-	drawSurface->StartPaint(Rect::EncloseRect(progress->GetVisibleArea(), edb_totalTime->GetVisibleArea()));
+	surface->StartPaint(Rect::EncloseRect(progress->GetVisibleArea(), edb_totalTime->GetVisibleArea()));
 
 	/* Update seconds only if estimate is less or
 	 * at least two seconds more than before.
 	 */
-	if (secondsLeft < previousTrackSeconds || secondsLeft >= previousTrackSeconds + 2 || previousTrackSeconds == 0)
+	if (trackSecondsLeft < previousTrackSeconds || trackSecondsLeft >= previousTrackSeconds + 2 || previousTrackSeconds == 0)
 	{
 		/* Set track time string.
 		 */
-		String	 secondsString = Job::SecondsToString(secondsLeft);
+		String	 secondsString = Job::SecondsToString(trackSecondsLeft);
 
 		edb_trackTime->SetText(secondsString);
 
@@ -1590,29 +1593,14 @@ Void freac::LayerJoblist::OnEncoderTrackProgress(Int progressValue, Int secondsL
 			OnChangeSize(GetSize());
 		}
 
-		previousTrackSeconds = secondsLeft;
+		previousTrackSeconds = trackSecondsLeft;
 	}
 
-	/* Set percent values.
-	 */
-	if (progressValue > progress->GetValue())
-	{
-		edb_trackPercent->SetText(BoCA::I18n::Get()->TranslateString("%1%", "Technical").Replace("%1", String::FromInt(Math::Round(progressValue / 10.0))));
-
-		progress->SetValue(progressValue);
-	}
-}
-
-Void freac::LayerJoblist::OnEncoderTotalProgress(Int progressValue, Int secondsLeft)
-{
-	/* Update seconds only if estimate is less or
-	 * at least two seconds more than before.
-	 */
-	if (secondsLeft < previousTotalSeconds || secondsLeft >= previousTotalSeconds + 2 || previousTotalSeconds == 0)
+	if (totalSecondsLeft < previousTotalSeconds || totalSecondsLeft >= previousTotalSeconds + 2 || previousTotalSeconds == 0)
 	{
 		/* Set total time string.
 		 */
-		String	 secondsString = Job::SecondsToString(secondsLeft);
+		String	 secondsString = Job::SecondsToString(totalSecondsLeft);
 
 		edb_totalTime->SetText(secondsString);
 
@@ -1623,21 +1611,26 @@ Void freac::LayerJoblist::OnEncoderTotalProgress(Int progressValue, Int secondsL
 			OnChangeSize(GetSize());
 		}
 
-		previousTotalSeconds = secondsLeft;
+		previousTotalSeconds = totalSecondsLeft;
 	}
 
 	/* Set percent values.
 	 */
-	if (progressValue > progress_total->GetValue())
+	if (trackProgressValue > progress->GetValue())
 	{
-		edb_totalPercent->SetText(BoCA::I18n::Get()->TranslateString("%1%", "Technical").Replace("%1", String::FromInt(Math::Round(progressValue / 10.0))));
+		edb_trackPercent->SetText(BoCA::I18n::Get()->TranslateString("%1%", "Technical").Replace("%1", String::FromInt(Math::Round(trackProgressValue / 10.0))));
 
-		progress_total->SetValue(progressValue);
+		progress->SetValue(trackProgressValue);
 	}
 
-	/* End painting, started in OnEncoderTrackProgress.
-	 */
-	drawSurface->EndPaint();
+	if (totalProgressValue > progress_total->GetValue())
+	{
+		edb_totalPercent->SetText(BoCA::I18n::Get()->TranslateString("%1%", "Technical").Replace("%1", String::FromInt(Math::Round(totalProgressValue / 10.0))));
+
+		progress_total->SetValue(totalProgressValue);
+	}
+
+	surface->EndPaint();
 }
 
 Void freac::LayerJoblist::ShowHideTitleInfo()
@@ -2027,6 +2020,7 @@ Void freac::LayerJoblist::InterpretStringAs()
 
 	switch (clicked_charset)
 	{
+		case CHARSET_UTF_8:	 charset = "UTF-8";	 break;
 		case CHARSET_ISO_8859_1: charset = "ISO-8859-1"; break;
 		case CHARSET_ISO_8859_2: charset = "ISO-8859-2"; break;
 		case CHARSET_ISO_8859_5: charset = "ISO-8859-5"; break;
@@ -2070,6 +2064,7 @@ Void freac::LayerJoblist::InterpretStringAsAll()
 
 	switch (clicked_charset)
 	{
+		case CHARSET_UTF_8:	 charset = "UTF-8";	 break;
 		case CHARSET_ISO_8859_1: charset = "ISO-8859-1"; break;
 		case CHARSET_ISO_8859_2: charset = "ISO-8859-2"; break;
 		case CHARSET_ISO_8859_5: charset = "ISO-8859-5"; break;

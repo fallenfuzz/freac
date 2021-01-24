@@ -607,15 +607,14 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1">Klaida: %1</entry>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Nepavyko sukurti dekoderio komponento: %1&#10;&#10;Failas: %1&#10;Kelias: %2</entry>
-      <entry id="7102" string="Could not create encoder component: %1">Nepavyko sukurti koduotuvo komponento: %1</entry>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nepavyko paruošti dekoderio įvesties failui: %1&#10;&#10;Failas: %1&#10;Kelias: %2&#10;&#10;Klaida: %3</entry>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nepavyko paruošti koduotuvo išvesties failui: %1&#10;&#10;Failas: %1&#10;Kelias: %2&#10;&#10;Klaida: %3</entry>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Nepavyko paruošti DSP doroklės: %1&#10;&#10;Klaida: %2</entry>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Neįmanoma pasiekti įvesties failo: %1&#10;&#10;Failas: %1&#10;Kelias: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Neįmanoma sukurti išvesties failo: %1&#10;&#10;Failas: %1&#10;Kelias: %2</entry>
-      <entry id="7108" string="Failed to verify input file: %1">Nepavyko patikrinti įvesties failo: %1</entry>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Nepavyko sukurti dekoderio komponento: %1&#10;&#10;Failas: %1&#10;Kelias: %2</entry>
+      <entry id="7101" string="Could not create encoder component: %1">Nepavyko sukurti koduotuvo komponento: %1</entry>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nepavyko paruošti dekoderio įvesties failui: %1&#10;&#10;Failas: %1&#10;Kelias: %2&#10;&#10;Klaida: %3</entry>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nepavyko paruošti koduotuvo išvesties failui: %1&#10;&#10;Failas: %1&#10;Kelias: %2&#10;&#10;Klaida: %3</entry>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Nepavyko paruošti DSP doroklės: %1&#10;&#10;Klaida: %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Neįmanoma pasiekti įvesties failo: %1&#10;&#10;Failas: %1&#10;Kelias: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Neįmanoma sukurti išvesties failo: %1&#10;&#10;Failas: %1&#10;Kelias: %2</entry>
+      <entry id="7107" string="Failed to verify input file: %1">Nepavyko patikrinti įvesties failo: %1</entry>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3">Išvesties failo: %1 kontrolinės sumos nesutampa&#10;&#10;Užkodavimo kontrolinė suma: %2&#10;Patikrinimo kontrolinė suma: %3</entry>
       <entry id="7110" string="File not found">Failas nerastas</entry>
       <entry id="7111" string="Unknown file type">Nežinomas failo tipas</entry>
@@ -677,12 +676,11 @@
       <entry id="9015" string="Start ripping automatically">Pradėti skleidimą automatiškai</entry>
       <entry id="9016" string="Eject disk after ripping">Išstumti diską po skleidimo</entry>
       <entry id="9017" string="CD options">CD pasirinktys</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Rakinti CD dėklą per skleidimą</entry>
-      <entry id="9019" string="Use read offset">Naudoti skaitymo poslinkį</entry>
-      <entry id="9020" string="samples">ėminiai</entry>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist">Pridedant takelius į užduočių sąrašą nuskaityti ISRC</entry>
-      <entry id="9022" string="Spin up before ripping">Įsukti prieš skleidžiant</entry>
-      <entry id="9023" string="%1 seconds">%1 sekundžių</entry>
+      <entry id="9018" string="Use read offset">Naudoti skaitymo poslinkį</entry>
+      <entry id="9019" string="samples">ėminiai</entry>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist">Pridedant takelius į užduočių sąrašą nuskaityti ISRC</entry>
+      <entry id="9021" string="Spin up before ripping">Įsukti prieš skleidžiant</entry>
+      <entry id="9022" string="%1 seconds">%1 sekundžių</entry>
     </section>
 
     <section name="Components">
@@ -771,9 +769,9 @@
 	  <entry id="32100" string="Presets">Ruošiniai</entry>
 	  <entry id="32101" string="Use preset">Naudoti ruošinį</entry>
 	  <entry id="32102" string="Custom settings">Individualūs nustatymai</entry>
-	  <entry id="32103" string="Medium, Fast">Vidutinis, Greitas</entry>
-	  <entry id="32104" string="Standard, Fast">Standartinis, Greitas</entry>
-	  <entry id="32105" string="Extreme, Fast">Ekstremalus, Greitas</entry>
+	  <entry id="32103" string="Medium">Vidutinis</entry>
+	  <entry id="32104" string="Standard">Standartinis</entry>
+	  <entry id="32105" string="Extreme">Ekstremalus</entry>
 	  <entry id="32106" string="Bitrate">Pralaidumas</entry>
 	  <entry id="32107" string="Quality">Kokybė</entry>
 	  <entry id="32108" string="Set bitrate">Nustatyti pralaidumą</entry>
@@ -846,6 +844,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping">Naudoti laikiną garsų apipavidalinimą</entry>
 	  <entry id="33208" string="Maximum bandwidth">Didžiausias juosto plotis</entry>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)">Didžiausias naudotinas AAC juostos dažnis (Hz)</entry>
+	  <entry id="33210" string="worse">prastesnė</entry>
+	  <entry id="33211" string="better">geresnė</entry>
 	</section>
 
 	<section name="Format">
@@ -1263,7 +1263,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!">Šis adresas yra nepalaikomas arba tai ne vaizdo įrašo adresas!</entry>
 	  <entry id="102202" string="Error downloading video!">Atsiunčiant vaizdo įrašą įvyko klaida!</entry>
 	  <entry id="102203" string="You are already downloading this video!">Šis vaizdo įrašas jau yra atsiunčiamas!</entry>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!">Vienas iš būtinų vaizdo dekoderių nerastas. Negalima pridėti vaizdo įrašų failų&#10;į užduočių sąrašą perkodavimui į audio failus.&#10;&#10;Įdiekite avconv arba FFmpeg, kad ištaisyti šią problemą!</entry>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!">Vienas iš būtinų vaizdo dekoderių nerastas. Negalima pridėti vaizdo įrašų failų&#10;į užduočių sąrašą perkodavimui į audio failus.&#10;&#10;Įdiekite FFmpeg arba avconv, kad ištaisyti šią problemą!</entry>
 	</section>
       </section>
 

@@ -607,15 +607,14 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1">Chyba: %1</entry>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Komponentu dekodéru nelze vytvořit: %1&#10;&#10;Soubor: %1&#10;Cesta: %2</entry>
-      <entry id="7102" string="Could not create encoder component: %1">Komponentu enkodéru nelze vytvořit: %1</entry>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nelze nastavit dekodér pro vstupní soubor: %1&#10;&#10;Soubor: %1&#10;Cesta: %2&#10;&#10;Chyba: %3</entry>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nelze nastavit dekodér pro výstupní soubor: %1&#10;&#10;Soubor: %1&#10;Cesta: %2&#10;&#10;Chyba: %3</entry>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Nelze nastavit procesor DSP: %1&#10;&#10;Chyba: %2</entry>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Nejde přistupovat k souboru: %1&#10;&#10;Soubor: %1&#10;Složka: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Nejde vytvořit soubor: %1&#10;&#10;Soubor: %1&#10;Složka: %2</entry>
-      <entry id="7108" string="Failed to verify input file: %1">Nepodařilo se ověřit vstupní soubor: %1</entry>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Komponentu dekodéru nelze vytvořit: %1&#10;&#10;Soubor: %1&#10;Cesta: %2</entry>
+      <entry id="7101" string="Could not create encoder component: %1">Komponentu enkodéru nelze vytvořit: %1</entry>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nelze nastavit dekodér pro vstupní soubor: %1&#10;&#10;Soubor: %1&#10;Cesta: %2&#10;&#10;Chyba: %3</entry>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nelze nastavit dekodér pro výstupní soubor: %1&#10;&#10;Soubor: %1&#10;Cesta: %2&#10;&#10;Chyba: %3</entry>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Nelze nastavit procesor DSP: %1&#10;&#10;Chyba: %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Nejde přistupovat k souboru: %1&#10;&#10;Soubor: %1&#10;Složka: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Nejde vytvořit soubor: %1&#10;&#10;Soubor: %1&#10;Složka: %2</entry>
+      <entry id="7107" string="Failed to verify input file: %1">Nepodařilo se ověřit vstupní soubor: %1</entry>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3">Chyba kontrolního součtu při ověřování výstupního souboru: %1&#10;&#10;Kontrolní součet při kódování: %2&#10;Kontrolní součet při ověření: %3</entry>
       <entry id="7110" string="File not found">Soubor nebyl nalezen</entry>
       <entry id="7111" string="Unknown file type">Neznámý typ souboru</entry>
@@ -677,12 +676,11 @@
       <entry id="9015" string="Start ripping automatically">Začít automaticky ripovat</entry>
       <entry id="9016" string="Eject disk after ripping">Vysunout disk po ripovaní</entry>
       <entry id="9017" string="CD options">CD volby</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Uzamknout CD při ripování</entry>
-      <entry id="9019" string="Use read offset">Použijte offset</entry>
-      <entry id="9020" string="samples">vzorky</entry>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist">Číst ISRC při přidávání skladeb do seznamu úloh</entry>
-      <entry id="9022" string="Spin up before ripping">Před ripováním roztočit</entry>
-      <entry id="9023" string="%1 seconds">%1 sekund</entry>
+      <entry id="9018" string="Use read offset">Použijte offset</entry>
+      <entry id="9019" string="samples">vzorky</entry>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist">Číst ISRC při přidávání skladeb do seznamu úloh</entry>
+      <entry id="9021" string="Spin up before ripping">Před ripováním roztočit</entry>
+      <entry id="9022" string="%1 seconds">%1 sekund</entry>
     </section>
 
     <section name="Components">
@@ -771,9 +769,9 @@
 	  <entry id="32100" string="Presets">Předvolby</entry>
 	  <entry id="32101" string="Use preset">Použít předvolby</entry>
 	  <entry id="32102" string="Custom settings">Vlastní nastavení</entry>
-	  <entry id="32103" string="Medium, Fast">Střední, rychlé (VBR)</entry>
-	  <entry id="32104" string="Standard, Fast">Standard, rychlé (VBR)</entry>
-	  <entry id="32105" string="Extreme, Fast">Extremní, rychlé (VBR)</entry>
+	  <entry id="32103" string="Medium">Střední (VBR)</entry>
+	  <entry id="32104" string="Standard">Standard (VBR)</entry>
+	  <entry id="32105" string="Extreme">Extremní (VBR)</entry>
 	  <entry id="32106" string="Bitrate">Datový tok</entry>
 	  <entry id="32107" string="Quality">Kvalita</entry>
 	  <entry id="32108" string="Set bitrate">Datový tok</entry>
@@ -846,6 +844,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping">Použít dočasný profil šumu</entry>
 	  <entry id="33208" string="Maximum bandwidth">Max.šířka pásma</entry>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)">Max. frekvence šířky pásma AAC v Hz</entry>
+	  <entry id="33210" string="worse">horší</entry>
+	  <entry id="33211" string="better">lepší</entry>
 	</section>
 
 	<section name="Format">
@@ -1263,7 +1263,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!">Tato adresa URL není podporována nebo to není URL video-stránky!</entry>
 	  <entry id="102202" string="Error downloading video!">Chyba při stahování videa!</entry>
 	  <entry id="102203" string="You are already downloading this video!">Toto video bylo již staženo!</entry>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!">Některé požadované dekodéry videa nebyly nalezeny. Proto nelze&#10;videosoubory přidat do seznamu úloh pro převod na zvukové soubory.&#10;&#10;Chcete-li tento problém vyřešit, nainstalujte si prosím avconv nebo FFmpeg!</entry>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!">Některé požadované dekodéry videa nebyly nalezeny. Proto nelze&#10;videosoubory přidat do seznamu úloh pro převod na zvukové soubory.&#10;&#10;Chcete-li tento problém vyřešit, nainstalujte si prosím FFmpeg nebo avconv!</entry>
 	</section>
       </section>
 

@@ -398,6 +398,7 @@
       <entry id="5023" string="Verifiers">Overenia</entry>
       <entry id="5024" string="Taggers">Taggery</entry>
       <entry id="5025" string="Processing">Spracovanie</entry>
+      <entry id="5026" string="Additional arguments"/>
 
       <section name="Encoders">
 	<entry id="5100" string="Configure encoder">Nastaviť kodek</entry>
@@ -609,15 +610,15 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1">Chyba: %1</entry>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Nedá sa vytvoriť súčasť dekódera: %1&#10;&#10;Súbor: %1&#10;Cesta: %2</entry>
-      <entry id="7102" string="Could not create encoder component: %1">Nedá sa vytvoriť súčasť kódera: %1&#10;&#10;Súbor: %1&#10;Cesta: %2</entry>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nedá sa nastaviť dekóder pre vstupný súbor: %1&#10;&#10;Súbor: %1&#10;Cesta: %2</entry>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nedá sa nastaviť enkóder pre výstupný súbor: %1&#10;&#10;Súbor: %1&#10;Cesta: %2</entry>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Nedá sa nastaviť Spracovanie signálu (DSP): %1&#10;&#10;Chyba: %2</entry>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Nemožno pristupovať k súboru: %1&#10;&#10;Súbor: %1&#10;Adresár: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Nemožno vytvoriť súbor: %1&#10;&#10;Súbor: %1&#10;Adresár: %2</entry>
-      <entry id="7108" string="Failed to verify input file: %1">Zlyhalo overovania vstupného súboru: %1</entry>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Nedá sa vytvoriť súčasť dekódera: %1&#10;&#10;Súbor: %1&#10;Cesta: %2</entry>
+      <entry id="7101" string="Could not create encoder component: %1">Nedá sa vytvoriť súčasť kódera: %1&#10;&#10;Súbor: %1&#10;Cesta: %2</entry>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nedá sa nastaviť dekóder pre vstupný súbor: %1&#10;&#10;Súbor: %1&#10;Cesta: %2</entry>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nedá sa nastaviť enkóder pre výstupný súbor: %1&#10;&#10;Súbor: %1&#10;Cesta: %2</entry>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Nedá sa nastaviť Spracovanie signálu (DSP): %1&#10;&#10;Chyba: %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Nemožno pristupovať k súboru: %1&#10;&#10;Súbor: %1&#10;Adresár: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Nemožno vytvoriť súbor: %1&#10;&#10;Súbor: %1&#10;Adresár: %2</entry>
+      <entry id="7107" string="Failed to verify input file: %1">Zlyhalo overovania vstupného súboru: %1</entry>
+      <entry id="7108" string="Failed to verify input track: %1"/>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3">Nesúlad kontrolného súčtu vo výstupnom súbore: %1&#10;&#10;Kontrolný súčet: %2&#10;Overte kontrolný súčet: %3</entry>
       <entry id="7110" string="File not found">Súbor nebol nájdený</entry>
       <entry id="7111" string="Unknown file type">Neznámy typ súboru</entry>
@@ -633,6 +634,7 @@
       <entry id="7121" string="Access to CD-ROM drives was denied by Windows.&#10;&#10;Please contact your system administrator in order&#10;to be granted the right to access the CD-ROM drive.">Prístup k CD-ROM mechanike bol zamietnutý Windowsom.&#10;&#10;Prosím, kontaktujte vášho systémového administrátora pre&#10;získanie prístupu k CD-ROM mechanike.</entry>
       <entry id="7122" string="No configuration dialog available for:&#10;&#10;%1">Nie je k dispozícii žiadny konfiguračný dialóg pre:&#10;&#10;%1</entry>
       <entry id="7123" string="The selected folder does not exist anymore!">Zvolený priečinok už neexistuje</entry>
+      <entry id="7124" string="Access denied"/>
     </section>
 
     <section name="Dialogs">
@@ -679,12 +681,11 @@
       <entry id="9015" string="Start ripping automatically">Začať automaticky rippovať</entry>
       <entry id="9016" string="Eject disk after ripping">Vysunúť disk po rippovaní</entry>
       <entry id="9017" string="CD options">Možnosti CD</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Uzamknúť CD počas rippovania</entry>
-      <entry id="9019" string="Use read offset">Použiť read offset</entry>
-      <entry id="9020" string="samples">vzorky</entry>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist">Čítať ISRC keď sa pridáva stopa do zoznamu úloh</entry>
-      <entry id="9022" string="Spin up before ripping">Roztočiť disk pred rippovaním</entry>
-      <entry id="9023" string="%1 seconds">%1 sekúnd</entry>
+      <entry id="9018" string="Use read offset">Použiť read offset</entry>
+      <entry id="9019" string="samples">vzorky</entry>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist">Čítať ISRC keď sa pridáva stopa do zoznamu úloh</entry>
+      <entry id="9021" string="Spin up before ripping">Roztočiť disk pred rippovaním</entry>
+      <entry id="9022" string="%1 seconds">%1 sekúnd</entry>
     </section>
 
     <section name="Components">
@@ -773,9 +774,9 @@
 	  <entry id="32100" string="Presets">Prednastavenia</entry>
 	  <entry id="32101" string="Use preset">Použiť prednastavenia</entry>
 	  <entry id="32102" string="Custom settings">Vlastné nastavenia</entry>
-	  <entry id="32103" string="Medium, Fast">Medium, Fast</entry>
-	  <entry id="32104" string="Standard, Fast">Standard, Fast</entry>
-	  <entry id="32105" string="Extreme, Fast">Extreme, Fast</entry>
+	  <entry id="32103" string="Medium">Medium</entry>
+	  <entry id="32104" string="Standard">Standard</entry>
+	  <entry id="32105" string="Extreme">Extreme</entry>
 	  <entry id="32106" string="Bitrate">Bitrate</entry>
 	  <entry id="32107" string="Quality">Kvalita</entry>
 	  <entry id="32108" string="Set bitrate">Nastaviť bitrate</entry>
@@ -1265,7 +1266,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!">Táto adresa URL nie je podporovaná alebo nejde o adresu s videom!</entry>
 	  <entry id="102202" string="Error downloading video!">Chyba pri sťahovaní videa!</entry>
 	  <entry id="102203" string="You are already downloading this video!">Toto video sa už sťahujete!</entry>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!">Niektoré požadované dekodéry videa sa nepodarilo nájsť. Video súbory&#10;nie je možné pridať do zoznamu úloh na konverziu na zvukové súbory.&#10;&#10;Nainštalujte si avconv alebo FFmpeg, aby ste vyriešili tento problém!</entry>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!">Niektoré požadované dekodéry videa sa nepodarilo nájsť. Video súbory&#10;nie je možné pridať do zoznamu úloh na konverziu na zvukové súbory.&#10;&#10;Nainštalujte si FFmpeg alebo avconv, aby ste vyriešili tento problém!</entry>
 	</section>
       </section>
 

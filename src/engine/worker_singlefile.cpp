@@ -147,6 +147,11 @@ Int freac::ConvertWorkerSingleFile::Convert()
 		}
 	}
 
+	/* Enable CRC calculation when ripping.
+	 */
+	if (trackToConvert.fileName.StartsWith("device://") && (conversionStep == ConversionStepOnTheFly ||
+								conversionStep == ConversionStepDecode)) decoder->SetCalculateCRC(True);
+
 	/* Enable MD5 if we are to verify the output.
 	 */
 	if (conversionStep == ConversionStepVerify) decoder->SetCalculateMD5(True);
@@ -163,6 +168,13 @@ Int freac::ConvertWorkerSingleFile::Convert()
 	 */
 	if (!cancel && verify) VerifyInput(trackToConvert.fileName, verifier);
 
+	/* Get CRC checksums when ripping.
+	 */
+	UnsignedInt32	 rippingCRC = 0;
+
+	if (trackToConvert.fileName.StartsWith("device://") && (conversionStep == ConversionStepOnTheFly ||
+								conversionStep == ConversionStepDecode)) rippingCRC = decoder->GetCRCChecksum();
+
 	/* Get MD5 checksum if we are to verify the output.
 	 */
 	String	 verifyChecksum;
@@ -173,7 +185,7 @@ Int freac::ConvertWorkerSingleFile::Convert()
 	 */
 	Format	 format = trackToConvert.GetFormat();
 
-	if (processor != NIL) format = processor->GetFormatInfo();
+	if (processor != NIL && processor->GetFormatInfo() != Format()) format = processor->GetFormatInfo();
 
 	/* Free decoder and verifier.
 	 */
@@ -181,7 +193,6 @@ Int freac::ConvertWorkerSingleFile::Convert()
 	verifier->Destroy();
 
 	if (decoder->GetErrorState())  onReportError.Emit(decoder->GetErrorString());
-	if (verifier->GetErrorState()) onReportError.Emit(verifier->GetErrorString());
 
 	delete decoder;
 	delete verifier;
@@ -199,7 +210,7 @@ Int freac::ConvertWorkerSingleFile::Convert()
 
 	/* Output log messages.
 	 */
-	LogConversionEnd(trackToConvert.fileName, trackLength, encodeChecksum, verifyChecksum);
+	LogConversionEnd(trackToConvert.fileName, trackLength, rippingCRC, encodeChecksum, verifyChecksum);
 
 	/* Report finished conversion.
 	 */
@@ -208,6 +219,8 @@ Int freac::ConvertWorkerSingleFile::Convert()
 	/* Update track length and offset.
 	 */
 	Track	 track	= trackToConvert;
+
+	trackToConvert.SetFormat(format);
 
 	trackToConvert.sampleOffset = encodedSamples - trackLength;
 	trackToConvert.length	    = trackLength;

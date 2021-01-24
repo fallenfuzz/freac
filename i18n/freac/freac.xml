@@ -398,6 +398,7 @@
       <entry id="5023" string="Verifiers"/>
       <entry id="5024" string="Taggers"/>
       <entry id="5025" string="Processing"/>
+      <entry id="5026" string="Additional arguments"/>
 
       <section name="Encoders">
 	<entry id="5100" string="Configure encoder"/>
@@ -609,15 +610,15 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1"/>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2"/>
-      <entry id="7102" string="Could not create encoder component: %1"/>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3"/>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3"/>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2"/>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2"/>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2"/>
-      <entry id="7108" string="Failed to verify input file: %1"/>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2"/>
+      <entry id="7101" string="Could not create encoder component: %1"/>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3"/>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3"/>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2"/>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2"/>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2"/>
+      <entry id="7107" string="Failed to verify input file: %1"/>
+      <entry id="7108" string="Failed to verify input track: %1"/>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3"/>
       <entry id="7110" string="File not found"/>
       <entry id="7111" string="Unknown file type"/>
@@ -633,6 +634,7 @@
       <entry id="7121" string="Access to CD-ROM drives was denied by Windows.&#10;&#10;Please contact your system administrator in order&#10;to be granted the right to access the CD-ROM drive."/>
       <entry id="7122" string="No configuration dialog available for:&#10;&#10;%1"/>
       <entry id="7123" string="The selected folder does not exist anymore!"/>
+      <entry id="7124" string="Access denied"/>
     </section>
 
     <section name="Dialogs">
@@ -679,12 +681,11 @@
       <entry id="9015" string="Start ripping automatically"/>
       <entry id="9016" string="Eject disk after ripping"/>
       <entry id="9017" string="CD options"/>
-      <entry id="9018" string="Lock CD tray while ripping"/>
-      <entry id="9019" string="Use read offset"/>
-      <entry id="9020" string="samples"/>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist"/>
-      <entry id="9022" string="Spin up before ripping"/>
-      <entry id="9023" string="%1 seconds"/>
+      <entry id="9018" string="Use read offset"/>
+      <entry id="9019" string="samples"/>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist"/>
+      <entry id="9021" string="Spin up before ripping"/>
+      <entry id="9022" string="%1 seconds"/>
     </section>
 
     <section name="Components">
@@ -704,6 +705,7 @@
 	<entry id="12002" string="Sample Rate Converter"/>
 	<entry id="12003" string="RNNoise Noise Reduction"/>
 	<entry id="12004" string="Rubber Band Tempo/Pitch Changer"/>
+	<entry id="12005" string="HDCD Decoder"/>
       </section>
 
       <section name="Extensions">
@@ -773,9 +775,9 @@
 	  <entry id="32100" string="Presets"/>
 	  <entry id="32101" string="Use preset"/>
 	  <entry id="32102" string="Custom settings"/>
-	  <entry id="32103" string="Medium, Fast"/>
-	  <entry id="32104" string="Standard, Fast"/>
-	  <entry id="32105" string="Extreme, Fast"/>
+	  <entry id="32103" string="Medium"/>
+	  <entry id="32104" string="Standard"/>
+	  <entry id="32105" string="Extreme"/>
 	  <entry id="32106" string="Bitrate"/>
 	  <entry id="32107" string="Quality"/>
 	  <entry id="32108" string="Set bitrate"/>
@@ -848,6 +850,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping"/>
 	  <entry id="33208" string="Maximum bandwidth"/>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)"/>
+	  <entry id="33210" string="worse"/>
+	  <entry id="33211" string="better"/>
 	</section>
 
 	<section name="Format">
@@ -1265,7 +1269,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!"/>
 	  <entry id="102202" string="Error downloading video!"/>
 	  <entry id="102203" string="You are already downloading this video!"/>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!"/>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!"/>
 	</section>
       </section>
 
@@ -1306,6 +1310,8 @@
 	  <entry id="103209" string="ISRC"/>
 	  <entry id="103210" string="Tempo"/>
 	  <entry id="103211" string="BPM"/>
+	  <entry id="103212" string="Catalog number"/>
+	  <entry id="103213" string="Barcode"/>
 	</section>
 
 	<section name="Other">

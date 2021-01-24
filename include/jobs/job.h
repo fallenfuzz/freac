@@ -1,5 +1,5 @@
  /* fre:ac - free audio converter
-  * Copyright (C) 2001-2019 Robert Kausch <robert.kausch@freac.org>
+  * Copyright (C) 2001-2020 Robert Kausch <robert.kausch@freac.org>
   *
   * This program is free software; you can redistribute it and/or
   * modify it under the terms of the GNU General Public License as
@@ -47,6 +47,9 @@ namespace freac
 
 			Array<String>			 errors;
 			Array<String>			 warnings;
+
+			Bool				 waiting;
+			Bool				 abort;
 		public:
 							 Job();
 			virtual				~Job();
@@ -59,6 +62,8 @@ namespace freac
 
 			Int				 RunPrecheck();
 			Int				 Run();
+
+			Int				 RequestAbort();
 
 			/* Overwrite Precheck to run checks before
 			 * the job is actually scheduled.
@@ -78,6 +83,8 @@ namespace freac
 
 			Int				 SetProgress(Int);
 			Int				 GetProgress() const;
+
+			Bool				 IsWaiting() const	{ return waiting; }
 
 			const Array<String>		&GetErrors() const	{ return errors; }
 			const Array<String>		&GetWarnings() const	{ return warnings; }

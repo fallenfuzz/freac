@@ -1,5 +1,5 @@
  /* fre:ac - free audio converter
-  * Copyright (C) 2001-2019 Robert Kausch <robert.kausch@freac.org>
+  * Copyright (C) 2001-2020 Robert Kausch <robert.kausch@freac.org>
   *
   * This program is free software; you can redistribute it and/or
   * modify it under the terms of the GNU General Public License as
@@ -20,6 +20,7 @@
 
 #include <support/autorelease.h>
 
+using namespace smooth::IO;
 using namespace smooth::Threads;
 
 using namespace BoCA;
@@ -61,16 +62,14 @@ freac::JobAddFiles::JobAddFiles(const Array<String> &iFiles)
  
 	foreach (const String &file, iFiles) files.Add(file);
 
-	abort = False;
-
-	JobRemoveAllTracks::onRemoveAllTracksJobScheduled.Connect(&JobAddFiles::OnRemoveAllTracksJobScheduled, this);
+	JobRemoveAllTracks::onRemoveAllTracksJobScheduled.Connect(&Job::RequestAbort, this);
 
 	SetText(i18n->AddEllipsis(i18n->TranslateString("Waiting for other jobs to finish")));
 }
 
 freac::JobAddFiles::~JobAddFiles()
 {
-	JobRemoveAllTracks::onRemoveAllTracksJobScheduled.Disconnect(&JobAddFiles::OnRemoveAllTracksJobScheduled, this);
+	JobRemoveAllTracks::onRemoveAllTracksJobScheduled.Disconnect(&Job::RequestAbort, this);
 }
 
 Bool freac::JobAddFiles::ReadyToRun()
@@ -155,7 +154,7 @@ Error freac::JobAddFiles::Perform()
 				{
 					if (!cddbsQueried.Get(track.discid))
 					{
-						cdInfos.Add(cddbQueryDlg::QueryCDDB(track), track.discid);
+						cdInfos.Add(cddbQueryDlg::QueryCDDB(track, True), track.discid);
 						cddbsQueried.Add(True, track.discid);
 					}
 
@@ -175,6 +174,7 @@ Error freac::JobAddFiles::Perform()
 			/* Delete worker.
 			 */
 			workers.RemoveNth(0);
+			worker->Wait();
 
 			delete worker;
 		}
@@ -195,11 +195,6 @@ Error freac::JobAddFiles::Perform()
 	return Success();
 }
 
-Void freac::JobAddFiles::OnRemoveAllTracksJobScheduled()
-{
-	abort = True;
-}
-
 freac::JobAddFilesWorker::JobAddFilesWorker(const String &iFileName, Semaphore &iSemaphore) : semaphore(iSemaphore)
 {
 	fileName   = iFileName;
@@ -214,18 +209,39 @@ Int freac::JobAddFilesWorker::Run()
 {
 	Registry	&boca = Registry::Get();
 
-	/* Create decoder component.
+	/* Check access permission.
 	 */
-	DecoderComponent	*decoder = boca.CreateDecoderForStream(fileName);
+	InStream	 in(STREAM_FILE, fileName, IS_READ);
 
-	if (decoder == NIL)
+	if (in.GetLastError() == IO_ERROR_NOACCESS)
 	{
 		BoCA::I18n	*i18n = BoCA::I18n::Get();
 
 		i18n->SetContext("Errors");
 
 		errorState  = True;
-		errorString = i18n->TranslateString("Unable to open file: %1\n\nError: %2").Replace("%1", File(fileName).GetFileName()).Replace("%2", i18n->TranslateString("Unknown file type"));
+		errorString = i18n->TranslateString("Unable to open file: %1\n\nError: %2").Replace("%1", File(fileName).GetFileName()).Replace("%2", i18n->TranslateString("Access denied"));
+	}
+
+	in.Close();
+
+	/* Create decoder component.
+	 */
+	DecoderComponent	*decoder = NIL;
+
+	if (!errorState)
+	{
+		decoder = boca.CreateDecoderForStream(fileName);
+
+		if (decoder == NIL)
+		{
+			BoCA::I18n	*i18n = BoCA::I18n::Get();
+
+			i18n->SetContext("Errors");
+
+			errorState  = True;
+			errorString = i18n->TranslateString("Unable to open file: %1\n\nError: %2").Replace("%1", File(fileName).GetFileName()).Replace("%2", i18n->TranslateString("Unknown file type"));
+		}
 	}
 
 	/* Query stream info.
@@ -318,14 +334,14 @@ Void freac::JobAddFilesWorker::ExtractInfoFromPath(const String &path, Info &inf
 
 	const String &first = fileElements.GetFirst();
 
-	if (first[0] >= '1' && first[0] <= '9' && (first[1] == ' ' || first[1] == '.' || first[1] == '-'))
+	if (first[0] >= '1' && first[0] <= '9' && (first[1] == ' ' || first[1] == '.' || first[1] == '-') && (first[2] < '0' || first[2] > '9'))
 	{
 		info.track = first.ToInt();
 
 		if	(fileElements.Length() == 1)   info.title  = first.Tail(first.Length() - 2).Trim();
 		else if (fileElements.Length() >= 2) { info.artist = first.Tail(first.Length() - 2).Trim(); info.title = fileElements.GetLast(); }
 	}
-	else if (first[0] >= '0' && first[0] <= '9' && first[1] >= '0' && first[1] <= '9' && (first[2] == ' ' || first[2] == '.' || first[2] == '-'))
+	else if (first[0] >= '0' && first[0] <= '9' && first[1] >= '0' && first[1] <= '9' && (first[2] == ' ' || first[2] == '.' || first[2] == '-') && (first[3] < '0' || first[3] > '9'))
 	{
 		info.track = first.ToInt();
 
@@ -339,7 +355,7 @@ Void freac::JobAddFilesWorker::ExtractInfoFromPath(const String &path, Info &inf
 		if	(fileElements.Length() == 2)					     info.title = fileElements.GetLast();
 		else if (fileElements.Length() >= 3) { info.artist = fileElements.GetNth(1); info.title = fileElements.GetLast(); }
 	}
-	else if (first[0] >= '1' && first[0] <= '9' && first[1] >= '0' && first[1] <= '9' && first[2] >= '0' && first[2] <= '9' && (first[3] == ' ' || first[3] == '.' || first[3] == '-'))
+	else if (first[0] >= '1' && first[0] <= '9' && first[1] >= '0' && first[1] <= '9' && first[2] >= '0' && first[2] <= '9' && (first[3] == ' ' || first[3] == '.' || first[3] == '-') && (first[4] < '0' || first[4] > '9'))
 	{
 		info.disc  = first.ToInt() / 100;
 		info.track = first.ToInt() % 100;

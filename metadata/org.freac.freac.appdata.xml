@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2020 Robert Kausch -->
+<!-- Copyright 2021 Robert Kausch -->
 <component type="desktop-application">
     <id>org.freac.freac</id>
     <launchable type="desktop-id">org.freac.freac.desktop</launchable>
@@ -47,6 +47,81 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="1.1.3" date="2020-10-11">
+            <description>
+                <p>General changes:</p>
+                <ul>
+                    <li>Switched to using GNUdb as the default CDDB database service</li>
+                </ul>
+                <p>Improvements:</p>
+                <ul>
+                    <li>Command line codec configuration now allows specifying additional arguments</li>
+                    <li>Improved detection of cue sheet encoding to support system codepage and UTF-8 without BOM</li>
+                    <li>freaccmd now splits cue sheets to individual tracks unless an output file is specified using the -o option</li>
+                    <li>freaccmd now supports a --split-chapters option to split files with chapter tags into individual chapters</li>
+                    <li>Added &lt;profile&gt; placeholder for use in output folder configuration setting, resolving to user profile folder</li>
+                    <li>Added file type associations, so fre:ac is offered for opening audio files</li>
+                    <li>Added audio CD association, so fre:ac can be started when inserting a CD</li>
+                    <li>Added an option to suppress "No entry found" messages for automatic CDDB queries</li>
+                    <li>Improved detection of sampler CDs when querying CDDB information</li>
+                </ul>
+                <p>Bug fixes:</p>
+                <ul>
+                   <li>Fixed possible conversion thread hangs when using external encoders</li>
+                   <li>Fixed crash when writing fields containing only whitespace to Vorbis Comment, APEv2, WMA or RIFF tags</li>
+                   <li>Fixed possible glitches in WAV/AIFF output when processing float samples outside the -1.0/+1.0 range</li>
+                   <li>Fixed possible hangs when opening WAV/AIFF files larger than 2 GB or with a broken chunk structure</li>
+                   <li>Fixed writing wrong offsets to single file cue sheets when the resampling DSP filter is enabled</li>
+                   <li>Fixed writing invalid chapter offsets to Opus files with source material sample rates other than 48 kHz</li>
+                   <li>Fixed writing invalid MP3 bitstreams in rare cases in SuperFast mode</li>
+                   <li>Fixed wrong length detection for MP3 files with invalid chapter data</li>
+                   <li>Fixed parsing of cue sheets with minute/second indications missing leading zeros and/or duration longer than 99 minutes</li>
+                   <li>Fixed parsing of embedded cue sheets without FILE designations</li>
+                   <li>Fixed ripping progress for other drives stalling while one drive is ejecting</li>
+                   <li>Fixed inability to pause or stop single output file verification</li>
+                   <li>Fixed log files being archived despite disabling the corresponding option</li>
+                   <li>Fixed Shift+Pos1/End shortcuts being interpreted by the joblist and edit fields at the same time</li>
+                </ul>
+                <p>Updated codecs:</p>
+                <ul>
+                    <li>Updated Vorbis to version 1.3.7 (plus aoTuV b6.03 and Lancer optimizations)</li>
+                    <li>Updated Monkey's Audio to version 5.55</li>
+                    <li>Updated mpg123 to version 1.26.3</li>
+                </ul>
+                <p>New translations:</p>
+                <ul>
+                    <li>Added Hindi translation</li>
+                </ul>
+            </description>
+        </release>
+        <release version="1.1.2" date="2020-06-20">
+            <description>
+                <p>Improvements:</p>
+                <ul>
+                    <li>Scale UI to adjust to system font size by default</li>
+                    <li>Added support for theme colors and dark mode</li>
+                    <li>Improved handling of maximized window state</li>
+                    <li>Stop ripping before trying to eject a disc</li>
+                    <li>Write audio data CRC to log files when ripping</li>
+                    <li>Write MD5 checksums to log files when verifying files</li>
+                    <li>Write log entries when replacing existing files</li>
+                </ul>
+                <p>Bug fixes:</p>
+                <ul>
+                   <li>Fixed length of last chapter of some audio books being detected as 0:00</li>
+                   <li>Prevent interpreting numerical IDs or dates at the beginning of file names as track numbers</li>
+                   <li>Fixed a possible source of random crashes when adding files to the joblist</li>
+                   <li>Fixed possible crash when importing MP4/M4A files</li>
+                   <li>Fixed possible crash when encoding in SuperFast mode</li>
+                </ul>
+                <p>Updated codecs:</p>
+                <ul>
+                    <li>Updated Monkey's Audio to version 5.44</li>
+                    <li>Updated mpg123 to version 1.26.1</li>
+                    <li>Updated FAAD2 to version 2.9.2</li>
+                </ul>
+            </description>
+        </release>
         <release version="1.1.1" date="2020-04-19">
             <description>
                 <p>Improvements:</p>
@@ -60,14 +135,13 @@
                 <p>Bug fixes:</p>
                 <ul>
                    <li>Fixed crash of freaccmd when querying CDDB while DISPLAY variable is not set</li>
-                   <li>Fixed ripping of first CD track in paranoia mode on Windows</li>
                    <li>Fixed several issues creating CBR MP3 files in SuperFast mode</li>
                    <li>Fixed calculation of track conversion speed factor in log files</li>
                 </ul>
                 <p>Updated codecs:</p>
                 <ul>
                     <li>Updated Monkey's Audio to version 5.33</li>
-                    <li>Updated avPack to version 5.3.0</li>
+                    <li>Updated WavPack to version 5.3.0</li>
                 </ul>
                 <p>Updated translations:</p>
                 <ul>

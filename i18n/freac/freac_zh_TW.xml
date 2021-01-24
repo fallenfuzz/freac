@@ -605,15 +605,14 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1">錯誤: %1</entry>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">無法建立解碼器元件: %1&#10;&#10;檔案: %1&#10;路徑: %2</entry>
-      <entry id="7102" string="Could not create encoder component: %1">無法建立編碼器元件: %1</entry>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">無法設定解碼器於輸入檔案: %1&#10;&#10;檔案: %1&#10;路徑: %2&#10;&#10;錯誤: %3</entry>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">無法設定編碼器於輸出檔案: %1&#10;&#10;檔案: %1&#10;路徑: %2&#10;&#10;錯誤: %3</entry>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">無法設定 DSP 處理器: %1&#10;&#10;錯誤: %2</entry>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">無法存取輸入檔案: %1&#10;&#10;檔案: %1&#10;路徑: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">無法建立輸出檔案: %1&#10;&#10;檔案: %1&#10;路徑: %2</entry>
-      <entry id="7108" string="Failed to verify input file: %1">無法驗證輸入檔案: %1</entry>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">無法建立解碼器元件: %1&#10;&#10;檔案: %1&#10;路徑: %2</entry>
+      <entry id="7101" string="Could not create encoder component: %1">無法建立編碼器元件: %1</entry>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">無法設定解碼器於輸入檔案: %1&#10;&#10;檔案: %1&#10;路徑: %2&#10;&#10;錯誤: %3</entry>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">無法設定編碼器於輸出檔案: %1&#10;&#10;檔案: %1&#10;路徑: %2&#10;&#10;錯誤: %3</entry>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">無法設定 DSP 處理器: %1&#10;&#10;錯誤: %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">無法存取輸入檔案: %1&#10;&#10;檔案: %1&#10;路徑: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">無法建立輸出檔案: %1&#10;&#10;檔案: %1&#10;路徑: %2</entry>
+      <entry id="7107" string="Failed to verify input file: %1">無法驗證輸入檔案: %1</entry>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3">輸出檔案的校驗碼不相符: %1&#10;&#10;編碼校驗: %2&#10;驗證核對: %3</entry>
       <entry id="7110" string="File not found">找不到檔案</entry>
       <entry id="7111" string="Unknown file type">未知的檔案類型</entry>
@@ -675,12 +674,11 @@
       <entry id="9015" string="Start ripping automatically">自動開始轉檔</entry>
       <entry id="9016" string="Eject disk after ripping">轉檔完成後退出光碟</entry>
       <entry id="9017" string="CD options">CD 選項</entry>
-      <entry id="9018" string="Lock CD tray while ripping">轉檔時鎖定光碟機托盤</entry>
-      <entry id="9019" string="Use read offset">使用讀取偏移</entry>
-      <entry id="9020" string="samples">個取樣數</entry>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist">新增音軌到工作清單時讀取 ISRC</entry>
-      <entry id="9022" string="Spin up before ripping">轉檔前讓光碟機預轉</entry>
-      <entry id="9023" string="%1 seconds">%1 秒</entry>
+      <entry id="9018" string="Use read offset">使用讀取偏移</entry>
+      <entry id="9019" string="samples">個取樣數</entry>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist">新增音軌到工作清單時讀取 ISRC</entry>
+      <entry id="9021" string="Spin up before ripping">轉檔前讓光碟機預轉</entry>
+      <entry id="9022" string="%1 seconds">%1 秒</entry>
     </section>
 
     <section name="Components">
@@ -769,9 +767,9 @@
 	  <entry id="32100" string="Presets">預設</entry>
 	  <entry id="32101" string="Use preset">使用預設值</entry>
 	  <entry id="32102" string="Custom settings">自訂</entry>
-	  <entry id="32103" string="Medium, Fast">中等，快速</entry>
-	  <entry id="32104" string="Standard, Fast">標準，快速</entry>
-	  <entry id="32105" string="Extreme, Fast">極限，快速</entry>
+	  <entry id="32103" string="Medium">中等</entry>
+	  <entry id="32104" string="Standard">標準</entry>
+	  <entry id="32105" string="Extreme">極限</entry>
 	  <entry id="32106" string="Bitrate">位元率</entry>
 	  <entry id="32107" string="Quality">品質</entry>
 	  <entry id="32108" string="Set bitrate">設定位元率</entry>
@@ -844,6 +842,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping">使用時域噪音修整</entry>
 	  <entry id="33208" string="Maximum bandwidth">最大頻寬</entry>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)">AAC 頻率使用的最大頻寬 (Hz)</entry>
+	  <entry id="33210" string="worse">較差</entry>
+	  <entry id="33211" string="better">較好</entry>
 	</section>
 
 	<section name="Format">
@@ -1261,7 +1261,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!">該網址不被支援，或不是影片的網址！</entry>
 	  <entry id="102202" string="Error downloading video!">下載影片時發生錯誤！</entry>
 	  <entry id="102203" string="You are already downloading this video!">您已經在下載這個影片！</entry>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!">找不到必要的影片解碼器。無法將影片檔案&#10;新增到工作清單並轉換為音訊檔案。&#10;&#10;請安裝 avconv 或 FFmpeg 來修正這個問題！</entry>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!">找不到必要的影片解碼器。無法將影片檔案&#10;新增到工作清單並轉換為音訊檔案。&#10;&#10;請安裝 FFmpeg 或 avconv 來修正這個問題！</entry>
 	</section>
       </section>
 

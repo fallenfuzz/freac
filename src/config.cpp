@@ -47,10 +47,10 @@ const String	 freac::Config::SettingsWindowPosYID				= "WindowPosY";
 const Int	 freac::Config::SettingsWindowPosYDefault			= 100;
 
 const String	 freac::Config::SettingsWindowSizeXID				= "WindowSizeX";
-const Int	 freac::Config::SettingsWindowSizeXDefault			= 800;
+const Int	 freac::Config::SettingsWindowSizeXDefault			= 740;
 
 const String	 freac::Config::SettingsWindowSizeYID				= "WindowSizeY";
-const Int	 freac::Config::SettingsWindowSizeYDefault			= 600;
+const Int	 freac::Config::SettingsWindowSizeYDefault			= 550;
 
 const String	 freac::Config::SettingsWindowMaximizedID			= "WindowMaximized";
 const Bool	 freac::Config::SettingsWindowMaximizedDefault			= False;
@@ -343,7 +343,7 @@ const String	 freac::Config::FreedbDirectoryID				= "Directory";
 const String	 freac::Config::FreedbDirectoryDefault				= String("freedb").Append(Directory::GetDirectoryDelimiter());
 
 const String	 freac::Config::FreedbServerID					= "Server";
-const String	 freac::Config::FreedbServerDefault				= "freedb.freac.org";
+const String	 freac::Config::FreedbServerDefault				= "gnudb.gnudb.org";
 
 const String	 freac::Config::FreedbModeID					= "Mode";
 const Int	 freac::Config::FreedbModeDefault				= 0;
@@ -399,6 +399,9 @@ const Bool	 freac::Config::FreedbOverwriteCDTextDefault			= True;
 const String	 freac::Config::FreedbUpdateJoblistID				= "UpdateJoblistOnSubmit";
 const Bool	 freac::Config::FreedbUpdateJoblistDefault			= True;
 
+const String	 freac::Config::FreedbDisplayNotFoundID				= "DisplayNotFoundNote";
+const Bool	 freac::Config::FreedbDisplayNotFoundDefault			= True;
+
 freac::Config::Config()
 {
 	BoCA::Config	*config = BoCA::Config::Get();
@@ -448,7 +451,28 @@ freac::Config::Config()
 	if ((currentDate.GetYear()  > 2020				) ||
 	    (currentDate.GetYear() == 2020 && currentDate.GetMonth() > 3))
 	{
-		if (config->GetStringValue(Config::CategoryFreedbID, Config::FreedbServerID, Config::FreedbServerDefault) == "freedb.freedb.org") config->SetStringValue(Config::CategoryFreedbID, Config::FreedbServerID, Config::FreedbServerDefault);
+		if (config->GetStringValue(Config::CategoryFreedbID, Config::FreedbServerID, Config::FreedbServerDefault) == "freedb.freedb.org" ||
+		    config->GetStringValue(Config::CategoryFreedbID, Config::FreedbServerID, Config::FreedbServerDefault) == "freedb.freac.org") config->SetStringValue(Config::CategoryFreedbID, Config::FreedbServerID, Config::FreedbServerDefault);
+	}
+
+	/* Translate fre:ac 1.0.x encoder indices to encoder IDs.
+	 */
+	String	 encoderID = config->GetStringValue(Config::CategorySettingsID, Config::SettingsEncoderID, Config::SettingsEncoderDefault);
+
+	if (encoderID.Length() == 1)
+	{
+		switch (encoderID.ToInt())
+		{
+			default: encoderID = "lame-enc"; break;
+			case 1:	 encoderID = "faac-enc"; break;
+			case 2:	 encoderID = "flac-enc"; break;
+			case 3:	 encoderID = "lame-enc"; break;
+			case 4:	 encoderID = "vorbis-enc"; break;
+			case 5:	 encoderID = "wma-enc"; break;
+			case 6:	 encoderID = "sndfile-wave-enc"; break;
+		}
+
+		config->SetStringValue(Config::CategorySettingsID, Config::SettingsEncoderID, encoderID);
 	}
 }
 

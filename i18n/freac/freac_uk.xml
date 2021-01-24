@@ -391,8 +391,8 @@
     </section>
 
     <section name="Errors">
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Немає доступу до вхідного файлу: %1&#10;&#10;Файл: %1&#10;Тека: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Неможливо створити вихідний файл: %1&#10;&#10;Файл: %1&#10;Тека: %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Немає доступу до вхідного файлу: %1&#10;&#10;Файл: %1&#10;Тека: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Неможливо створити вихідний файл: %1&#10;&#10;Файл: %1&#10;Тека: %2</entry>
       <entry id="7110" string="File not found">Файли не знайдено</entry>
       <entry id="7111" string="Unknown file type">Невідомий тип файлу</entry>
       <entry id="7113" string="Unsupported audio format">Даний аудіо-формат не підтримується</entry>
@@ -432,7 +432,6 @@
       <entry id="9015" string="Start ripping automatically">Авт. розпочати захоплення</entry>
       <entry id="9016" string="Eject disk after ripping">Витягнути диск після роботи</entry>
       <entry id="9017" string="CD options">CD опції</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Блокувати CD під час роботи</entry>
     </section>
 
     <section name="Encoders">
@@ -471,9 +470,9 @@
 	  <entry id="32100" string="Presets">Налаштування</entry>
 	  <entry id="32101" string="Use preset">Виберіть варіанти</entry>
 	  <entry id="32102" string="Custom settings">Вибіркові налаштування</entry>
-	  <entry id="32103" string="Medium, Fast">Середній, Швидкий</entry>
-	  <entry id="32104" string="Standard, Fast">Стандартний, Швидкий</entry>
-	  <entry id="32105" string="Extreme, Fast">Екстремальний, Швидкий</entry>
+	  <entry id="32103" string="Medium">Середній</entry>
+	  <entry id="32104" string="Standard">Стандартний</entry>
+	  <entry id="32105" string="Extreme">Екстремальний</entry>
 	  <entry id="32106" string="Bitrate">Бітрейт</entry>
 	  <entry id="32107" string="Quality">Якість</entry>
 	  <entry id="32108" string="Set bitrate">Бітрейт</entry>
@@ -541,6 +540,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping">Використання ФЧШ</entry>
 	  <entry id="33208" string="Maximum bandwidth">Максимальна пропускна здатність</entry>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)">Макс. частотна пропускна здатність AAC для викор.</entry>
+	  <entry id="33210" string="worse">гірша</entry>
+	  <entry id="33211" string="better">краща</entry>
 	</section>
 
 	<section name="Format">

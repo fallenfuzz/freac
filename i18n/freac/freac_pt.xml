@@ -609,29 +609,29 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1">Erro: %1</entry>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Não foi possível criar o componente descodificador: %1&#10;&#10;Ficheiro: %1&#10;Caminho: %2</entry>
-      <entry id="7102" string="Could not create encoder component: %1">Não foi possível criar o componente descodificador: %1</entry>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Não foi possível configurar o descodificador para o ficheiro de entrada: %1&#10;&#10;Ficheiro: %1&#10;Caminho: %2&#10;&#10;Erro: %3</entry>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Não foi possível configurar o descodificador para o ficheiro de saída: %1&#10;&#10;Ficheiro: %1&#10;Caminho: %2&#10;&#10;Erro: %3</entry>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Não foi possível configurar o processador DSP: %1&#10;&#10;Erro: %2</entry>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Não é possível aceder ao ficheiro de entrada: %1&#10;&#10;Ficheiro: %1&#10;Pasta: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Não é possível criar ficheiro de saída: %1&#10;&#10;Ficheiro: %1&#10;Pasta: %2</entry>
-      <entry id="7108" string="Failed to verify input file: %1">Falha ao verificar o ficheiro de entrada: %1</entry>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Não foi possível criar o componente descodificador: %1&#10;&#10;Ficheiro: %1&#10;Caminho: %2</entry>
+      <entry id="7101" string="Could not create encoder component: %1">Não foi possível criar o componente descodificador: %1</entry>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Não foi possível configurar o descodificador para o ficheiro de entrada: %1&#10;&#10;Ficheiro: %1&#10;Caminho: %2&#10;&#10;Erro: %3</entry>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Não foi possível configurar o descodificador para o ficheiro de saída: %1&#10;&#10;Ficheiro: %1&#10;Caminho: %2&#10;&#10;Erro: %3</entry>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Não foi possível configurar o processador DSP: %1&#10;&#10;Erro: %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Não é possível aceder ao ficheiro de entrada: %1&#10;&#10;Ficheiro: %1&#10;Pasta: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Não é possível criar ficheiro de saída: %1&#10;&#10;Ficheiro: %1&#10;Pasta: %2</entry>
+      <entry id="7107" string="Failed to verify input file: %1">Falha ao verificar o ficheiro de entrada: %1</entry>
+      <entry id="7108" string="Failed to verify input track: %1">Falha ao verificar o ficheiro de entrada: %1</entry>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3">Incompatibilidade da soma de verificação ao verificar o ficheiro de saída: %1&#10;&#10;Soma de verificação da codificação: %2&#10;Verificar soma de verificação: %3&#10;&#10;soma de verificação</entry>
       <entry id="7110" string="File not found">Ficheiro não encontrado</entry>
       <entry id="7111" string="Unknown file type">Tipo de ficheiro desconhecido</entry>
       <entry id="7112" string="Invalid file format">Formato de ficheiro inválido</entry>
       <entry id="7113" string="Unsupported audio format">Formato de áudio não suportado</entry>
       <entry id="7114" string="Unknown error">Erro desconhecido</entry>
-      <entry id="7115" string="Unable to load NT SCSI drivers! CD ripping disabled!">Drivers NT SCSI não puderam ser carregados! Extração de CD desabilitada!</entry>
+      <entry id="7115" string="Unable to load NT SCSI drivers! CD ripping disabled!">Drivers NT SCSI não puderam ser carregados! Extração de CD indisponível!</entry>
       <entry id="7116" string="Unable to open file: %1&#10;&#10;Error: %2">Não consegue abrir o ficheiro: %1&#10;&#10;Erro: %2</entry>
       <entry id="7117" string="Cannot play a CD track while ripping from the same drive!">Não é possível reproduzir uma faixa de CD enquanto copia da mesma unidade!</entry>
       <entry id="7118" string="Cannot start ripping while playing a track from the same drive!">Não é possível começar a copiar enquanto reproduz uma faixa da mesma unidade!</entry>
       <entry id="7119" string="CDDB support is disabled! Please enable local or&#10;remote CDDB support in the configuration dialog.">Suporte CDDB está inativo! Ative o suporte CDDB&#10;local ou remoto no diálogo de configuração.</entry>
       <entry id="7120" string="Remote CDDB support is disabled! Please enable&#10;remote CDDB support in the configuration dialog.">Suporte ao CDDB remoto está inativo! Ative o&#10;CDDB no diálogo de configuração.</entry>
       <entry id="7121" string="Access to CD-ROM drives was denied by Windows.&#10;&#10;Please contact your system administrator in order&#10;to be granted the right to access the CD-ROM drive.">O acesso ao drive de CD foi bloqueado pelo Windows.&#10;&#10;Contacte o administrador do sistema para permitir&#10;acesso à drive de CD-ROM.</entry>
-      <entry id="7122" string="No configuration dialog available for:&#10;&#10;%1">Nenhuma caixa de diálogo de configuração disponível para:&#10;&#10;% 1</entry>
+      <entry id="7122" string="No configuration dialog available for:&#10;&#10;%1">Nenhuma caixa de diálogo de configuração disponível para:&#10;&#10;%1</entry>
       <entry id="7123" string="The selected folder does not exist anymore!">A pasta selecionada já não existe!</entry>
     </section>
 
@@ -640,7 +640,7 @@
       <section name="Overwrite">
 	<entry id="8000" string="Confirm overwrite">Confirmar substituição</entry>
 	<entry id="8001" string="Confirm">Confirmar</entry>
-	<entry id="8002" string="Skip all">Pule tudo</entry>
+	<entry id="8002" string="Skip all">Pular tudo</entry>
 	<entry id="8003" string="The following %1 files already exist or have duplicate file names">Os seguintes %1 ficheiros já existem ou têm nomes de ficheiros duplicados</entry>
 	<entry id="8004" string="Action">Ação</entry>
 	<entry id="8005" string="Overwrite">Sobrescrever</entry>
@@ -679,12 +679,11 @@
       <entry id="9015" string="Start ripping automatically">Iniciar extração automaticamente</entry>
       <entry id="9016" string="Eject disk after ripping">Ejectar CD após a extração</entry>
       <entry id="9017" string="CD options">Opções do CD</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Travar a bandeja do leitor CD durante a extração</entry>
-      <entry id="9019" string="Use read offset">Usar deslocamento de leitura</entry>
-      <entry id="9020" string="samples">amostras</entry>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist">Leia o ISRC ao adicionar faixas à lista de trabalho</entry>
-      <entry id="9022" string="Spin up before ripping">Girar antes de extrair</entry>
-      <entry id="9023" string="%1 seconds">%1 segundos</entry>
+      <entry id="9018" string="Use read offset">Usar deslocamento de leitura</entry>
+      <entry id="9019" string="samples">amostras</entry>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist">Leia o ISRC ao adicionar faixas à lista de trabalho</entry>
+      <entry id="9021" string="Spin up before ripping">Girar antes de extrair</entry>
+      <entry id="9022" string="%1 seconds">%1 segundos</entry>
     </section>
 
     <section name="Components">
@@ -773,9 +772,9 @@
 	  <entry id="32100" string="Presets">Ajustes prévios</entry>
 	  <entry id="32101" string="Use preset">Usar ajuste prévio</entry>
 	  <entry id="32102" string="Custom settings">Opções personalizadas</entry>
-	  <entry id="32103" string="Medium, Fast">Médio, Rápido</entry>
-	  <entry id="32104" string="Standard, Fast">Normal, Rápido</entry>
-	  <entry id="32105" string="Extreme, Fast">Extremo, Rápido</entry>
+	  <entry id="32103" string="Medium">Médio</entry>
+	  <entry id="32104" string="Standard">Normal</entry>
+	  <entry id="32105" string="Extreme">Extremo</entry>
 	  <entry id="32106" string="Bitrate">Taxa de bits</entry>
 	  <entry id="32107" string="Quality">Qualidade</entry>
 	  <entry id="32108" string="Set bitrate">Fixar a taxa de bits</entry>
@@ -848,6 +847,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping">Usar &quot;Modelagem de Ruído Temporal&quot;</entry>
 	  <entry id="33208" string="Maximum bandwidth">Largura de banda máxima</entry>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)">Largura de banda máxima para AAC (Hz)</entry>
+	  <entry id="33210" string="worse">pior</entry>
+	  <entry id="33211" string="better">melhor</entry>
 	</section>
 
 	<section name="Format">
@@ -1265,7 +1266,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!">Este URL não é suportado ou não é um URL da página de vídeo!</entry>
 	  <entry id="102202" string="Error downloading video!">Erro ao transferir o vídeo!</entry>
 	  <entry id="102203" string="You are already downloading this video!">Este vídeo já está a ser transferido!</entry>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!">Não foi possível encontrar alguns descodificadores de vídeo necessários. Ficheiros de vídeo&#10;não podem ser adicionados à lista de tarefas para conversão em ficheiros de áudio.&#10;&#10;Instale avconv ou FFmpeg para corrigir este problema!</entry>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!">Não foi possível encontrar alguns descodificadores de vídeo necessários. Ficheiros de vídeo&#10;não podem ser adicionados à lista de tarefas para conversão em ficheiros de áudio.&#10;&#10;Instale FFmpeg ou avconv para corrigir este problema!</entry>
 	</section>
       </section>
 

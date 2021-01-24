@@ -609,15 +609,15 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1">Greška: %1</entry>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Nije moguće kreirati komponentu dekodera: %1&#10;&#10;Fajl: %1&#10;Putanja: %2</entry>
-      <entry id="7102" string="Could not create encoder component: %1">Nije moguće kreirati komponentu enkodera: %1</entry>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nije moguće podešenje dekodera za ulazni fajl: %1&#10;&#10;Fajl: %1&#10;Putanja: %2&#10;&#10;Greška: %3</entry>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nije moguće podešenje enkodera za izlazni fajl: %1&#10;&#10;Fajl: %1&#10;Putanja: %2&#10;&#10;Greška: %3</entry>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Nije moguće podesiti DSP procesor: %1&#10;&#10;Greška: %2</entry>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Nije moguć pristup ulaznom fajlu: %1&#10;&#10;Fajl: %1&#10;Folder: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Nije moguće kreiranje izlaznog fajla: %1&#10;&#10;Fajl: %1&#10;Folder: %2</entry>
-      <entry id="7108" string="Failed to verify input file: %1">Overa ulaznog fajla nije uspela: %1</entry>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Nije moguće kreirati komponentu dekodera: %1&#10;&#10;Fajl: %1&#10;Putanja: %2</entry>
+      <entry id="7101" string="Could not create encoder component: %1">Nije moguće kreirati komponentu enkodera: %1</entry>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nije moguće podešenje dekodera za ulazni fajl: %1&#10;&#10;Fajl: %1&#10;Putanja: %2&#10;&#10;Greška: %3</entry>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Nije moguće podešenje enkodera za izlazni fajl: %1&#10;&#10;Fajl: %1&#10;Putanja: %2&#10;&#10;Greška: %3</entry>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Nije moguće podesiti DSP procesor: %1&#10;&#10;Greška: %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Nije moguć pristup ulaznom fajlu: %1&#10;&#10;Fajl: %1&#10;Folder: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Nije moguće kreiranje izlaznog fajla: %1&#10;&#10;Fajl: %1&#10;Folder: %2</entry>
+      <entry id="7107" string="Failed to verify input file: %1">Overa ulaznog fajla nije uspela: %1</entry>
+      <entry id="7108" string="Failed to verify input track: %1">Overa ulaznog fajla nije uspela: %1</entry>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3">Checksum se ne poklapa prilikom overe izlaznog fajla: %1&#10;&#10;Enkodovanje checksum-a: %2&#10;Overa checksum-a: %3</entry>
       <entry id="7110" string="File not found">Fajl nije nađen</entry>
       <entry id="7111" string="Unknown file type">Nepoznata vrsta fajla</entry>
@@ -679,12 +679,11 @@
       <entry id="9015" string="Start ripping automatically">Automatski započni ripovanje</entry>
       <entry id="9016" string="Eject disk after ripping">Izbaci disk nakon ripovanja</entry>
       <entry id="9017" string="CD options">CD opcije</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Zaključaj CD uređaj u toku ripovanja</entry>
-      <entry id="9019" string="Use read offset">Koristi čitanje nepoklapanja</entry>
-      <entry id="9020" string="samples">semplovi</entry>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist">Čitaj ISRC kada dodaješ pesme na listu zadataka</entry>
-      <entry id="9022" string="Spin up before ripping">Zavrti disk pre ripovanja</entry>
-      <entry id="9023" string="%1 seconds">%1 sekund/e/i</entry>
+      <entry id="9018" string="Use read offset">Koristi čitanje nepoklapanja</entry>
+      <entry id="9019" string="samples">semplovi</entry>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist">Čitaj ISRC kada dodaješ pesme na listu zadataka</entry>
+      <entry id="9021" string="Spin up before ripping">Zavrti disk pre ripovanja</entry>
+      <entry id="9022" string="%1 seconds">%1 sekund/e/i</entry>
     </section>
 
     <section name="Components">
@@ -773,9 +772,9 @@
 	  <entry id="32100" string="Presets">Predpodešenja</entry>
 	  <entry id="32101" string="Use preset">Koristi predpodešenja</entry>
 	  <entry id="32102" string="Custom settings">Korisnikova podešenja</entry>
-	  <entry id="32103" string="Medium, Fast">Srednje, Brzo</entry>
-	  <entry id="32104" string="Standard, Fast">Standardno, Brzo</entry>
-	  <entry id="32105" string="Extreme, Fast">Krajnje, Brzo</entry>
+	  <entry id="32103" string="Medium">Srednje</entry>
+	  <entry id="32104" string="Standard">Standardno</entry>
+	  <entry id="32105" string="Extreme">Krajnje</entry>
 	  <entry id="32106" string="Bitrate">Stopa bitova</entry>
 	  <entry id="32107" string="Quality">Kvalitet</entry>
 	  <entry id="32108" string="Set bitrate">Stopa</entry>
@@ -848,6 +847,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping">Koristi privr. obl. šuma</entry>
 	  <entry id="33208" string="Maximum bandwidth">Maksimalan protok</entry>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)">Maksimalna AAC frekvencija protoka (Hz)</entry>
+	  <entry id="33210" string="worse">lošije</entry>
+	  <entry id="33211" string="better">bolje</entry>
 	</section>
 
 	<section name="Format">
@@ -1265,7 +1266,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!">Ovaj URL nije podržan ili nije video URL!</entry>
 	  <entry id="102202" string="Error downloading video!">Greška u preuzimanju videa!</entry>
 	  <entry id="102203" string="You are already downloading this video!">Već preuzimate ovaj video!</entry>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!">Neki neophodni video dekoderi ne mogu biti nađeni. Video fajlovi&#10;ne mogu biti dodati na listu zadataka za pretvaranje u audio fajlove.&#10;&#10;Molimo instalirajte avconv ili FFmpeg da rešite ovaj problem!</entry>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!">Neki neophodni video dekoderi ne mogu biti nađeni. Video fajlovi&#10;ne mogu biti dodati na listu zadataka za pretvaranje u audio fajlove.&#10;&#10;Molimo instalirajte FFmpeg ili avconv da rešite ovaj problem!</entry>
 	</section>
       </section>
 

@@ -52,20 +52,17 @@ Signal4<Void, const BoCA::Track &,
 	      const String &,
 	      const String &,
 	      freac::ConversionStep>	 freac::JobConvert::onEncodeTrack;
-
-Signal2<Void, Int, Int>			 freac::JobConvert::onTrackProgress;
-Signal2<Void, Int, Int>			 freac::JobConvert::onTotalProgress;
+Signal4<Void, Int, Int, Int, Int>	 freac::JobConvert::onReportProgress;
 
 freac::JobConvert::JobConvert(const Array<BoCA::Track> &tracksToConvert, Bool iAutoRip)
 {
-	conversionID	 = ++conversionCount;
+	conversionID	 = Threads::Access::Increment(conversionCount);
 
 	conversionPaused = False;
 
 	autoRip		 = iAutoRip;
 
 	skipTrack	 = False;
-	stopConversion   = False;
 
 	/* Copy array of tracks to convert using track IDs as indices.
 	 */
@@ -160,8 +157,8 @@ Error freac::JobConvert::Precheck()
 	{
 		/* Get single file name.
 		 */
-		if (!autoRip) singleOutFile = Utilities::GetSingleOutputFileName(tracks);
-		else	      singleOutFile = BoCA::Utilities::GetAbsolutePathName(encoderOutputDirectory).Append(Utilities::GetSingleOutputFileNameDefault(tracks));
+		if (!autoRip) singleOutFile = Utilities::GetSingleOutputFileName(configuration, tracks);
+		else	      singleOutFile = BoCA::Utilities::GetAbsolutePathName(encoderOutputDirectory).Append(Utilities::GetSingleOutputFileNameDefault(configuration, tracks));
 
 		singleOutFile = BoCA::Utilities::NormalizeFileName(singleOutFile);
 
@@ -178,7 +175,7 @@ Error freac::JobConvert::Precheck()
 
 		foreach (Track &track, tracks)
 		{
-			track.outputFile = Utilities::GetOutputFileName(track);
+			track.outputFile = Utilities::GetOutputFileName(configuration, track);
 
 			UnsignedInt64	 trackCRC = String(track.outputFile).ToLower().ComputeCRC64();
 
@@ -323,8 +320,7 @@ Error freac::JobConvert::Perform()
 	 */
 	Progress	*progress = new Progress(configuration);
 
-	progress->onTrackProgress.Connect(&JobConvert::UpdateTrackProgress, this);
-	progress->onTotalProgress.Connect(&JobConvert::UpdateTotalProgress, this);
+	progress->onReportProgress.Connect(&JobConvert::ReportProgress, this);
 
 	onStartEncoding.Emit();
 
@@ -513,13 +509,13 @@ Error freac::JobConvert::Perform()
 		{
 			foreach (ConvertWorker *worker, workerQueue)
 			{
-				if (worker->IsError()) stopConversion = True;
+				if (worker->IsError()) abort = True;
 			}
 		}
 
 		/* Cancel workers if stop requested.
 		 */
-		if (stopConversion)
+		if (abort)
 		{
 			foreach (ConvertWorker *worker, workers)
 			{
@@ -687,7 +683,7 @@ Error freac::JobConvert::Perform()
 
 				const Track	&workerTrack = worker->GetTrackToConvert();
 
-				if (conversionJobs.GetLast() == this) onEncodeTrack.Emit(tracksToConvert.Get(trackID = workerTrack.GetTrackID()), decoderName    = worker->GetDecoderName(),
+				if (GetActiveConversionJob() == this) onEncodeTrack.Emit(tracksToConvert.Get(trackID = workerTrack.GetTrackID()), decoderName    = worker->GetDecoderName(),
 																		  encoderName    = worker->GetEncoderName(),
 																		  conversionStep = worker->GetConversionStep());
 
@@ -709,7 +705,7 @@ Error freac::JobConvert::Perform()
 
 			foreach (ConvertWorker *worker, workers) worker->Pause(True);
 
-			while (conversionPaused && !stopConversion && !skipTrack) S::System::System::Sleep(50);
+			while (conversionPaused && !abort && !skipTrack) S::System::System::Sleep(50);
 
 			foreach (ConvertWorker *worker, workers) worker->Pause(False);
 
@@ -729,8 +725,8 @@ Error freac::JobConvert::Perform()
 
 		/* Update total progress values.
 		 */
-		Bool			 first		= True;
-		static JobConvert	*lastConversion = conversionJobs.GetLast();
+		Bool			 first		  = True;
+		static JobConvert	*activeConversion = GetActiveConversionJob();
 
 		foreach (ConvertWorker *worker, workerQueue)
 		{
@@ -738,10 +734,10 @@ Error freac::JobConvert::Perform()
 
 			const Track	&workerTrack = worker->GetTrackToConvert();
 
-			if (first && conversionJobs.GetLast() == this && (this			      != lastConversion ||
-									  workerTrack.GetTrackID()    != trackID	||
-									  worker->GetConversionStep() != conversionStep ||
-									  worker->GetDecoderName()    != decoderName	||
+			if (first && GetActiveConversionJob() == this && (this			      != activeConversion ||
+									  workerTrack.GetTrackID()    != trackID	  ||
+									  worker->GetConversionStep() != conversionStep	  ||
+									  worker->GetDecoderName()    != decoderName	  ||
 									  worker->GetEncoderName()    != encoderName)) onEncodeTrack.Emit(tracksToConvert.Get(trackID = workerTrack.GetTrackID()), decoderName    = worker->GetDecoderName(),
 																								   encoderName    = worker->GetEncoderName(),
 																								   conversionStep = worker->GetConversionStep());
@@ -751,7 +747,7 @@ Error freac::JobConvert::Perform()
 			progress->UpdateTrack(workerTrack, worker->GetTrackPosition());
 		}
 
-		lastConversion = conversionJobs.GetLast();
+		activeConversion = GetActiveConversionJob();
 
 		/* Update per track progress values.
 		 */
@@ -838,17 +834,23 @@ Error freac::JobConvert::Perform()
 			{
 				if (!Locking::LockDeviceForTrack(track))
 				{
+					waiting = True;
 					progress->Pause();
 
 					while (!Locking::LockDeviceForTrack(track)) S::System::System::Sleep(25);
 
 					progress->Resume();
+					waiting = False;
 				}
 			}
 			else
 			{
+				if (workerQueue.Length() == 0) waiting = True;
+
 				if (!Locking::LockDeviceForTrack(track))					 continue;
 				if (!Locking::LockOutputForTrack(track)) { Locking::UnlockDeviceForTrack(track); continue; }
+
+				waiting = False;
 			}
 
 			/* Check if track should be overwritten.
@@ -869,7 +871,7 @@ Error freac::JobConvert::Perform()
 
 					if (confirmation.GetButtonCode() == Message::Button::Cancel)
 					{
-						stopConversion = True;
+						abort = True;
 
 						/* Unlock track device and output file if necessary.
 						 */
@@ -917,7 +919,7 @@ Error freac::JobConvert::Perform()
 
 				if (!workerToUse->IsError())
 				{
-					if (conversionJobs.GetLast() == this) onEncodeTrack.Emit(tracksToConvert.Get(trackID = track.GetTrackID()), decoderName    = workerToUse->GetDecoderName(),
+					if (GetActiveConversionJob() == this) onEncodeTrack.Emit(tracksToConvert.Get(trackID = track.GetTrackID()), decoderName    = workerToUse->GetDecoderName(),
 																		    encoderName    = workerToUse->GetEncoderName(),
 																		    conversionStep = workerToUse->GetConversionStep());
 
@@ -965,7 +967,7 @@ Error freac::JobConvert::Perform()
 
 	/* Verify single file encodes.
 	 */
-	if (encodeToSingleFile && verifyOutput && encodedTracks > 0 && !skipTrack && !stopConversion && singleFileEncoder != NIL && singleFileEncoder->IsLossless())
+	if (encodeToSingleFile && verifyOutput && encodedTracks > 0 && !skipTrack && !abort && singleFileEncoder != NIL && singleFileEncoder->IsLossless())
 	{
 		/* Finish processing and pass remaining samples to encoder.
 		 */
@@ -1010,7 +1012,7 @@ Error freac::JobConvert::Perform()
 
 			/* Setup and start worker for verification.
 			 */
-			ConvertWorkerSingleFile	*worker = new ConvertWorkerSingleFile(configuration, conversionID, singleTrackSampleFormat, NIL, singleFileEncoder);
+			ConvertWorkerSingleFile	*worker = new ConvertWorkerSingleFile(configuration, conversionID, singleTrackToEncode.GetFormat(), NIL, singleFileEncoder);
 
 			worker->onFinishTrack.Connect(&Progress::FinishTrack, progress);
 			worker->onFixTotalSamples.Connect(&Progress::FixTotalSamples, progress);
@@ -1029,7 +1031,7 @@ Error freac::JobConvert::Perform()
 			 */
 			while (worker->IsWaiting() && !worker->IsIdle()) S::System::System::Sleep(1);
 
-			if (conversionJobs.GetLast() == this) onEncodeTrack.Emit(singleTrackToEncode, decoderName    = worker->GetDecoderName(),
+			if (GetActiveConversionJob() == this) onEncodeTrack.Emit(singleTrackToEncode, decoderName    = worker->GetDecoderName(),
 												      encoderName    = worker->GetEncoderName(),
 												      conversionStep = worker->GetConversionStep());
 
@@ -1045,6 +1047,34 @@ Error freac::JobConvert::Perform()
 
 				AutoRelease	 autoRelease;
 
+				/* Cancel worker if stop requested.
+				 */
+				if (abort)
+				{
+					worker->Cancel();
+
+					abort = False;
+
+					break;
+				}
+
+				/* Pause if requested.
+				 */
+				if (conversionPaused)
+				{
+					progress->Pause();
+
+					worker->Pause(True);
+
+					while (conversionPaused && !abort) S::System::System::Sleep(50);
+
+					worker->Pause(False);
+
+					progress->Resume();
+				}
+
+				/* Update progress values.
+				 */
 				progress->UpdateTrack(singleTrackToEncode, worker->GetTrackPosition());
 
 				S::System::System::Sleep(25);
@@ -1078,6 +1108,7 @@ Error freac::JobConvert::Perform()
 			/* Query actual length of track.
 			 */
 			singleTrackToEncode.length = singleFileEncoder->GetEncodedSamples();
+			singleTrackToEncode.length = singleTrackToEncode.length * singleTrackToEncode.GetFormat().rate / singleFileProcessor->GetFormatInfo().rate;
 
 			/* Delete processor and encoder.
 			 */
@@ -1085,7 +1116,7 @@ Error freac::JobConvert::Perform()
 			delete singleFileEncoder;
 		}
 
-		if (File(singleOutFile).GetFileSize() <= 0 || encodedTracks == 0 || skipTrack || stopConversion) File(singleOutFile).Delete();
+		if (File(singleOutFile).GetFileSize() <= 0 || encodedTracks == 0 || skipTrack || abort) File(singleOutFile).Delete();
 
 		if (File(singleOutFile).Exists())
 		{
@@ -1149,6 +1180,8 @@ Error freac::JobConvert::Perform()
 		{
 			Track	 cuesheetTrack = trackToConvert;
 
+			cuesheetTrack.SetFormat(track.GetFormat());
+
 			cuesheetTrack.isCDTrack	   = False;
 			cuesheetTrack.sampleOffset = track.sampleOffset;
 			cuesheetTrack.length	   = track.length;
@@ -1160,7 +1193,7 @@ Error freac::JobConvert::Perform()
 
 	/* Write playlist and cue sheet.
 	 */
-	if (!stopConversion && encodedTracks > 0)
+	if (!abort && encodedTracks > 0)
 	{
 		String	 playlistID	   = configuration->GetStringValue(Config::CategoryPlaylistID, Config::PlaylistFormatID, Config::PlaylistFormatDefault);
 		String	 playlistExtension = playlistID.Tail(playlistID.Length() - playlistID.FindLast("-") - 1);
@@ -1177,7 +1210,7 @@ Error freac::JobConvert::Perform()
 			/* Set playlist filename so it is written to the same place as a single output file.
 			 */
 			if (encodeToSingleFile) playlistFileNames.Add(singleOutFile.Head(singleOutFile.FindLast(".")));
-			else			playlistFileNames.Add(Utilities::GetPlaylistFileName(playlistTracks.GetFirst(), tracksToConvert));
+			else			playlistFileNames.Add(Utilities::GetPlaylistFileName(configuration, playlistTracks.GetFirst(), tracksToConvert));
 
 			playlistTrackLists.Add(new Array<Track>(playlistTracks));
 			cuesheetTrackLists.Add(new Array<Track>(cuesheetTracks));
@@ -1188,7 +1221,7 @@ Error freac::JobConvert::Perform()
 			{
 				/* Check if we already have a list for this playlist.
 				 */
-				String		 playlistFileName = Utilities::GetPlaylistFileName(track, tracksToConvert);
+				String		 playlistFileName = Utilities::GetPlaylistFileName(configuration, track, tracksToConvert);
 				UnsignedInt32	 playlistFileCRC  = playlistFileName.ComputeCRC32();
 
 				if (playlistFileNames.Add(playlistFileName, playlistFileCRC))
@@ -1253,7 +1286,7 @@ Error freac::JobConvert::Perform()
 
 	/* Log duration of conversion.
 	 */
-	if (!stopConversion && encodedTracks > 0)
+	if (!abort && encodedTracks > 0)
 	{
 		/* Compute total play time of converted tracks.
 		 */
@@ -1298,14 +1331,14 @@ Error freac::JobConvert::Perform()
 
 	/* Clean up.
 	 */
-	onFinishEncoding.Emit(!stopConversion && encodedTracks > 0);
+	onFinishEncoding.Emit(!abort && encodedTracks > 0);
 
 	delete progress;
 
 	/* Notify components and write log.
 	 */
-	if (stopConversion) { engine->onCancelConversion.Emit(conversionID); log->Write("Conversion process cancelled.", MessageTypeWarning); }
-	else		    { engine->onFinishConversion.Emit(conversionID); log->Write("Conversion process finished."); }
+	if (abort) { engine->onCancelConversion.Emit(conversionID); log->Write("Conversion process cancelled.", MessageTypeWarning); }
+	else	   { engine->onFinishConversion.Emit(conversionID); log->Write("Conversion process finished."); }
 
 	/* Set progress to 100%.
 	 */
@@ -1313,7 +1346,7 @@ Error freac::JobConvert::Perform()
 
 	i18n->SetContext("Jobs::Convert");
 
-	if	(stopConversion	      )	SetText(i18n->TranslateString("Conversion cancelled"));
+	if	(abort		      )	SetText(i18n->TranslateString("Conversion cancelled"));
 	else if (errors.Length()   > 0)	SetText(i18n->TranslateString("Conversion finished with %1 errors").Replace("%1", String::FromInt(errors.Length())));
 	else if (warnings.Length() > 0)	SetText(i18n->TranslateString("Conversion finished with %1 warnings").Replace("%1", String::FromInt(warnings.Length())));
 	else				SetText(i18n->TranslateString("Conversion finished"));
@@ -1325,11 +1358,11 @@ Void freac::JobConvert::Skip()
 {
 	if (!IsConverting()) return;
 
-	/* Skip current track of most recent conversion.
+	/* Skip current track of active conversion job.
 	 */
-	JobConvert	*job = conversionJobs.GetLast();
+	JobConvert	*job = GetActiveConversionJob();
 
-	job->skipTrack = True;
+	if (job != NIL)  job->skipTrack = True;
 }
 
 Void freac::JobConvert::Stop()
@@ -1338,7 +1371,7 @@ Void freac::JobConvert::Stop()
 
 	/* Order all conversions to stop.
 	 */
-	foreachreverse (JobConvert *job, conversionJobs) job->stopConversion = True;
+	foreachreverse (JobConvert *job, conversionJobs) job->RequestAbort();
 
 	/* Wait for conversion threads to exit.
 	 */
@@ -1347,16 +1380,59 @@ Void freac::JobConvert::Stop()
 	while (IsConverting()) event.ProcessNextEvent();
 }
 
-Void freac::JobConvert::UpdateTrackProgress(Int progressValue, Int secondsLeft)
+Void freac::JobConvert::StopRipping(const String &device)
 {
-	if (conversionJobs.GetLast() == this) onTrackProgress.Emit(progressValue, secondsLeft);
+	if (!IsConverting()) return;
+
+	/* Find jobs ripping from this drive.
+	 */
+	foreachreverse (JobConvert *job, conversionJobs)
+	{
+		foreach (const Track &track, job->tracks)
+		{
+			if (!track.fileName.StartsWith(String("device://").Append(device))) continue;
+
+			job->RequestAbort();
+
+			/* Wait for job to finish.
+			 */
+			S::System::EventProcessor	 event;
+			Bool				 found = True;
+
+			while (found)
+			{
+				event.ProcessNextEvent();
+
+				found = False;
+
+				const Array<Job *>	&running = GetRunningJobs();
+
+				foreachreverse (Job *runningJob, running)
+				{
+					if (job == runningJob) found = True;
+				}
+			}
+
+			break;
+		}
+	}
 }
 
-Void freac::JobConvert::UpdateTotalProgress(Int progressValue, Int secondsLeft)
+freac::JobConvert *freac::JobConvert::GetActiveConversionJob()
 {
-	if (conversionJobs.GetLast() == this) onTotalProgress.Emit(progressValue, secondsLeft);
+	foreachreverse (JobConvert *job, conversionJobs)
+	{
+		if (!job->IsWaiting()) return job;
+	}
 
-	SetProgress(progressValue);
+	return NIL;
+}
+
+Void freac::JobConvert::ReportProgress(Int trackProgressValue, Int trackSecondsLeft, Int totalProgressValue, Int totalSecondsLeft)
+{
+	if (GetActiveConversionJob() == this) onReportProgress.Emit(trackProgressValue, trackSecondsLeft, totalProgressValue, totalSecondsLeft);
+
+	SetProgress(totalProgressValue);
 }
 
 Void freac::JobConvert::OnWorkerReportError(const String &error)
@@ -1604,9 +1680,6 @@ Track freac::JobConvert::ConsolidateTrackInfo()
 
 		if (chapterInfo.track	   == singleTrackInfo.track)	  chapterInfo.track	 = NIL;
 		if (chapterInfo.disc	   == singleTrackInfo.disc)	  chapterInfo.disc	 = NIL;
-
-		if (chapterInfo.mcdi	   == singleTrackInfo.mcdi)	  chapterInfo.mcdi	 = MCDI(Buffer<UnsignedByte>());
-		if (chapterInfo.offsets	   == singleTrackInfo.offsets)	  chapterInfo.offsets	 = NIL;
 
 		if (chapterInfo.album_gain == singleTrackInfo.album_gain) chapterInfo.album_gain = NIL;
 		if (chapterInfo.album_peak == singleTrackInfo.album_peak) chapterInfo.album_peak = NIL;

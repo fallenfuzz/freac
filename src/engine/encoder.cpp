@@ -1,5 +1,5 @@
  /* fre:ac - free audio converter
-  * Copyright (C) 2001-2019 Robert Kausch <robert.kausch@freac.org>
+  * Copyright (C) 2001-2020 Robert Kausch <robert.kausch@freac.org>
   *
   * This program is free software; you can redistribute it and/or
   * modify it under the terms of the GNU General Public License as
@@ -33,28 +33,29 @@ freac::Encoder::~Encoder()
 	Destroy();
 }
 
-Bool freac::Encoder::Create(const String &encoderID, const String &fileName, const Track &track)
+Bool freac::Encoder::Create(const String &encoderID, const String &streamURI, const Track &track)
 {
 	Registry	&boca = Registry::Get();
+	File		 file(streamURI);
 
 	sourceFormat	 = track.GetFormat();
 
 	album		 = track;
-	album.outputFile = fileName;
+	album.outputFile = streamURI;
 
 	chapter		 = 0;
 	offset		 = 0;
 
 	/* Create output file.
 	 */
-	File(fileName).Delete();
+	file.Delete();
 
-	stream = new OutStream(STREAM_FILE, BoCA::Utilities::CreateDirectoryForFile(fileName), OS_REPLACE);
+	stream = new OutStream(STREAM_FILE, BoCA::Utilities::CreateDirectoryForFile(streamURI), OS_REPLACE);
 	stream->SetPackageSize(32768 * sourceFormat.channels * (sourceFormat.bits / 8));
 
 	if (stream->GetLastError() != IO_ERROR_OK)
 	{
-		SetError("Unable to create output file: %1\n\nFile: %1\nPath: %2", File(fileName).GetFileName(), File(fileName).GetFilePath());
+		SetErrorInfo(True, "Unable to create output file: %1\n\nFile: %1\nPath: %2", file.GetFileName(), file.GetFilePath());
 
 		delete stream;
 
@@ -69,7 +70,7 @@ Bool freac::Encoder::Create(const String &encoderID, const String &fileName, con
 
 	if (encoder == NIL)
 	{
-		SetError("Could not create encoder component: %1", encoderID);
+		SetErrorInfo(True, "Could not create encoder component: %1", encoderID);
 
 		delete stream;
 
@@ -89,7 +90,7 @@ Bool freac::Encoder::Create(const String &encoderID, const String &fileName, con
 
 	if (stream->SetFilter(encoder) == False)
 	{
-		SetError("Could not set up encoder for output file: %1\n\nFile: %1\nPath: %2\n\nError: %3", File(fileName).GetFileName(), File(fileName).GetFilePath(), encoder->GetErrorString());
+		SetErrorInfo(True, "Could not set up encoder for output file: %1\n\nFile: %1\nPath: %2\n\nError: %3", file.GetFileName(), file.GetFilePath(), encoder->GetErrorString());
 
 		UnlockComponent(encoder);
 
@@ -107,6 +108,8 @@ Bool freac::Encoder::Create(const String &encoderID, const String &fileName, con
 	 */
 	targetFormat = FormatConverter::GetBestTargetFormat(sourceFormat, encoder);
 
+	AdjustTrackSampleCounts(album, targetFormat);
+
 	album.SetFormat(targetFormat);
 
 	return True;
@@ -122,7 +125,7 @@ Bool freac::Encoder::Destroy()
 
 	stream->RemoveFilter();
 
-	if (encoder->GetErrorState()) SetError("Error: %1", encoder->GetErrorString());
+	SetErrorInfo(encoder->GetErrorState(), encoder->GetErrorString());
 
 	UnlockComponent(encoder);
 
@@ -163,6 +166,8 @@ Void freac::Encoder::SignalChapterChange()
 
 	track.length = encodedSamples - offset;
 	offset	     = encodedSamples;
+
+	track.length = track.length * targetFormat.rate / sourceFormat.rate;
 
 	chapter++;
 }

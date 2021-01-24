@@ -37,13 +37,11 @@ namespace freac
 			Bool						 autoRip;
 
 			Bool						 skipTrack;
-			Bool						 stopConversion;
 
 			String						 singleOutFile;
 			BoCA::Format					 singleTrackSampleFormat;
 
-			Void						 UpdateTrackProgress(Int, Int);
-			Void						 UpdateTotalProgress(Int, Int);
+			Void						 ReportProgress(Int, Int, Int, Int);
 
 			Int						 GetNumberOfWorkers(Int) const;
 
@@ -62,6 +60,10 @@ namespace freac
 			static Void					 Skip();
 			static Void					 Stop();
 
+			static Void					 StopRipping(const String &);
+
+			static JobConvert				*GetActiveConversionJob();
+
 									 JobConvert(const Array<BoCA::Track> &, Bool = False);
 			virtual						~JobConvert();
 
@@ -74,9 +76,7 @@ namespace freac
 					     const String &,
 					     const String &,
 					     ConversionStep>		 onEncodeTrack;
-
-			static Signal2<Void, Int, Int>			 onTrackProgress;
-			static Signal2<Void, Int, Int>			 onTotalProgress;
+			static Signal4<Void, Int, Int, Int, Int>	 onReportProgress;
 		slots:
 			Void						 OnWorkerReportError(const String &);
 			Void						 OnWorkerReportWarning(const String &);

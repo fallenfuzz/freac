@@ -392,8 +392,8 @@
     </section>
 
     <section name="Errors">
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Kan ikke lese inndatafil: %1&#10;&#10;Fil: %1&#10;Mappe: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Kan ikke lage utdatafil: %1&#10;&#10;Fil: %1&#10;Mappe: %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Kan ikke lese inndatafil: %1&#10;&#10;Fil: %1&#10;Mappe: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Kan ikke lage utdatafil: %1&#10;&#10;Fil: %1&#10;Mappe: %2</entry>
       <entry id="7110" string="File not found">Fil ikke funnet</entry>
       <entry id="7111" string="Unknown file type">Ukjent filtype</entry>
       <entry id="7113" string="Unsupported audio format">Lydformatet er ikke støttet</entry>
@@ -432,7 +432,6 @@
       <entry id="9015" string="Start ripping automatically">Start ripping automatisk</entry>
       <entry id="9016" string="Eject disk after ripping">Løs ut CD etter ripping</entry>
       <entry id="9017" string="CD options">CD-alternativer</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Lås CD-skuff mens ripping pågår</entry>
     </section>
 
     <section name="Encoders">
@@ -471,9 +470,9 @@
 	  <entry id="32100" string="Presets">Forhåndsinnstillinger</entry>
 	  <entry id="32101" string="Use preset">Bruk forhåndsinnstillinger</entry>
 	  <entry id="32102" string="Custom settings">Tilpass innstillinger</entry>
-	  <entry id="32103" string="Medium, Fast">Middels, rask</entry>
-	  <entry id="32104" string="Standard, Fast">Standard, rask</entry>
-	  <entry id="32105" string="Extreme, Fast">Ekstrem, rask</entry>
+	  <entry id="32103" string="Medium">Middels</entry>
+	  <entry id="32104" string="Standard">Standard</entry>
+	  <entry id="32105" string="Extreme">Ekstrem</entry>
 	  <entry id="32106" string="Bitrate">Bitrate</entry>
 	  <entry id="32107" string="Quality">Kvalitet</entry>
 	  <entry id="32108" string="Set bitrate">Sett bitrate</entry>
@@ -541,6 +540,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping">Bruk Temporal Noise Shaping</entry>
 	  <entry id="33208" string="Maximum bandwidth">Maksimal båndbredde</entry>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)">Maksimal AAC-frekvensbåndbredde i Hz</entry>
+	  <entry id="33210" string="worse">Dårligere</entry>
+	  <entry id="33211" string="better">Bedre</entry>
 	</section>
 
 	<section name="Format">

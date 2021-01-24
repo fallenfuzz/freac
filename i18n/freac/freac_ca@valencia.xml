@@ -392,8 +392,8 @@
     </section>
 
     <section name="Errors">
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">No es pot accedir a l'arxiu d'entrada: %1&#10;&#10;Arxiu: %1&#10;Carpeta: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">No es pot crear l'arxiu d'eixida: %1&#10;&#10;Arxiu: %1&#10;Carpeta: %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">No es pot accedir a l'arxiu d'entrada: %1&#10;&#10;Arxiu: %1&#10;Carpeta: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">No es pot crear l'arxiu d'eixida: %1&#10;&#10;Arxiu: %1&#10;Carpeta: %2</entry>
       <entry id="7110" string="File not found">Arxiu no trobat</entry>
       <entry id="7111" string="Unknown file type">Tipus d'arxiu desconegut</entry>
       <entry id="7113" string="Unsupported audio format">Format d'àudio no suportat</entry>
@@ -433,7 +433,6 @@
       <entry id="9015" string="Start ripping automatically">Extraure automàticament</entry>
       <entry id="9016" string="Eject disk after ripping">Expulsar disc després de l'extracció</entry>
       <entry id="9017" string="CD options">Opcions de CD</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Bloquejar safata del CD</entry>
     </section>
 
     <section name="Encoders">
@@ -472,9 +471,9 @@
 	  <entry id="32100" string="Presets">Preconfiguracions</entry>
 	  <entry id="32101" string="Use preset">Usar preconfiguració</entry>
 	  <entry id="32102" string="Custom settings">Configuració personal</entry>
-	  <entry id="32103" string="Medium, Fast">Mitjà, Ràpid</entry>
-	  <entry id="32104" string="Standard, Fast">Estàndard, Ràpid</entry>
-	  <entry id="32105" string="Extreme, Fast">Extrem, Ràpid</entry>
+	  <entry id="32103" string="Medium">Mitjà</entry>
+	  <entry id="32104" string="Standard">Estàndard</entry>
+	  <entry id="32105" string="Extreme">Extrem</entry>
 	  <entry id="32106" string="Bitrate">Bitrate</entry>
 	  <entry id="32107" string="Quality">Qualitat</entry>
 	  <entry id="32108" string="Set bitrate">Bitrate</entry>
@@ -542,6 +541,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping">Usar PRT</entry>
 	  <entry id="33208" string="Maximum bandwidth">Amplada de banda màxim</entry>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)">Freqüència màxima per a AAC en Hz</entry>
+	  <entry id="33210" string="worse">Pitjor</entry>
+	  <entry id="33211" string="better">Millor</entry>
 	</section>
 
 	<section name="Format">

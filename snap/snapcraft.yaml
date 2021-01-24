@@ -1,7 +1,7 @@
 name: freac
 base: core18
-version: '1.1.1'
-#version-script: echo 1.1.1~`date +"%Y%m%d"`
+version: '1.1.3'
+version-script: echo 1.1.3~`date +"%Y%m%d"`
 summary: Audio converter and CD ripper
 description: |
   fre:ac is a free and open source audio converter. It comes with
@@ -59,8 +59,8 @@ parts:
       - usr/lib/libcdio_*.so*
 
   libfaad:
-    source: https://github.com/knik0/faad2/archive/2_9_1.tar.gz
-    source-checksum: sha256/7fa33cff76abdda5a220ca5de0b2e05a77354f3b97f735193c2940224898aa9a
+    source: https://github.com/knik0/faad2/archive/2_10_0.tar.gz
+    source-checksum: sha256/0c6d9636c96f95c7d736f097d418829ced8ec6dbd899cc6cc82b728480a84bfb
     plugin: autotools
     configflags: [ --prefix=/usr ]
     build-environment:
@@ -91,8 +91,8 @@ parts:
 
   libmac:
     after: [ patches ]
-    source: https://freac.org/patches/MAC_SDK_533.zip
-    source-checksum: sha256/df1efd1e0ad8aed253ba8024a1b8cb795f12fbbab84f6301f5217f774f99bfa8
+    source: https://freac.org/patches/MAC_SDK_568.zip
+    source-checksum: sha256/25cecf3ee962647be4401595e1f71449b1e28e8a1ad488e553200c5ced4eb126
     source-subdir: .
     plugin: make
     make-parameters: [ prefix=/usr ]
@@ -100,7 +100,7 @@ parts:
       - CXXFLAGS: "$CXXFLAGS -O3 -funroll-loops"
     override-build: |
       if [ `lscpu | grep -i 'byte order' | awk '{ print tolower($3) }'` = "little" ]; then
-        patch -p1 < $SNAPCRAFT_STAGE/mac-sdk-5.33-gcc.patch
+        patch -p1 < $SNAPCRAFT_STAGE/mac-sdk-5.68-gcc.patch
         snapcraftctl build
       fi
     prime:
@@ -141,8 +141,8 @@ parts:
       - usr/lib/libmp4v2.so*
 
   libmpg123:
-    source: https://mpg123.de/download/mpg123-1.25.13.tar.bz2
-    source-checksum: sha256/90306848359c793fd43b9906e52201df18775742dc3c81c06ab67a806509890a
+    source: https://mpg123.de/download/mpg123-1.26.4.tar.bz2
+    source-checksum: sha256/081991540df7a666b29049ad870f293cfa28863b36488ab4d58ceaa7b5846454
     plugin: autotools
     configflags: [ --prefix=/usr ]
     build-environment:
@@ -193,24 +193,24 @@ parts:
 
   libvorbis:
     after: [ patches, libogg ]
-    source: https://ftp.osuosl.org/pub/xiph/releases/vorbis/libvorbis-1.3.6.tar.gz
-    source-checksum: sha256/6ed40e0241089a42c48604dc00e362beee00036af2d8b3f46338031c9e0351cb
+    source: https://ftp.osuosl.org/pub/xiph/releases/vorbis/libvorbis-1.3.7.tar.xz
+    source-checksum: sha256/b33cc4934322bcbf6efcbacf49e3ca01aadbea4114ec9589d1b1e9d20f72954b
     plugin: autotools
     configflags: [ --prefix=/usr ]
     build-environment:
       - CFLAGS: "$CFLAGS -O3"
     override-build: |
-      patch -p1 < $SNAPCRAFT_STAGE/libvorbis-1.3.6-aotuv-b6.03.patch
+      patch -p1 < $SNAPCRAFT_STAGE/libvorbis-1.3.7-aotuv-b6.03.patch
       if [ "$SNAP_ARCH" = "amd64" ]; then
-        patch -p1 < $SNAPCRAFT_STAGE/libvorbis-1.3.6-aotuv-b6.03-lancer.patch
+        patch -p1 < $SNAPCRAFT_STAGE/libvorbis-1.3.7-aotuv-b6.03-lancer.patch
       fi
       snapcraftctl build
     prime:
       - usr/lib/libvorbis*.so*
 
   ffmpeg:
-    source: https://ffmpeg.org/releases/ffmpeg-4.2.2.tar.xz
-    source-checksum: sha256/cb754255ab0ee2ea5f66f8850e1bd6ad5cac1cd855d0a2f4990fb8c668b0d29c
+    source: https://ffmpeg.org/releases/ffmpeg-4.3.1.tar.xz
+    source-checksum: sha256/ad009240d46e307b4e03a213a0f49c11b650e445b1f8be0dda2a9212b34d2ffb
     plugin: autotools
     configflags: [ --prefix=/usr, --disable-autodetect, --enable-gpl, --enable-small, --enable-runtime-cpudetect, --disable-vsx ]
     build-packages:

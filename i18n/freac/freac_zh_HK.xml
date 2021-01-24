@@ -518,9 +518,9 @@
     </section>
 
     <section name="Errors">
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">無法存取輸入檔案：%1&#10;&#10;檔案：%1&#10;資料夾：%2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">無法建立輸出檔案：%1&#10;&#10;檔案：%1&#10;資料夾：%2</entry>
-      <entry id="7108" string="Failed to verify input file: %1">無法驗證輸入檔案</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">無法存取輸入檔案：%1&#10;&#10;檔案：%1&#10;資料夾：%2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">無法建立輸出檔案：%1&#10;&#10;檔案：%1&#10;資料夾：%2</entry>
+      <entry id="7107" string="Failed to verify input file: %1">無法驗證輸入檔案</entry>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3">檔案%1的編碼驗證失敗&#10;&#10;編碼加總：%2&#10;虛擬編碼加總：%3</entry>
       <entry id="7110" string="File not found">未找到檔案</entry>
       <entry id="7111" string="Unknown file type">未知檔案類型</entry>
@@ -572,12 +572,11 @@
       <entry id="9015" string="Start ripping automatically">自動開始翻錄</entry>
       <entry id="9016" string="Eject disk after ripping">翻錄完成後彈出光碟</entry>
       <entry id="9017" string="CD options">CD選項</entry>
-      <entry id="9018" string="Lock CD tray while ripping">翻錄時防止彈出光碟</entry>
-      <entry id="9019" string="Use read offset">使用讀取偏移修正</entry>
-      <entry id="9020" string="samples">取樣</entry>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist">加入曲目到工作清單時讀取ISRC</entry>
-      <entry id="9022" string="Spin up before ripping">翻錄前先旋轉鐳射唱片</entry>
-      <entry id="9023" string="%1 seconds">%1秒</entry>
+      <entry id="9018" string="Use read offset">使用讀取偏移修正</entry>
+      <entry id="9019" string="samples">取樣</entry>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist">加入曲目到工作清單時讀取ISRC</entry>
+      <entry id="9021" string="Spin up before ripping">翻錄前先旋轉鐳射唱片</entry>
+      <entry id="9022" string="%1 seconds">%1秒</entry>
     </section>
 
     <section name="Decoders">
@@ -640,9 +639,9 @@
 	  <entry id="32100" string="Presets">編碼</entry>
 	  <entry id="32101" string="Use preset">壓縮方式╱啟用自訂</entry>
 	  <entry id="32102" string="Custom settings">自訂（開放全部選項）</entry>
-	  <entry id="32103" string="Medium, Fast">中等，快</entry>
-	  <entry id="32104" string="Standard, Fast">標準，快</entry>
-	  <entry id="32105" string="Extreme, Fast">極度，快</entry>
+	  <entry id="32103" string="Medium">中等</entry>
+	  <entry id="32104" string="Standard">標準</entry>
+	  <entry id="32105" string="Extreme">極度</entry>
 	  <entry id="32106" string="Bitrate">位元率</entry>
 	  <entry id="32107" string="Quality">品質</entry>
 	  <entry id="32108" string="Set bitrate">位元率</entry>
@@ -715,6 +714,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping">啟用瞬態降噪</entry>
 	  <entry id="33208" string="Maximum bandwidth">最大頻寬</entry>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)">使用的最大AAC頻率頻寬（Hz）</entry>
+	  <entry id="33210" string="worse">較差</entry>
+	  <entry id="33211" string="better">較好</entry>
 	</section>
 
 	<section name="Format">
@@ -969,7 +970,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!">不支援或非影片網址</entry>
 	  <entry id="102202" string="Error downloading video!">下載影片錯誤</entry>
 	  <entry id="102203" string="You are already downloading this video!">此影片已經下載</entry>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!">沒有所須影片解碼器（例如Avconv或FFmpeg）。&#10;無法加入影片檔案到工作清單轉換成聲音檔。</entry>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!">沒有所須影片解碼器（例如FFmpeg或avconv）。&#10;無法加入影片檔案到工作清單轉換成聲音檔。</entry>
 	</section>
       </section>
 

@@ -1,4 +1,4 @@
-fre:ac version 1.1.1
+fre:ac version 1.1.4
 
 fre:ac is a free and open source audio converter. It supports audio CD
 ripping and tag editing and converts the following audio formats:
@@ -10,20 +10,20 @@ ripping and tag editing and converts the following audio formats:
 
 	- MP4/M4A AAC
 		- using the Core Audio AAC encoder	(http://www.apple.com/)
-		- using the FAAC/FAAD2 codec		(http://www.audiocoding.com/)
+		- using the FDK-AAC codec		(http://www.iis.fraunhofer.de/)
+		- using the FAAC/FAAD2 codec		(http://faac.sourceforge.net/)
 
 	- Windows Media Audio				(http://www.microsoft.com/)
 
 	- Xiph Foundation codecs
 		- Opus					(http://www.opus-codec.org/)
-		- Vorbis				(http://www.vorbis.com/)
+		- Vorbis				(http://xiph.org/vorbis/)
 		- Speex					(http://www.speex.org/)
-		- FLAC					(http://flac.sourceforge.net/)
+		- FLAC					(http://xiph.org/flac/)
 
 	- Apple Lossless (ALAC)
 		- using the Core Audio ALAC encoder	(http://www.apple.com/)
-		- using the libav ALAC encoder		(http://www.libav.org/)
-		- using David Hammerton's ALAC decoder	(http://www.craz.net/)
+		- using the FFmpeg ALAC encoder		(http://www.ffmpeg.org/)
 
 	- Musepack					(http://www.musepack.net/)
 	- WavPack					(http://www.wavpack.com/)
@@ -33,7 +33,7 @@ ripping and tag editing and converts the following audio formats:
 
 	- various other formats
 		- using the libsndfile library		(http://www.mega-nerd.com/)
-		- using the libav codec library		(http://www.libav.org/)
+		- using the FFmpeg converter		(http://www.ffmpeg.org/)
 
 Further codecs (e.g. Nero's HE-AAC encoder) can be used as external
 plug-ins (see the manual for installation instructions).
@@ -117,7 +117,7 @@ Requirements
 
 		All platforms:
 
-			- smooth v0.9.4 (http://www.smooth-project.org/)
+			- smooth v0.9.6 (http://www.smooth-project.org/)
 
 		Windows:
 
@@ -127,7 +127,7 @@ Requirements
 
 			- GCC v4.0+
 
-			- libfaac, libfaad2, libjpeg, libmp3lame, libmp4v2, libmpg123,
+			- libfdk-aac, libfaad2, libjpeg, libmp3lame, libmp4v2, libmpg123,
 			  libogg, libopus, libpng, libspeex, libvorbis
 
 			Linux:
@@ -146,6 +146,147 @@ Requirements
 
 History
 -------
+
+	Version 1.1.4 (January 2021)
+
+		- Improvements
+
+			- improved support for languages written from right to left
+			- improved support for reading CD-Text
+			- added an HDCD decoder DSP filter
+			- added catalog number and barcode fields to tag editor
+			- added file type associations to macOS app, so fre:ac is offered for opening audio files
+			- added quality (VBR) setting to FDK-AAC configuration dialog
+			- improved MP3, AAC and Opus encoding performance by up to 30%
+			- improved multi-monitor support on X11 based systems
+			- discs of multi-disc albums are now shown separately in tag editor album mode
+
+		- Bug fixes
+
+			- fixed invalid length written to very long Opus and Speex files (longer than 12 ½ hours at 48 kHz)
+			- fixed written MP4 chapters being invisible to some applications when using Nero AAC
+			- fixed issues submitting CDDB information for new CDs (without existing entries)
+			- fixed issues handling long path/file names on Windows
+			- fixed freaccmd randomly failing to process files in rare cases
+			- fixed bad user interface colors on some Linux distributions
+
+		- Updated codecs
+
+			- switched from FAAC to FDK-AAC for AAC encoding
+			- updated Monkey's Audio to version 5.68
+			- updated mpg123 to version 1.26.4
+			- updated FAAD2 to version 2.10.0
+
+		- New and updated translations
+
+			- added Persian translation
+			- updated Romanian translation
+
+	Version 1.1.3b (November 2020)
+
+		- added support for Apple Silicon Macs
+
+	Version 1.1.3a (October 2020)
+
+		- Bug fixes
+
+			- fixed user interface glitches on older versions of macOS
+
+	Version 1.1.3 (October 2020)
+
+		- added support for macOS 11.0 Big Sur
+		- switched to using GNUdb as the default CDDB database service
+
+		- Improvements
+
+			- command line codec configuration now allows specifying additional arguments
+			- improved detection of cue sheet encoding to support system codepage and UTF-8 without BOM
+			- freaccmd now splits cue sheets to individual tracks unless an output file is specified using the -o option
+			- freaccmd now supports a --split-chapters option to split files with chapter tags into individual chapters
+			- added <profile> placeholder for use in output folder configuration setting, resolving to user profile folder
+			- added file type associations to Linux/FreeBSD and Windows Store app, so fre:ac is offered for opening audio files
+			- added audio CD association to Linux/FreeBSD and Windows Store app, so fre:ac can be started when inserting a CD
+			- added an option to suppress "No entry found" messages for automatic CDDB queries
+			- improved detection of sampler CDs when querying CDDB information
+
+		- Bug fixes
+
+			- fixed possible conversion thread hangs when using external encoders
+			- fixed possible crash related to drag & drop handling on Windows
+			- fixed crash when writing fields containing only whitespace to Vorbis Comment, APEv2, WMA or RIFF tags
+			- fixed possible glitches in WAV/AIFF output when processing float samples outside the -1.0/+1.0 range
+			- fixed possible hangs when opening WAV/AIFF files larger than 2 GB or with a broken chunk structure
+			- fixed inability to open WAV/AIFF files with long paths on Windows
+			- fixed writing wrong offsets to single file cue sheets when the resampling DSP filter is enabled
+			- fixed writing invalid chapter offsets to Opus files with source material sample rates other than 48 kHz
+			- fixed writing invalid MP3 bitstreams in rare cases in SuperFast mode
+			- fixed wrong length detection for MP3 files with invalid chapter data
+			- fixed parsing of cue sheets with minute/second indications missing leading zeros and/or duration longer than 99 minutes
+			- fixed parsing of embedded cue sheets without FILE designations
+			- fixed ripping progress for other drives stalling while one drive is ejecting
+			- fixed inability to pause or stop single output file verification
+			- fixed log files being archived despite disabling the corresponding option
+			- fixed various issues with multi-monitor support on macOS
+			- fixed user interface glitches after closing dialogs in tabbed mode on macOS
+			- fixed Shift+Pos1/End shortcuts being interpreted by the joblist and edit fields at the same time
+
+		- Updated codecs
+
+			- switched from libav 12.3 to FFmpeg 4.3.1 for auxiliary format support
+			- added support for using the Core Audio codec of iTunes 12.10.9 and later
+			- updated Vorbis to version 1.3.7 (plus aoTuV b6.03 and Lancer optimizations)
+			- updated Monkey's Audio to version 5.55
+			- updated mpg123 to version 1.26.3
+
+		- New translations
+
+			- added Hindi translation
+
+	Version 1.1.2b (July 2020)
+
+		- Bug fixes
+
+			- fixed crash when decoding MP3 files on x64 Windows systems without AVX support
+
+		- Updated codecs
+
+			- updated mpg123 to version 1.26.2 (plus Windows x64 ASM patch)
+
+	Version 1.1.2a (June 2020)
+
+		- Bug fixes
+
+			- fixed font scaling with high DPI settings on Windows
+
+	Version 1.1.2 (June 2020)
+
+		- Improvements
+
+			- scale UI to adjust to system font size by default
+			- added support for theme colors and dark mode on Linux/FreeBSD
+			- improved handling of maximized window state on Linux/FreeBSD and macOS
+			- try to keep the selected encoder the same when upgrading from fre:ac 1.0.x
+			- removed non-working option to not lock CD trays while ripping
+			- stop ripping before trying to eject a disc
+			- write audio data CRC to log files when ripping
+			- write MD5 checksums to log files when verifying files
+			- write log entries when replacing existing files
+
+		- Bug fixes
+
+			- fixed length of last chapter of some audio books being detected as 0:00
+			- prevent interpreting numerical IDs or dates at the beginning of file names as track numbers
+			- fixed a possible source of random crashes when adding files to the joblist
+			- fixed possible crash when importing MP4/M4A files
+			- fixed possible crash when encoding in SuperFast mode
+			- fixed some graphics glitches on macOS
+
+		- Updated codecs
+
+			- updated Monkey's Audio to version 5.44
+			- updated mpg123 to version 1.26.1
+			- updated FAAD2 to version 2.9.2
+			- updated CDRip to version 2.4
 
 	Version 1.1.1 (April 2020)
 
@@ -428,7 +569,7 @@ Special thanks to
 			   Vincent Rateau (Esperanto),
 			   Cako (Turkish),
 			   Naglis Jonaitis (Lithuanian),
-			   Borca Alin and Laurentiu Bubuianu (Romanian),
+			   Adrian Huidu-Buzdugan, Borca Alin and Laurentiu Bubuianu (Romanian),
 			   El libre (Catalan),
 			   Agustín Bou (Valencian),
 			   Jose Goncalves (Portuguese),
@@ -442,7 +583,9 @@ Special thanks to
 			   Cois Wiid (Afrikaans),
 			   Xabier Aramendi (Basque),
 			   Kin Kwok (Cantonese, Hong Kong),
-			   Patriccollu di Santa Maria è Sichè (Corsican)
+			   Patriccollu di Santa Maria è Sichè (Corsican),
+			   XilizaX (Persian),
+			   Tushar Chandra (Hindi)
 
 	- Hans-Jürgen Bardenhagen for his help and suggestions for the FAAC encoder
 	- all the testers and everyone who submitted bug reports

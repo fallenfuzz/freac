@@ -424,7 +424,6 @@
       <entry id="9015" string="Start ripping automatically">Starti aŭtomate la ripilon</entry>
       <entry id="9016" string="Eject disk after ripping">Elĵeti la diskon post la ripado</entry>
       <entry id="9017" string="CD options">KD-opcioj</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Ŝlosi la KD dum la ripado</entry>
     </section>
 
     <section name="Encoders">
@@ -463,9 +462,9 @@
 	  <entry id="32100" string="Presets">Antaŭagordoj</entry>
 	  <entry id="32101" string="Use preset">Uzi antaŭagordojn</entry>
 	  <entry id="32102" string="Custom settings">Propraj agordoj</entry>
-	  <entry id="32103" string="Medium, Fast">Meza, Rapida</entry>
-	  <entry id="32104" string="Standard, Fast">Standarda, Rapida</entry>
-	  <entry id="32105" string="Extreme, Fast">Ekstrema, Rapida</entry>
+	  <entry id="32103" string="Medium">Meza</entry>
+	  <entry id="32104" string="Standard">Standarda</entry>
+	  <entry id="32105" string="Extreme">Ekstrema</entry>
 	  <entry id="32106" string="Bitrate">Bitkvanto</entry>
 	  <entry id="32107" string="Quality">Kvalito</entry>
 	  <entry id="32108" string="Set bitrate">Bitkvanto</entry>
@@ -533,6 +532,8 @@
 	  <entry id="33207" string="Use Temporal Noise Shaping">Uzi Temporal Noise Shaping-on</entry>
 	  <entry id="33208" string="Maximum bandwidth">Maksimuma bendkapacito</entry>
 	  <entry id="33209" string="Maximum AAC frequency bandwidth to use (Hz)">Maksimuma AAC-frekvenca bendkapacito por uzi (Hz)</entry>
+	  <entry id="33210" string="worse">malplibona</entry>
+	  <entry id="33211" string="better">plibona</entry>
 	</section>
 
 	<section name="Format">

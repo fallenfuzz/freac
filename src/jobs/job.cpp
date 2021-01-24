@@ -80,6 +80,9 @@ freac::Job::Job() : ListEntry("Job")
 	startTicks	    = 0;
 	previousSecondsLeft = 0;
 
+	waiting		    = False;
+	abort		    = False;
+
 	/* Notify about jobs change.
 	 */
 	mutex.Lock();
@@ -128,11 +131,15 @@ Int freac::Job::Schedule()
 
 Int freac::Job::RunPrecheck()
 {
-	scheduled.Remove(GetHandle());
+	if (Precheck() != Success())
+	{
+		scheduled.Remove(GetHandle());
 
-	if (Precheck() != Success()) return Error();
+		return Error();
+	}
 
 	planned.Add(this, GetHandle());
+	scheduled.Remove(GetHandle());
 
 	/* Notify about planned job.
 	 */
@@ -151,8 +158,8 @@ Int freac::Job::RunPrecheck()
 
 Int freac::Job::Run()
 {
-	planned.Remove(GetHandle());
 	running.Add(this, GetHandle());
+	planned.Remove(GetHandle());
 
 	/* Notify about running job.
 	 */
@@ -190,6 +197,13 @@ Int freac::Job::Run()
 	mutex.Release();
 
 	LeaveProtectedRegion();
+
+	return Success();
+}
+
+Int freac::Job::RequestAbort()
+{
+	abort = True;
 
 	return Success();
 }

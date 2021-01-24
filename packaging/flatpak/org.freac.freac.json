@@ -1,7 +1,7 @@
 {
     "app-id": "org.freac.freac",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "19.08",
+    "runtime-version": "20.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "freac",
     "finish-args": [
@@ -17,6 +17,7 @@
         "--talk-name=ca.desrt.dconf"
     ],
     "cleanup": [
+        "/bin/mac",
         "/include",
         "/lib/pkgconfig",
         "/share/aclocal",
@@ -26,6 +27,7 @@
         "*.la"
     ],
     "modules": [
+        "shared-modules/mac/mac.json",
         {
             "name": "libcdio",
             "config-opts": [
@@ -65,46 +67,6 @@
                     "type": "archive",
                     "url": "https://github.com/rocky/libcdio-paranoia/archive/release-10.2+2.0.1.tar.gz",
                     "sha256": "7a4e257c85f3f84129cca55cd097c397364c7a6f79b9701bbc593b13bd59eb95"
-                }
-            ]
-        },
-        {
-            "name": "libflac",
-            "config-opts": [
-                "--disable-cpp-libs"
-            ],
-            "cleanup": [
-                "/bin/flac",
-                "/bin/metaflac",
-                "/share/doc/flac*"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://ftp.osuosl.org/pub/xiph/releases/flac/flac-1.3.3.tar.xz",
-                    "sha256": "213e82bd716c9de6db2f98bcadbc4c24c7e2efe8c75939a1a84e28539c4e1748"
-                }
-            ]
-        },
-        {
-            "name": "libmac",
-            "buildsystem": "simple",
-            "build-commands": [
-                "make -f Source/Projects/NonWindows/Makefile prefix=/app all install"
-            ],
-            "cleanup": [
-                "/bin/mac"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://monkeysaudio.com/files/MAC_SDK_533.zip",
-                    "sha256": "df1efd1e0ad8aed253ba8024a1b8cb795f12fbbab84f6301f5217f774f99bfa8",
-                    "strip-components": 0
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/mac-sdk-5.33-gcc.patch"
                 }
             ]
         },
@@ -173,8 +135,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/uriparser/uriparser/releases/download/uriparser-0.9.3/uriparser-0.9.3.tar.bz2",
-                    "sha256": "28af4adb05e811192ab5f04566bebc5ebf1c30d9ec19138f944963d52419e28f"
+                    "url": "https://github.com/uriparser/uriparser/releases/download/uriparser-0.9.4/uriparser-0.9.4.tar.bz2",
+                    "sha256": "b7cdabe5611408fc2c3a10f8beecb881a0c7e93ff669c578cd9e3e6d64b8f87b"
                 }
             ]
         },
@@ -186,17 +148,17 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.osuosl.org/pub/xiph/releases/vorbis/libvorbis-1.3.6.tar.gz",
-                    "sha256": "6ed40e0241089a42c48604dc00e362beee00036af2d8b3f46338031c9e0351cb"
+                    "url": "https://ftp.osuosl.org/pub/xiph/releases/vorbis/libvorbis-1.3.7.tar.xz",
+                    "sha256": "b33cc4934322bcbf6efcbacf49e3ca01aadbea4114ec9589d1b1e9d20f72954b"
                 },
                 {
                     "type": "patch",
-                    "path": "patches/libvorbis-1.3.6-aotuv-b6.03.patch"
+                    "path": "patches/libvorbis-1.3.7-aotuv-b6.03.patch"
                 },
                 {
                     "only-arches": [ "x86_64" ],
                     "type": "patch",
-                    "path": "patches/libvorbis-1.3.6-aotuv-b6.03-lancer.patch"
+                    "path": "patches/libvorbis-1.3.7-aotuv-b6.03-lancer.patch"
                 }
             ]
         },
@@ -216,13 +178,16 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ffmpeg.org/releases/ffmpeg-4.2.2.tar.xz",
-                    "sha256": "cb754255ab0ee2ea5f66f8850e1bd6ad5cac1cd855d0a2f4990fb8c668b0d29c"
+                    "url": "https://ffmpeg.org/releases/ffmpeg-4.3.1.tar.xz",
+                    "sha256": "ad009240d46e307b4e03a213a0f49c11b650e445b1f8be0dda2a9212b34d2ffb"
                 }
             ]
         },
         {
             "name": "musepack",
+            "config-opts": [
+                "--disable-shared"
+            ],
             "cleanup": [
                 "/bin/mpc2sv8",
                 "/bin/mpccut",
@@ -233,6 +198,10 @@
                     "type": "archive",
                     "url": "https://files.musepack.net/source/musepack_src_r475.tar.gz",
                     "sha256": "a4b1742f997f83e1056142d556a8c20845ba764b70365ff9ccf2e3f81c427b2b"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/musepack_src_r475-const.patch"
                 },
                 {
                     "type": "shell",
@@ -264,7 +233,8 @@
         {
             "name": "rubberband",
             "build-options": {
-            "env": { "Vamp_CFLAGS": " ", "Vamp_LIBS": " " }},
+                "env": { "Vamp_CFLAGS": " ", "Vamp_LIBS": " " }
+            },
             "sources": [
                 {
                     "type": "archive",

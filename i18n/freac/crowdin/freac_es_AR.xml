@@ -265,7 +265,7 @@
       <section name="Joblist">
 	<entry id="3600" string="Reading folders"/>
 	<entry id="3601" string="Filtering duplicates"/>
-	<entry id="3602" string="Adding files"/>
+	<entry id="3602" string="Adding files">Agregando archivos</entry>
 	<entry id="3603" string="Adding tracks"/>
 	<entry id="3604" string="Added %1 files, %2 errors occurred"/>
 	<entry id="3605" string="Added %1 tracks, %2 errors occurred"/>
@@ -398,6 +398,7 @@
       <entry id="5023" string="Verifiers"/>
       <entry id="5024" string="Taggers"/>
       <entry id="5025" string="Processing"/>
+      <entry id="5026" string="Additional arguments"/>
 
       <section name="Encoders">
 	<entry id="5100" string="Configure encoder">Configurar codificador</entry>
@@ -600,7 +601,7 @@
       <entry id="7000" string="Currently converting">Actualmente codificando</entry>
       <entry id="7001" string="A conversion process is still active! Do you really want to quit?">¡La tarea de codificación sigue en progreso! ¿Desea realmente salir?</entry>
       <entry id="7002" string="Delete original files after encoding">Eliminar archivos originales luego de codificar</entry>
-      <entry id="7003" string="This option will remove the original files from your computer&#10;after the encoding process!&#10;&#10;Are you sure you want to activate this function?">¡Esta opción le permite eliminar lor archivos originales#10;una vez que han sido codificados! ¿Está seguro que desea proceder?</entry>
+      <entry id="7003" string="This option will remove the original files from your computer&#10;after the encoding process!&#10;&#10;Are you sure you want to activate this function?">¡Esta opción le permite eliminar lor archivos originales&#10;una vez que han sido codificados! ¿Está seguro que desea proceder?</entry>
       <entry id="7004" string="Keep this option enabled even after restarting %1"/>
       <entry id="7005" string="File already exists">El archivo ya existe</entry>
       <entry id="7006" string="The output file %1&#10;already exists! Do you want to overwrite it?">El archivo de destino %1&#10;ya existe. ¿Desea sobreescribirlo?</entry>
@@ -609,15 +610,15 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1"/>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2"/>
-      <entry id="7102" string="Could not create encoder component: %1"/>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3"/>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3"/>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2"/>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">No se puede acceder a archivo de origien: %1&#10;&#10;Archivo: %1&#10;Carpeta: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">No se puede crear archivo de destino: %1&#10;&#10;Archivo: %1&#10;Carpeta: %2</entry>
-      <entry id="7108" string="Failed to verify input file: %1"/>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2"/>
+      <entry id="7101" string="Could not create encoder component: %1"/>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3"/>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3"/>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2"/>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">No se puede acceder a archivo de origien: %1&#10;&#10;Archivo: %1&#10;Carpeta: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">No se puede crear archivo de destino: %1&#10;&#10;Archivo: %1&#10;Carpeta: %2</entry>
+      <entry id="7107" string="Failed to verify input file: %1"/>
+      <entry id="7108" string="Failed to verify input track: %1"/>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3"/>
       <entry id="7110" string="File not found">Archivo no encontrado</entry>
       <entry id="7111" string="Unknown file type">Tipo de archivo desconocido</entry>
@@ -633,6 +634,7 @@
       <entry id="7121" string="Access to CD-ROM drives was denied by Windows.&#10;&#10;Please contact your system administrator in order&#10;to be granted the right to access the CD-ROM drive.">El acceso a unidades de CD-ROM fue denegado por Windows.&#10;&#10;Por favor, contacte al administrador del sistema para que pueda&#10;otorgarle derechos de acceso a las unidades de CD-ROM.</entry>
       <entry id="7122" string="No configuration dialog available for:&#10;&#10;%1"/>
       <entry id="7123" string="The selected folder does not exist anymore!"/>
+      <entry id="7124" string="Access denied"/>
     </section>
 
     <section name="Dialogs">
@@ -679,12 +681,11 @@
       <entry id="9015" string="Start ripping automatically">Comenzar extracción automáticamente</entry>
       <entry id="9016" string="Eject disk after ripping">Expulsar disco luego de extraer</entry>
       <entry id="9017" string="CD options">Opciones de CD</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Bloquear bandeja de CD-ROM</entry>
-      <entry id="9019" string="Use read offset"/>
-      <entry id="9020" string="samples"/>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist"/>
-      <entry id="9022" string="Spin up before ripping"/>
-      <entry id="9023" string="%1 seconds"/>
+      <entry id="9018" string="Use read offset"/>
+      <entry id="9019" string="samples"/>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist"/>
+      <entry id="9021" string="Spin up before ripping"/>
+      <entry id="9022" string="%1 seconds"/>
     </section>
 
     <section name="Components">
@@ -773,9 +774,9 @@
 	  <entry id="32100" string="Presets">Preestablecidos</entry>
 	  <entry id="32101" string="Use preset">Utilizar preestablecido</entry>
 	  <entry id="32102" string="Custom settings">Configuración personalizada</entry>
-	  <entry id="32103" string="Medium, Fast">Medio, Rápido</entry>
-	  <entry id="32104" string="Standard, Fast">Estándar, Rápido</entry>
-	  <entry id="32105" string="Extreme, Fast">Extremo, Rápido</entry>
+	  <entry id="32103" string="Medium">Medio</entry>
+	  <entry id="32104" string="Standard">Estándar</entry>
+	  <entry id="32105" string="Extreme">Extremo</entry>
 	  <entry id="32106" string="Bitrate">Tasa de bits</entry>
 	  <entry id="32107" string="Quality">Calidad</entry>
 	  <entry id="32108" string="Set bitrate">Tasa</entry>
@@ -1265,7 +1266,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!"/>
 	  <entry id="102202" string="Error downloading video!"/>
 	  <entry id="102203" string="You are already downloading this video!"/>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!"/>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!"/>
 	</section>
       </section>
 

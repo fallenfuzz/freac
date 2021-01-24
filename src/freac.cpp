@@ -1,5 +1,5 @@
  /* fre:ac - free audio converter
-  * Copyright (C) 2001-2020 Robert Kausch <robert.kausch@freac.org>
+  * Copyright (C) 2001-2021 Robert Kausch <robert.kausch@freac.org>
   *
   * This program is free software; you can redistribute it and/or
   * modify it under the terms of the GNU General Public License as
@@ -15,7 +15,6 @@
 #include <boca.h>
 #include <freac.h>
 
-#include <playback.h>
 #include <config.h>
 #include <utilities.h>
 #include <dllinterfaces.h>
@@ -41,9 +40,9 @@ String	 freac::freac::appLongName    = "fre:ac - free video downloader";
 String	 freac::freac::version	      = FREAC_VERSION;
 #else
 #	ifdef FREAC_DATE
-String	 freac::freac::version	      = "v1.1.1";// (" FREAC_DATE ")";
+String	 freac::freac::version	      = "v1.1.3 (" FREAC_DATE ")";
 #	else
-String	 freac::freac::version	      = "v1.1.1";
+String	 freac::freac::version	      = "v1.1.3";
 #	endif
 #endif
 
@@ -65,11 +64,11 @@ String	 freac::freac::architecture   = "PPC64";
 String	 freac::freac::architecture   = "unknown";
 #endif
 
-String	 freac::freac::shortVersion   = "v1.1.1";
-String	 freac::freac::cddbVersion    = "v1.1.1"; // CDDB version may not contain spaces
+String	 freac::freac::shortVersion   = "v1.1.3";
+String	 freac::freac::cddbVersion    = "v1.1.3"; // CDDB version may not contain spaces
 String	 freac::freac::cddbMode	      = "submit";
 
-String	 freac::freac::copyright      = "Copyright (C) 2001-2020 Robert Kausch";
+String	 freac::freac::copyright      = "Copyright (C) 2001-2021 Robert Kausch";
 
 String	 freac::freac::website	      = "https://www.freac.org/";
 
@@ -167,10 +166,6 @@ freac::freac::~freac()
 	/* Free conversion locks.
 	 */
 	Component::FreeLockObjects();
-
-	/* Free the audio player.
-	 */
-	Playback::Free();
 
 	/* Free the CDDB cache.
 	 */

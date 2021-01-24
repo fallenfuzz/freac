@@ -398,6 +398,7 @@
       <entry id="5023" string="Verifiers">Verifiers</entry>
       <entry id="5024" string="Taggers">Taggers</entry>
       <entry id="5025" string="Processing">Processing</entry>
+      <entry id="5026" string="Additional arguments">Additional arguments</entry>
 
       <section name="Encoders">
 	<entry id="5100" string="Configure encoder">Configure encoder</entry>
@@ -609,15 +610,15 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1">Error: %1</entry>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2</entry>
-      <entry id="7102" string="Could not create encoder component: %1">Could not create encoder component: %1</entry>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3</entry>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3</entry>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Could not set up DSP processor: %1&#10;&#10;Error: %2</entry>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2</entry>
-      <entry id="7108" string="Failed to verify input file: %1">Failed to verify input file: %1</entry>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2</entry>
+      <entry id="7101" string="Could not create encoder component: %1">Could not create encoder component: %1</entry>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3</entry>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3</entry>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">Could not set up DSP processor: %1&#10;&#10;Error: %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2</entry>
+      <entry id="7107" string="Failed to verify input file: %1">Failed to verify input file: %1</entry>
+      <entry id="7108" string="Failed to verify input track: %1">Failed to verify input track: %1</entry>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3">Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3</entry>
       <entry id="7110" string="File not found">File not found</entry>
       <entry id="7111" string="Unknown file type">Unknown file type</entry>
@@ -633,6 +634,7 @@
       <entry id="7121" string="Access to CD-ROM drives was denied by Windows.&#10;&#10;Please contact your system administrator in order&#10;to be granted the right to access the CD-ROM drive.">Access to CD-ROM drives was denied by Windows.&#10;&#10;Please contact your system administrator in order&#10;to be granted the right to access the CD-ROM drive.</entry>
       <entry id="7122" string="No configuration dialog available for:&#10;&#10;%1">No configuration dialog available for:&#10;&#10;%1</entry>
       <entry id="7123" string="The selected folder does not exist anymore!">The selected folder does not exist anymore!</entry>
+      <entry id="7124" string="Access denied">Access denied</entry>
     </section>
 
     <section name="Dialogs">
@@ -679,12 +681,11 @@
       <entry id="9015" string="Start ripping automatically">Start ripping automatically</entry>
       <entry id="9016" string="Eject disk after ripping">Eject disk after ripping</entry>
       <entry id="9017" string="CD options">CD options</entry>
-      <entry id="9018" string="Lock CD tray while ripping">Lock CD tray while ripping</entry>
-      <entry id="9019" string="Use read offset">Use read offset</entry>
-      <entry id="9020" string="samples">samples</entry>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist">Read ISRC when adding tracks to joblist</entry>
-      <entry id="9022" string="Spin up before ripping">Spin up before ripping</entry>
-      <entry id="9023" string="%1 seconds">%1 seconds</entry>
+      <entry id="9018" string="Use read offset">Use read offset</entry>
+      <entry id="9019" string="samples">samples</entry>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist">Read ISRC when adding tracks to joblist</entry>
+      <entry id="9021" string="Spin up before ripping">Spin up before ripping</entry>
+      <entry id="9022" string="%1 seconds">%1 seconds</entry>
     </section>
 
     <section name="Components">
@@ -773,9 +774,9 @@
 	  <entry id="32100" string="Presets">Presets</entry>
 	  <entry id="32101" string="Use preset">Use preset</entry>
 	  <entry id="32102" string="Custom settings">Custom settings</entry>
-	  <entry id="32103" string="Medium, Fast">Medium, Fast</entry>
-	  <entry id="32104" string="Standard, Fast">Standard, Fast</entry>
-	  <entry id="32105" string="Extreme, Fast">Extreme, Fast</entry>
+	  <entry id="32103" string="Medium">Medium</entry>
+	  <entry id="32104" string="Standard">Standard</entry>
+	  <entry id="32105" string="Extreme">Extreme</entry>
 	  <entry id="32106" string="Bitrate">Bitrate</entry>
 	  <entry id="32107" string="Quality">Quality</entry>
 	  <entry id="32108" string="Set bitrate">Set bitrate</entry>
@@ -1265,7 +1266,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!">This URL is not supported or not a video page URL!</entry>
 	  <entry id="102202" string="Error downloading video!">Error downloading video!</entry>
 	  <entry id="102203" string="You are already downloading this video!">You are already downloading this video!</entry>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!">Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!</entry>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!">Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!</entry>
 	</section>
       </section>
 

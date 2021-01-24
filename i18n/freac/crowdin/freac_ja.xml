@@ -398,6 +398,7 @@
       <entry id="5023" string="Verifiers">ベリファイ</entry>
       <entry id="5024" string="Taggers">タグ</entry>
       <entry id="5025" string="Processing">処理</entry>
+      <entry id="5026" string="Additional arguments"/>
 
       <section name="Encoders">
 	<entry id="5100" string="Configure encoder">エンコーダ設定</entry>
@@ -609,15 +610,15 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1">エラー: %1</entry>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">デコーダの構成を作成できませんでした: %1&#10;&#10;ファイル: %1&#10;ディレクトリ: %2</entry>
-      <entry id="7102" string="Could not create encoder component: %1">エンコーダの構成を作成できませんでした: %1</entry>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">入力ファイルのデコーダを設定できませんでした: %1&#10;&#10;ファイル: %1&#10;ディレクトリ: %2&#10;&#10;エラー: %3</entry>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">入力ファイルのエンコーダを設定できませんでした: %1&#10;&#10;ファイル: %1&#10;ディレクトリ: %2&#10;&#10;エラー: %3</entry>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">DSP処理を設定できませんでした: %1&#10;&#10;エラー: %2</entry>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">入力ファイルにアクセスできませんでした: %1&#10;&#10;ファイル: %1&#10;ディレクトリ: %2</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">出力ファイルを作成できませんでした: %1&#10;&#10;ファイル: %1&#10;ディレクトリ: %2</entry>
-      <entry id="7108" string="Failed to verify input file: %1">入力ファイルのベリファイに失敗しました: %1</entry>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2">デコーダの構成を作成できませんでした: %1&#10;&#10;ファイル: %1&#10;ディレクトリ: %2</entry>
+      <entry id="7101" string="Could not create encoder component: %1">エンコーダの構成を作成できませんでした: %1</entry>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">入力ファイルのデコーダを設定できませんでした: %1&#10;&#10;ファイル: %1&#10;ディレクトリ: %2&#10;&#10;エラー: %3</entry>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3">入力ファイルのエンコーダを設定できませんでした: %1&#10;&#10;ファイル: %1&#10;ディレクトリ: %2&#10;&#10;エラー: %3</entry>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2">DSP処理を設定できませんでした: %1&#10;&#10;エラー: %2</entry>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">入力ファイルにアクセスできませんでした: %1&#10;&#10;ファイル: %1&#10;ディレクトリ: %2</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">出力ファイルを作成できませんでした: %1&#10;&#10;ファイル: %1&#10;ディレクトリ: %2</entry>
+      <entry id="7107" string="Failed to verify input file: %1">入力ファイルのベリファイに失敗しました: %1</entry>
+      <entry id="7108" string="Failed to verify input track: %1"/>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3">出力ファイルのチェックサムが一致しません: %1&#10;&#10;エンコードのチェックサム: %2&#10;ベリファイのチェックサム: %3</entry>
       <entry id="7110" string="File not found">ファイルが見つかりません</entry>
       <entry id="7111" string="Unknown file type">不明なファイル形式です</entry>
@@ -633,6 +634,7 @@
       <entry id="7121" string="Access to CD-ROM drives was denied by Windows.&#10;&#10;Please contact your system administrator in order&#10;to be granted the right to access the CD-ROM drive.">CD-ROM ドライブへのアクセスが Windows により拒否されました。&#10;&#10;システム管理者に連絡して CD-ROM ドライブへの&#10;アクセス権限をもらってください。</entry>
       <entry id="7122" string="No configuration dialog available for:&#10;&#10;%1">次の設定ダイアログは使用できません:&#10;&#10;%1</entry>
       <entry id="7123" string="The selected folder does not exist anymore!">選択したフォルダはもう存在しません！</entry>
+      <entry id="7124" string="Access denied"/>
     </section>
 
     <section name="Dialogs">
@@ -679,12 +681,11 @@
       <entry id="9015" string="Start ripping automatically">自動でリッピング開始</entry>
       <entry id="9016" string="Eject disk after ripping">リッピング後ディスクを取り出す</entry>
       <entry id="9017" string="CD options">CD 設定</entry>
-      <entry id="9018" string="Lock CD tray while ripping">リッピング中は CD トレイをロック</entry>
-      <entry id="9019" string="Use read offset">読み取りオフセットを使用する</entry>
-      <entry id="9020" string="samples">サンプル</entry>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist">ジョブリストにトラックを追加するときにISRCを読む</entry>
-      <entry id="9022" string="Spin up before ripping">リッピングの前にスピンアップする</entry>
-      <entry id="9023" string="%1 seconds">%1 秒</entry>
+      <entry id="9018" string="Use read offset">読み取りオフセットを使用する</entry>
+      <entry id="9019" string="samples">サンプル</entry>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist">ジョブリストにトラックを追加するときにISRCを読む</entry>
+      <entry id="9021" string="Spin up before ripping">リッピングの前にスピンアップする</entry>
+      <entry id="9022" string="%1 seconds">%1 秒</entry>
     </section>
 
     <section name="Components">
@@ -773,9 +774,9 @@
 	  <entry id="32100" string="Presets">プリセット</entry>
 	  <entry id="32101" string="Use preset">プリセット使用</entry>
 	  <entry id="32102" string="Custom settings">カスタム設定</entry>
-	  <entry id="32103" string="Medium, Fast">Medium （VBR -V 4, 140-185kbps）, Fast</entry>
-	  <entry id="32104" string="Standard, Fast">Standard （VBR -V 2, 170-210kbps）, Fast</entry>
-	  <entry id="32105" string="Extreme, Fast">Extreme （VBR -V 0, 220-260kbps）, Fast</entry>
+	  <entry id="32103" string="Medium">Medium （VBR -V 4, 140-185kbps）</entry>
+	  <entry id="32104" string="Standard">Standard （VBR -V 2, 170-210kbps）</entry>
+	  <entry id="32105" string="Extreme">Extreme （VBR -V 0, 220-260kbps）</entry>
 	  <entry id="32106" string="Bitrate">ビットレート</entry>
 	  <entry id="32107" string="Quality">品質</entry>
 	  <entry id="32108" string="Set bitrate">ビットレート</entry>
@@ -1265,7 +1266,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!">このURLはサポートされていないか、動画ページのURLではありません！</entry>
 	  <entry id="102202" string="Error downloading video!">動画のダウンロード中にエラーが発生しました！</entry>
 	  <entry id="102203" string="You are already downloading this video!">あなたはすでにこのビデオをダウンロードしています！</entry>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!">いくつかの必要なビデオデコーダが見つかりませんでした。 ビデオファイル&#10;オーディオファイルへの変換のためにジョブリストに追加することはできません。&#10;&#10;この問題を解決するには、avconvまたはFFmpegをインストールしてください！</entry>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!">いくつかの必要なビデオデコーダが見つかりませんでした。 ビデオファイル&#10;オーディオファイルへの変換のためにジョブリストに追加することはできません。&#10;&#10;この問題を解決するには、FFmpegまたはavconvをインストールしてください！</entry>
 	</section>
       </section>
 

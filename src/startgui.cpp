@@ -12,7 +12,7 @@
 
 #include <startgui.h>
 #include <joblist.h>
-#include <playback.h>
+#include <player.h>
 #include <config.h>
 #include <utilities.h>
 #include <resources.h>
@@ -20,6 +20,8 @@
 #include <engine/converter.h>
 
 #include <jobs/engine/convert.h>
+#include <jobs/joblist/addfiles.h>
+#include <jobs/joblist/addfolders.h>
 #include <jobs/joblist/addtracks.h>
 #include <jobs/joblist/removedisc.h>
 #include <jobs/other/checkforupdates.h>
@@ -98,6 +100,10 @@ freac::freacGUI::freacGUI()
 
 	config->GetPersistentIntValue(Config::CategorySettingsID, Config::SettingsNotificationAvailableID, False) = notification != NIL && notification->IsNotificationAvailable();
 
+	/* Create player.
+	 */
+	player = new Player();
+
 	/* Setup attributes.
 	 */
 	clicked_configuration = -1;
@@ -105,27 +111,30 @@ freac::freacGUI::freacGUI()
 	clicked_encoder	      = -1;
 	clicked_processor     = -1;
 
-	Rect	 workArea    = Screen::GetActiveScreenWorkArea();
-	Float	 scaleFactor = Surface().GetSurfaceDPI() / 96.0;
+	Rect	 workArea      = Screen::GetActiveScreenWorkArea();
+	Rect	 virtualScreen = Screen::GetVirtualScreenMetrics();
+	Float	 scaleFactor   = Surface().GetSurfaceDPI() / 96.0;
 
-	Point	 wndPos	     = Point(config->GetIntValue(Config::CategorySettingsID, Config::SettingsWindowPosXID, Config::SettingsWindowPosXDefault), config->GetIntValue(Config::CategorySettingsID, Config::SettingsWindowPosYID, Config::SettingsWindowPosYDefault));
-	Size	 wndSize     = Size(config->GetIntValue(Config::CategorySettingsID, Config::SettingsWindowSizeXID, Config::SettingsWindowSizeXDefault), config->GetIntValue(Config::CategorySettingsID, Config::SettingsWindowSizeYID, Config::SettingsWindowSizeYDefault));
+	Point	 defaultPos    = Point(workArea.left, workArea.top) + Point(Config::SettingsWindowPosXDefault, Config::SettingsWindowPosYDefault);
 
-	if (wndPos.x + wndSize.cx * scaleFactor > workArea.right + 2 ||
-	    wndPos.y + wndSize.cy * scaleFactor > workArea.bottom + 2)
+	Point	 wndPos	       = Point(config->GetIntValue(Config::CategorySettingsID, Config::SettingsWindowPosXID, defaultPos.x), config->GetIntValue(Config::CategorySettingsID, Config::SettingsWindowPosYID, defaultPos.y));
+	Size	 wndSize       = Size(config->GetIntValue(Config::CategorySettingsID, Config::SettingsWindowSizeXID, Config::SettingsWindowSizeXDefault), config->GetIntValue(Config::CategorySettingsID, Config::SettingsWindowSizeYID, Config::SettingsWindowSizeYDefault));
+
+	if (wndPos.x + wndSize.cx * scaleFactor > virtualScreen.right + 2 ||
+	    wndPos.y + wndSize.cy * scaleFactor > virtualScreen.bottom + 2)
 	{
-		wndPos.x = (Int) Math::Min(workArea.right - 10 - Math::Round(wndSize.cx * scaleFactor), (Int64) wndPos.x);
-		wndPos.y = (Int) Math::Min(workArea.bottom - 10 - Math::Round(wndSize.cy * scaleFactor), (Int64) wndPos.y);
+		wndPos.x = (Int) Math::Min(virtualScreen.right - 10 - Math::Round(wndSize.cx * scaleFactor), (Int64) wndPos.x);
+		wndPos.y = (Int) Math::Min(virtualScreen.bottom - 10 - Math::Round(wndSize.cy * scaleFactor), (Int64) wndPos.y);
 	}
 
-	if (wndPos.x < workArea.left - 2 ||
-	    wndPos.y < workArea.top - 2)
+	if (wndPos.x < virtualScreen.left - 2 ||
+	    wndPos.y < virtualScreen.top - 2)
 	{
-		wndPos.x = (Int) Math::Max(workArea.left + 10, wndPos.x);
-		wndPos.y = (Int) Math::Max(workArea.top + 10, wndPos.y);
+		wndPos.x = (Int) Math::Max(virtualScreen.left + 10, wndPos.x);
+		wndPos.y = (Int) Math::Max(virtualScreen.top + 10, wndPos.y);
 
-		wndSize.cx = (Int) Math::Min(Math::Round((workArea.right - 20) / scaleFactor), (Int64) wndSize.cx);
-		wndSize.cy = (Int) Math::Min(Math::Round((workArea.bottom - 20) / scaleFactor), (Int64) wndSize.cy);
+		wndSize.cx = (Int) Math::Min(Math::Round((virtualScreen.right - 20) / scaleFactor), (Int64) wndSize.cx);
+		wndSize.cy = (Int) Math::Min(Math::Round((virtualScreen.bottom - 20) / scaleFactor), (Int64) wndSize.cy);
 	}
 
 	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowPosXID, wndPos.x);
@@ -134,6 +143,8 @@ freac::freacGUI::freacGUI()
 	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowSizeXID, wndSize.cx);
 	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowSizeYID, wndSize.cy);
 
+	/* Create widgets.
+	 */
 	mainWnd			= new Window(String(freac::appLongName).Append(" ").Append(freac::version), wndPos, wndSize);
 	mainWnd->SetRightToLeft(i18n->IsActiveLanguageRightToLeft());
 
@@ -251,6 +262,10 @@ freac::freacGUI::freacGUI()
 
 	if (config->GetIntValue(Config::CategorySettingsID, Config::SettingsWindowMaximizedID, Config::SettingsWindowMaximizedDefault)) mainWnd->Maximize();
 
+	/* Parse arguments and add files to joblist.
+	 */
+	ParseArguments(GetArguments());
+
 	/* Run update check.
 	 */
 	if (config->GetIntValue(Config::CategorySettingsID, Config::SettingsCheckForUpdatesID, Config::SettingsCheckForUpdatesDefault)) (new JobCheckForUpdates(True))->Schedule();
@@ -305,6 +320,10 @@ freac::freacGUI::~freacGUI()
 	foreach (PopupMenu *menu_format, formatMenus) DeleteObject(menu_format);
 
 	formatMenus.RemoveAll();
+
+	/* Free player.
+	 */
+	delete player;
 }
 
 Void freac::freacGUI::InitExtensionComponents()
@@ -352,7 +371,25 @@ Bool freac::freacGUI::ExitProc()
 
 	/* Stop playback if playing a track
 	 */
-	Playback::Get()->Stop();
+	player->Stop();
+
+	/* Order remaining jobs to abort.
+	 */
+	const Array<Job *>	&jobs = Job::GetRunningJobs();
+
+	jobs.LockForRead();
+
+	foreachreverse (Job *job, jobs) job->RequestAbort();
+
+	jobs.Unlock();
+
+	/* Wait for jobs to finish.
+	 */
+	Int	 suspendCount = Application::Lock::SuspendLock();
+
+	while (jobs.Length() > 0) S::System::System::Sleep(10);
+
+	Application::Lock::ResumeLock(suspendCount);
 
 	/* Notify components that we are about to quit.
 	 */
@@ -360,7 +397,7 @@ Bool freac::freacGUI::ExitProc()
 
 	/* Save main window position.
 	 */
-	Rect	 wndRect = mainWnd->GetRestoredWindowRect() - mainWnd->GetSizeModifier();
+	Rect	 wndRect = mainWnd->GetRestoredWindowRect();
 
 	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowPosXID, wndRect.left);
 	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowPosYID, wndRect.top);
@@ -384,17 +421,31 @@ Void freac::freacGUI::OnChangePosition(const Point &nPos)
 {
 	BoCA::Config	*config = BoCA::Config::Get();
 
-	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowPosXID, mainWnd->GetPosition().x);
-	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowPosYID, mainWnd->GetPosition().y);
+	/* Save main window position.
+	 */
+	Rect	 wndRect = mainWnd->GetRestoredWindowRect();
+
+	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowPosXID, wndRect.left);
+	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowPosYID, wndRect.top);
+
+	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowMaximizedID, mainWnd->IsMaximized());
 }
 
 Void freac::freacGUI::OnChangeSize(const Size &nSize)
 {
 	BoCA::Config	*config = BoCA::Config::Get();
 
-	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowSizeXID, mainWnd->GetSize().cx);
-	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowSizeYID, mainWnd->GetSize().cy);
+	/* Save main window size.
+	 */
+	Rect	 wndRect = mainWnd->GetRestoredWindowRect();
 
+	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowSizeXID, wndRect.right - wndRect.left);
+	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowSizeYID, wndRect.bottom - wndRect.top);
+
+	config->SetIntValue(Config::CategorySettingsID, Config::SettingsWindowMaximizedID, mainWnd->IsMaximized());
+
+	/* Update widgets.
+	 */
 	mainWnd->SetStatusText(String(freac::appLongName).Append(" ").Append(freac::version).Append(" - ").Append(freac::copyright));
 
 	Rect	 clientRect = mainWnd->GetClientRect();
@@ -785,7 +836,7 @@ Void freac::freacGUI::QueryCDDB()
 
 				if (trackNumber == -1) continue;
 
-				info.artist	 = (cdInfo.dArtist == "Various" ? cdInfo.trackArtists.GetNth(trackNumber - 1) : cdInfo.dArtist);
+				info.artist	 = cdInfo.GetTrackArtist(trackNumber);
 				info.title	 = cdInfo.trackTitles.GetNth(trackNumber - 1);
 				info.album	 = cdInfo.dTitle;
 				info.genre	 = cdInfo.dGenre;
@@ -1308,17 +1359,30 @@ Void freac::freacGUI::FillMenus()
 
 	mainWnd_iconbar->AddEntry();
 
-	entry = mainWnd_iconbar->AddEntry(ImageLoader::Load(String(currentConfig->resourcesPath).Append(currentConfig->deleteAfterEncoding ? "icons/conversion/conversion-start-warning.png" : "icons/conversion/conversion-start.png")), boca.GetNumberOfComponentsOfType(COMPONENT_TYPE_ENCODER) > 0 ? menu_encoders : NIL);
-	entry->onAction.Connect(&freacGUI::Convert, this);
-	entry->SetTooltipText(i18n->TranslateString(currentConfig->deleteAfterEncoding ? "Start the encoding process (deleting original files)" : "Start the encoding process"));
+	for (Int i = 0; i < 3; i++)
+	{
+		switch (i18n->IsActiveLanguageRightToLeft() ? 2 - i : i)
+		{
+			case 0:
+				entry = mainWnd_iconbar->AddEntry(ImageLoader::Load(String(currentConfig->resourcesPath).Append(currentConfig->deleteAfterEncoding ? "icons/conversion/conversion-start-warning.png" : "icons/conversion/conversion-start.png")), boca.GetNumberOfComponentsOfType(COMPONENT_TYPE_ENCODER) > 0 ? menu_encoders : NIL);
+				entry->onAction.Connect(&freacGUI::Convert, this);
+				entry->SetTooltipText(i18n->TranslateString(currentConfig->deleteAfterEncoding ? "Start the encoding process (deleting original files)" : "Start the encoding process"));
 
-	entry = mainWnd_iconbar->AddEntry(ImageLoader::Load(String(currentConfig->resourcesPath).Append("icons/conversion/conversion-pause.png")));
-	entry->onAction.Connect(&freacGUI::PauseResumeEncoding, this);
-	entry->SetTooltipText(i18n->TranslateString("Pause/resume encoding"));
+				break;
+			case 1:
+				entry = mainWnd_iconbar->AddEntry(ImageLoader::Load(String(currentConfig->resourcesPath).Append("icons/conversion/conversion-pause.png")));
+				entry->onAction.Connect(&freacGUI::PauseResumeEncoding, this);
+				entry->SetTooltipText(i18n->TranslateString("Pause/resume encoding"));
 
-	entry = mainWnd_iconbar->AddEntry(ImageLoader::Load(String(currentConfig->resourcesPath).Append("icons/conversion/conversion-stop.png")));
-	entry->onAction.Connect(&freacGUI::StopEncoding, this);
-	entry->SetTooltipText(i18n->TranslateString("Stop encoding"));
+				break;
+			case 2:
+				entry = mainWnd_iconbar->AddEntry(ImageLoader::Load(String(currentConfig->resourcesPath).Append("icons/conversion/conversion-stop.png")));
+				entry->onAction.Connect(&freacGUI::StopEncoding, this);
+				entry->SetTooltipText(i18n->TranslateString("Stop encoding"));
+
+				break;
+		}
+	}
 
 	/* Set size of iconbar entries to 28x28 pixels.
 	 */
@@ -1449,6 +1513,72 @@ Void freac::freacGUI::AddFilesFromDirectory()
 
 		joblist->AddTracksByDragAndDrop(directories);
 	}
+}
+
+Void freac::freacGUI::ParseArguments(const Array<String> &args)
+{
+	Registry	&boca = Registry::Get();
+
+	Array<String>	 files;
+	Array<String>	 folders;
+
+	foreach (const String &arg, args)
+	{
+		/* Check for drive argument.
+		 */
+#ifdef __WIN32__
+		if (arg.EndsWith(":\\") && arg.Length() == 3 && GetDriveType(arg) == DRIVE_CDROM)
+#else
+		if (arg.StartsWith("/dev/") || arg.Contains("cdda:host=") || arg.Contains("/UDisks2/block_devices/"))
+#endif
+		{
+			DeviceInfoComponent	*info = boca.CreateDeviceInfoComponent();
+
+			if (info != NIL)
+			{
+				/* Find drive number.
+				 */
+				Int	 driveNumber = 0;
+
+#ifdef __WIN32__
+				String	 driveLetter = String(" :");
+
+				for (driveLetter[0] = 'A'; driveLetter[0] < arg[0]; driveLetter[0]++)
+				{
+					if (GetDriveType(driveLetter) == DRIVE_CDROM) driveNumber++;
+				}
+#else
+				String	 devicePath  = arg;
+                
+				if	(arg.Contains("cdda:host="))		  devicePath = String("/dev/").Append(arg.Tail(arg.Length() - arg.Find("cdda:host=") - 10));
+				else if (arg.Contains("/UDisks2/block_devices/")) devicePath = String("/dev/").Append(arg.Tail(arg.Length() - arg.Find("/UDisks2/block_devices/") - 23));
+
+				for (Int i = 0; i < info->GetNumberOfDevices(); i++)
+				{
+					if (info->GetNthDeviceInfo(i).path == devicePath) driveNumber = i;
+				}
+#endif
+
+				/* Add tracks to joblist.
+				 */
+				const Array<String>	&urls = info->GetNthDeviceTrackList(driveNumber);
+
+				(new JobAddTracks(urls, False))->Schedule();
+
+				boca.DeleteComponent(info);
+			}
+
+			continue;
+		}
+
+		/* Check for file or folder argument.
+		 */
+		if	(File(arg).Exists())	  files.Add(arg);
+		else if (Directory(arg).Exists()) folders.Add(arg);
+	}
+
+	if (files.Length()   > 0) (new JobAddFiles(files))->Schedule();
+	if (folders.Length() > 0) (new JobAddFolders(folders))->Schedule();
 }
 
 Void freac::freacGUI::ToggleSignalProcessing()

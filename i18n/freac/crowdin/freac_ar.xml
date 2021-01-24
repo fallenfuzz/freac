@@ -61,7 +61,7 @@
       <entry id="515" string="%1 bit">%1 بيت</entry>
       <entry id="516" string="%1 bytes">%1 بايت</entry>
       <entry id="517" string="%1 kB">%1 kB</entry>
-      <entry id="518" string="%1%">%%1</entry>
+      <entry id="518" string="%1%">%1٪</entry>
     </section>
 
     <section name="Menu">
@@ -398,6 +398,7 @@
       <entry id="5023" string="Verifiers"/>
       <entry id="5024" string="Taggers"/>
       <entry id="5025" string="Processing"/>
+      <entry id="5026" string="Additional arguments"/>
 
       <section name="Encoders">
 	<entry id="5100" string="Configure encoder">تهيئة الترميز</entry>
@@ -609,15 +610,15 @@
     </section>
 
     <section name="Errors">
-      <entry id="7100" string="Error: %1"/>
-      <entry id="7101" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2"/>
-      <entry id="7102" string="Could not create encoder component: %1"/>
-      <entry id="7103" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3"/>
-      <entry id="7104" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3"/>
-      <entry id="7105" string="Could not set up DSP processor: %1&#10;&#10;Error: %2"/>
-      <entry id="7106" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">%1 لا يمكن فتح ملف المدخل</entry>
-      <entry id="7107" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">%1 لا يمكن إنشاء ملف الناتج</entry>
-      <entry id="7108" string="Failed to verify input file: %1"/>
+      <entry id="7100" string="Could not create decoder component: %1&#10;&#10;File: %1&#10;Path: %2"/>
+      <entry id="7101" string="Could not create encoder component: %1"/>
+      <entry id="7102" string="Could not set up decoder for input file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3"/>
+      <entry id="7103" string="Could not set up encoder for output file: %1&#10;&#10;File: %1&#10;Path: %2&#10;&#10;Error: %3"/>
+      <entry id="7104" string="Could not set up DSP processor: %1&#10;&#10;Error: %2"/>
+      <entry id="7105" string="Unable to access input file: %1&#10;&#10;File: %1&#10;Path: %2">%1 لا يمكن فتح ملف المدخل</entry>
+      <entry id="7106" string="Unable to create output file: %1&#10;&#10;File: %1&#10;Path: %2">%1 لا يمكن إنشاء ملف الناتج</entry>
+      <entry id="7107" string="Failed to verify input file: %1"/>
+      <entry id="7108" string="Failed to verify input track: %1"/>
       <entry id="7109" string="Checksum mismatch verifying output file: %1&#10;&#10;Encode checksum: %2&#10;Verify checksum: %3"/>
       <entry id="7110" string="File not found">ملف لم يتم العثور عليه</entry>
       <entry id="7111" string="Unknown file type">نوع الملف مجهول</entry>
@@ -633,6 +634,7 @@
       <entry id="7121" string="Access to CD-ROM drives was denied by Windows.&#10;&#10;Please contact your system administrator in order&#10;to be granted the right to access the CD-ROM drive.">تم رفض الوصول إلى محركات الأقراص المضغوطة من قبل ويندوز.&#10;&#10;الرجاء الإتصال بمسؤول النظام من أجل&#10;الحصول على الحق في الوصول إلى محرك الأقراص المضغوطة.</entry>
       <entry id="7122" string="No configuration dialog available for:&#10;&#10;%1"/>
       <entry id="7123" string="The selected folder does not exist anymore!"/>
+      <entry id="7124" string="Access denied"/>
     </section>
 
     <section name="Dialogs">
@@ -679,12 +681,11 @@
       <entry id="9015" string="Start ripping automatically">تبدء الإشتقاق تلقائيا</entry>
       <entry id="9016" string="Eject disk after ripping">لفظ القرص بعد الإشتقاق</entry>
       <entry id="9017" string="CD options">خيارات قرص مدمج</entry>
-      <entry id="9018" string="Lock CD tray while ripping">قفل القرص المضغوط عند الاشتقاق</entry>
-      <entry id="9019" string="Use read offset"/>
-      <entry id="9020" string="samples"/>
-      <entry id="9021" string="Read ISRC when adding tracks to joblist"/>
-      <entry id="9022" string="Spin up before ripping"/>
-      <entry id="9023" string="%1 seconds"/>
+      <entry id="9018" string="Use read offset"/>
+      <entry id="9019" string="samples"/>
+      <entry id="9020" string="Read ISRC when adding tracks to joblist"/>
+      <entry id="9021" string="Spin up before ripping"/>
+      <entry id="9022" string="%1 seconds"/>
     </section>
 
     <section name="Components">
@@ -773,9 +774,9 @@
 	  <entry id="32100" string="Presets">المسبقات</entry>
 	  <entry id="32101" string="Use preset">استخدم المسبقات</entry>
 	  <entry id="32102" string="Custom settings">إعدادات مخصصة</entry>
-	  <entry id="32103" string="Medium, Fast">متوسط،تقريبا</entry>
-	  <entry id="32104" string="Standard, Fast">قياسي،تقريبا</entry>
-	  <entry id="32105" string="Extreme, Fast">أقصى،تقريبا</entry>
+	  <entry id="32103" string="Medium">متوسط</entry>
+	  <entry id="32104" string="Standard">قياسي</entry>
+	  <entry id="32105" string="Extreme">أقصى</entry>
 	  <entry id="32106" string="Bitrate">معدل بايت</entry>
 	  <entry id="32107" string="Quality">النوعية</entry>
 	  <entry id="32108" string="Set bitrate">ثبت معدل بايت</entry>
@@ -1194,7 +1195,7 @@
 	  <entry id="100100" string="Choose an amount and click the button to make a donation with PayPal:">انقر فوق أحد الأزرار الموجودة أدناه للتبرع به باي بال:</entry>
 	  <entry id="100101" string="You can also send money directly to %1 with PayPal.">يمكنك أيضا إرسال المال مباشرة إلى %1 باستخدام باي بال.</entry>
 	  <entry id="100102" string="usd">usd</entry>
-	  <entry id="100103" string="$%1">$%1</entry>
+	  <entry id="100103" string="$%1">%1 $</entry>
 	  <entry id="100104" string="5,10,20,other amount">5,10,20,كمية اخرى</entry>
 	  <entry id="100105" string="monthly recurring"/>
 	  <entry id="100106" string="Donate"/>
@@ -1265,7 +1266,7 @@
 	  <entry id="102201" string="This URL is not supported or not a video page URL!"/>
 	  <entry id="102202" string="Error downloading video!"/>
 	  <entry id="102203" string="You are already downloading this video!"/>
-	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install avconv or FFmpeg to fix this problem!"/>
+	  <entry id="102204" string="Some required video decoders could not be found. Video files&#10;cannot be added to the joblist for conversion to audio files.&#10;&#10;Please install FFmpeg or avconv to fix this problem!"/>
 	</section>
       </section>
 
